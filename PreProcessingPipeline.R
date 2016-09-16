@@ -1,17 +1,19 @@
-## Example robust MALDI-TOF data pre-processing using MALDIquant + robMALDIppa
+## Example robust MALDI-TOF data pre-processing using MALDIquant + MALDIrppa
 
-# Load raw data (in R format)
+# Load example raw data (in R format)
+# Note: this collection of mass spectra is a small random sample from a real database, it has only been
+# included for illustrative purposes.
 
-load("spectra.ori.Rdata") # raw MS profiles
-load("type.ori.Rdata") # associated metadata
+data(spectra) # list of MassSpectra class objects (see MALDIquant package)
+data(type)    # vector with metadata (spectra IDs)
 
 # Required libraries ------------------------------------------------------
 
-suppressPackageStartupMessages(library(wmtsa))
-suppressPackageStartupMessages(library(MALDIquant))
-suppressPackageStartupMessages(library(MALDIrppa))
-suppressPackageStartupMessages(library(signal))
-suppressPackageStartupMessages(library(robustbase))
+library(wmtsa)
+library(MALDIquant)
+library(MALDIrppa)
+library(signal)
+library(robustbase)
 
 # Parameter settings
 
@@ -24,6 +26,8 @@ tol <- 0.003
 # Initial screening ----
 
 sc.results <- screenSpectra(spectra,type)
+summary(sc.results)
+plot(sc.results)
 
 spectra <- sc.results$fspectra
 type <- sc.results$fmeta

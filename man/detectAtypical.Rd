@@ -56,7 +56,7 @@ spectra <- removeBaseline(spectra)
 peaks <- detectPeaks(spectra)
 peaks <- alignPeaks(peaks)
 
-  # Find atypical samples from data in binary format
+# Find atypical samples from data in binary format
 
 int <- intensityMatrix(peaks)
 int.binary <- ifelse(is.na(int),0,1)

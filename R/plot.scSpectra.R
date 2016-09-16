@@ -1,13 +1,13 @@
 plot.scSpectra <-
-function(x,plot=c("index","hist"),breaks=30,col="green3",...){
+function(x,type=c("index","hist"),breaks=30,col="green3",...){
   
-  plot <- match.arg(plot)
+  type <- match.arg(type)
   
   if (inherits(x,"scSpectra")==FALSE) {
     stop("x must be a scSpectra class object")
   }
-  if (plot%in%c("index","hist")==FALSE){
-    stop(paste(plot,"is not a valid plot"))
+  if (type%in%c("index","hist")==FALSE){
+    stop(paste(type,"is not a valid plot type"))
   }
   
   u <- as.numeric(x$upper)
@@ -15,7 +15,7 @@ function(x,plot=c("index","hist"),breaks=30,col="green3",...){
   labels <- x$est.table$label
   cols <- ifelse(x$est.table[,"value"]<=l | x$est.table[,"value"] >= u,"red3","blue3")
   
-  if (plot=="index"){
+  if (type=="index"){
     xyplot(est.table[,"value"] ~ 1:nrow(est.table),data=x,cex=0.75,col="white",
            ylab=paste(x$nd,"-DSS ",x$estimator," estimator",sep=""),xlab="Index",
            panel = function(x,y,...){
