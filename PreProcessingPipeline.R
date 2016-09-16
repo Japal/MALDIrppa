@@ -1,4 +1,4 @@
-## Example robust MALDI-TOF data pre-processing using MALDIquant + MALDIrppa
+## Example robust MALDI-TOF mass spectra pre-processing using MALDIquant + MALDIrppa
 
 # Load example raw data (in R format)
 # Note: this collection of mass spectra is a small random sample from a real database, it has only been
@@ -23,7 +23,7 @@ SigNoi <- 3.5
 hws <- 20
 tol <- 0.003
 
-# Initial screening ----
+# Initial screening (?screenSpectra for details) ----
 
 sc.results <- screenSpectra(spectra,type)
 summary(sc.results)

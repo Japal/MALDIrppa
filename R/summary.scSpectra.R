@@ -5,7 +5,7 @@ function(x,ncases=10){
     stop("x must be a scSpectra class object")
   }
   
-  cat(paste(x$estimator," estimator from the scaled ",x$nd,"-derivative:\n (",ncases," first spectra) \n",sep=""))
+  cat(paste(x$estimator," estimator from the scaled ",x$nd,"-derivative:\n (",ncases," first mass spectra) \n",sep=""))
   print(head(x$est.table,ncases))
   cat("\n");cat("----------------------------")
   cat("\n\n")

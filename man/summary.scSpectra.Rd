@@ -2,10 +2,10 @@
 \alias{summary.scSpectra}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-TBC
+Numerical summary of results from \code{screenSpectra} function
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+This function generates a numerical summary of the settings and results from applying the function \code{screenSpectra} to identify potential faulty, low-quality raw mass spectra.
 }
 \usage{
 summary.scSpectra(x, ncases = 10)
@@ -13,14 +13,14 @@ summary.scSpectra(x, ncases = 10)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-%%     ~~Describe \code{x} here~~
+A \code{scSpectra} object as generated from \code{\link{screenSpectra}}.
 }
   \item{ncases}{
-%%     ~~Describe \code{ncases} here~~
+Number of cases shown in the results table.
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+A table is generated that includes details of the numerical estimations along with mass spectra ID, value of the estimated robust scale estimator and the class allocation for each mass spectra, either potentially low-quality (\code{failure}) or good-quality (\code{success}).
 }
 \value{
 %%  ~Describe the value returned
@@ -42,37 +42,15 @@ summary.scSpectra(x, ncases = 10)
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+See \code{\link{screenSpectra}} and \code{\link{plot.scSpectra}}.
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+# Load example data
 
-## The function is currently defined as
-function (x, ncases = 10) 
-{
-    if (inherits(x, "mads") == FALSE) {
-        stop("x must be a mads class object")
-    }
-    cat(paste("MAD scaled ", x$nd, "-derivative:\n (", ncases, 
-        " first spectra) \n", sep = ""))
-    print(head(x$mad.table, ncases))
-    cat("\n")
-    cat("----------------------------")
-    cat("\n\n")
-    cat(paste("Method:", x$met, "\n"))
-    cat(paste("Threshold:", x$threshold, "\n"))
-    cat(paste("Limits: [", round(x$lower, 4), ",", round(x$upper, 
-        4), "] \n", sep = ""))
-    cat(paste("Deriv. order:", x$nd, "\n"))
-    cat(paste("Runs:", x$runs, "\n"))
-    cat(paste("Number of flats:", x$cflat, "\n"))
-    cat(paste("Number of potential hairy:", x$chairy, "\n"))
-    cat(paste("Number of potential ion-suppression:", x$cions, 
-        "\n"))
-    cat(paste("Overall percentage cases:", x$prop * 100, "\%"))
-  }
+data(spectra) # list of MassSpectra objects
+
+scr.spectra <- screenSpectra(spectra)
+summary(scr.spectra)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

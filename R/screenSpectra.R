@@ -44,7 +44,7 @@ function(x,meta=NULL,threshold=1.5,estimator=c("Q","MAD"),
 
   sc.filter <- function(spectra,meta=NULL,est.table){
     
-    f <- which(est.table$class != "success")
+    f <- which(est.table$Class != "success")
     if (length(f) != 0){
       fSpectra <- spectra[-f]
       if (!is.null(meta)){
@@ -95,12 +95,12 @@ function(x,meta=NULL,threshold=1.5,estimator=c("Q","MAD"),
   
   names(t) <- NULL; names(l) <- NULL
   
-  est.table <- data.frame(value=est)
-  est.table["class"] <- "success"
-  est.table$class[which(est > t | est < l | is.na(est))] <- "failure"
-  est.table <- data.frame(label=1:nrow(est.table),est.table)
+  est.table <- data.frame(ID=names(est))
+  est.table$Value <- est
+  est.table["Class"] <- "success"
+  est.table$Class[which(est > t | est < l | is.na(est))] <- "failure"
   
-  cfailure <- sum(est.table$class=="failure")
+  cfailure <- sum(est.table$Class=="failure")
   prop <- round(cfailure/length(x),4)
   
   if (is.null(meta)){

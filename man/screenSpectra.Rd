@@ -5,7 +5,7 @@
 Identification of potentially faulty raw mass spectra
 }
 \description{
-This function implements a quality control check to help in the identification of possibly faulty, low-quality raw mass spectra. It labels suspicious profiles for further inspection. It requires a list of \code{\link{MassSpectrum}} objects as input (\code{\link{MALDIquant}} package).
+This function implements a quality control check to help in the identification of possibly faulty, low-quality raw mass spectra. It labels suspicious profiles for further inspection. It requires a list of \code{\link{MassSpectrum}} objects as input (see \code{\link{MALDIquant}} package).
 }
 \usage{
 screenSpectra(x, meta = NULL, threshold = 1.5, estimator = c("Q", "MAD"),
@@ -18,10 +18,10 @@ screenSpectra(x, meta = NULL, threshold = 1.5, estimator = c("Q", "MAD"),
 Raw mass spectra arranged as a list of \code{\link{MassSpectra}} objects.
 }
   \item{meta}{(optional) Vector or
-matrix containing metadata associated to the mass spectra in x. Typically a number of columns including spectrum ID, biotype, replicate number, etc. The length of the vector or the number of rows of the data matrix must match to the number of elements in \code{x}.
+matrix containing metadata associated to the mass spectra in x. Typically a number of columns including spectrum ID, biotype, replicate number, etc. The length of the vector or the number of rows of the data matrix must match the number of elements in \code{x}.
 }
   \item{threshold}{
-Multiplicative factor used in computing the upper and lower fences to determine passes and failures. It is related with the actual method used to compute the fences (see \code{method}). Tipically, \code{threshold = 1.5} (default value) for the boxplot rules, and \code{threshold = 3} for the others.
+Multiplicative factor used in computing the upper and lower fences to determine passes and failures. It is related to the actual method used to compute the fences (see \code{method}). Tipically, \code{threshold = 1.5} (default value) for the boxplot rules, and \code{threshold = 3} for the others.
 }
   \item{estimator}{Robust scale estimator used:
   
@@ -51,16 +51,16 @@ Other arguments.
 }
 }
 \details{
-The procedure is based on the analysis of the variability (\code{Q} or \code{MAD} scale estimator) of the n-order derivative (computed using Savitzky-Golay smoothing filter) of scaled mass spectra. Extreme values, according to the selected \code{method}, are labelled as failures. The default is \code{adj.boxplot} method on \code{Q} scale estimator of the first-order derivative. The function also produces a list of mass spectra and (if given) associated metadata where the identified mass spectra have been filtered out.
+The procedure is based on the analysis of the variability (\code{Q} or \code{MAD} scale estimator) of the n-order derivative (computed using Savitzky-Golay smoothing filter) of scaled mass spectra. Extreme values, according to the selected \code{method}, are labelled as potential failures. The default is \code{adj.boxplot} method on \code{Q} scale estimator of the first-order derivative. The function produces summaries and a list of mass spectra and (if given) associated metadata in which the identified cases were filtered out to be used in subsequent pre-processing stages.
 }
 \value{
 
 An object of class \code{scSpectra} with elements:
 
-\item{fspectra }{List of mass spectra (\code{MassSpectra} class) where failures have been filtered out.}
-\item{fmeta }{Associated filtered metadata \code{data.frame}.}
-\item{est.table }{Results table showing the mass spectra ID, estimated value and allocated class (pass/failure).}
-\item{... }{Other details (see method \code{\link{summary.scSpectra}} for \code{scSpectra} class objects).}
+\item{fspectra }{List of mass spectra (\code{MassSpectra} class) with potential failures filtered out.}
+\item{fmeta }{Associated filtered metadata (\code{data.frame} object).}
+\item{est.table }{Results table showing the mass spectra ID, estimated value of the estimator used and allocated class (pass/failure).}
+\item{... }{Other details (see method \code{\link{summary.scSpectra}} for \code{scSpectra} objects).}
 }
 \references{
 %%
@@ -81,15 +81,17 @@ See methods \code{\link{summary.scSpectra}} and \code{\link{plot.scSpectra}} for
 
 # Load example data
 
-data(spectra) # list of MassSpectra class objects
-data(type)    # vector with metadata (mass spectra IDs)
+data(spectra) # list of MassSpectra objects
+data(type)    # vector of metadata (mass spectra IDs)
 
-# Results with different settings
+# Results using different settings
 
 scr.spectra <- screenSpectra(spectra)
 scr.spectra <- screenSpectra(spectra,type)
 scr.spectra <- screenSpectra(spectra,type,method="RC")
 scr.spectra <- screenSpectra(spectra,type,threshold=3,estimator="MAD",method="Hampel")
+
+# Numerical and graphical summary
 
 summary(scr.spectra)
 plot(scr.spectra)
