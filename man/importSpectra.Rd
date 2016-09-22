@@ -37,35 +37,28 @@ A list of \code{\link{MassSpectrum}} objects.
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+# Create fake mass spectrometry data
 
-## The function is currently defined as
-function (where = getwd()) 
-{
-    MSlist <- function(mz, I) {
-        require(MALDIquant)
-        d <- list()
-        for (i in 1:ncol(I)) {
-            d[[i]] <- createMassSpectrum(mz, I[, i])
-        }
-        names(d) <- colnames(I)
-        d
-    }
-    current <- getwd()
-    setwd(where)
-    mz <- read.csv(dir()[1], sep = " ", header = FALSE)[, 1]
-    intensity <- matrix(0, nrow = length(mz), ncol = length(dir()))
-    colnames(intensity) <- sub("^([^.]*).*", "\\1", dir()[1:length(dir())])
-    for (i in 1:(length(dir()))) {
-        intensity[, i] <- read.csv(dir()[i], sep = " ", header = FALSE)[, 
-            2]
-    }
-    spectra <- MSlist(mz, intensity)
-    setwd(current)
-    return(spectra)
-  }
+s1 <- cbind(1:20, rlnorm(20))
+s2 <- cbind(1:20, rlnorm(20))
+s3 <- cbind(1:20, rlnorm(20))
+
+
+current <- getwd()
+dir.create(paste(getwd(),"/example",sep=""))
+setwd(paste(getwd(),"/example",sep=""))
+
+write.table(s1, file="s1.csv", row.names = FALSE, col.names = FALSE, sep=" ")
+write.table(s2, file="s2.csv", row.names = FALSE, col.names = FALSE, sep=" ")
+write.table(s3, file="s3.csv", row.names = FALSE, col.names = FALSE, sep=" ")
+
+# Import files in ~/example and arrange into a list of MassSpectrum objects
+
+spectra <- importSpectra()
+
+# Delete example folder and back to original working directory
+unlink(getwd(),recursive = TRUE)
+setwd(current)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

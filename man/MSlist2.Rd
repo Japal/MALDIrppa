@@ -2,10 +2,10 @@
 \alias{MSlist2}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-TBC
+Create list of \code{\link{MassPeaks}} objects
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+This is an auxiliary function to create a list of \code{\link{MassPeaks}} objects.
 }
 \usage{
 MSlist2(mz, I)
@@ -13,21 +13,17 @@ MSlist2(mz, I)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{mz}{
-%%     ~~Describe \code{mz} here~~
+Vector of m/z values.
 }
   \item{I}{
-%%     ~~Describe \code{I} here~~
+Matrix of peak intensity values.
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+This functions creates a list of \code{\link{MassPeaks}} objects from a vector of common m/z values and a matrix of column vectors of peak intensities for a collections of mass peak profiles. The column names are used to label the elements of the list.
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+A list of \code{\link{MassPeaks}} objects.
 }
 \references{
 %% ~put references to the literature/web site here ~
@@ -41,25 +37,8 @@ MSlist2(mz, I)
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function (mz, I) 
-{
-    require(MALDIquant)
-    d <- list()
-    for (i in 1:ncol(I)) {
-        d[[i]] <- createMassPeaks(mz, I[, i])
-    }
-    names(d) <- colnames(I)
-    d
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
