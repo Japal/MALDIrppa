@@ -5,7 +5,7 @@
 Compact peak alignment process for \code{MassPeaks} objects
 }
 \description{
-This function provides a single command for selecting anchor peaks, peak aligment and binning of \code{\link{MassPeaks}} class objects (\code{\link{MALDIquant}} package). It also deals with alignment-related issues found in high-resolution mass spectrometry data.
+This function provides a single command for selecting anchor peaks, peak alignment and binning of \code{\link{MassPeaks}} class objects (\code{\link{MALDIquant}} package). It also deals with alignment-related issues found in high-resolution mass spectrometry data.
 }
 \usage{
 alignPeaks(x, minFreq = 0.9, tolerance = 0.003, ...)
@@ -26,7 +26,7 @@ Maximal deviation in peak masses to be considered as identical (see \code{\link{
 }
 }
 \details{
-See \code{\link{warpMassPeaks}} and \code{\link{binPeaks}} in the \code{\link{MALDIquant}} package for details about the alignment and binning algorithms. \code{alignPeaks} provides a fix to misalignment issues found after using the default \code{strict} or \code{relaxed} bin creation rules with high-resolution mass spectrometry data.
+See \code{\link{warpMassPeaks}} and \code{\link{binPeaks}} in the \code{\link{MALDIquant}} package for details about the alignment and binning algorithms. Note that \code{alignPeaks} applies an additional binning round which correct for misalignment issues found after using the default \code{strict} or \code{relaxed} bin creation rules in high-resolution mass spectrometry data.
 }
 \value{
 A list of \code{\link{MassPeaks}} class objects with aligned masses. 

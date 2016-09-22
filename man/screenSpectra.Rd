@@ -21,7 +21,7 @@ Raw mass spectra arranged as a list of \code{\link{MassSpectra}} objects.
 matrix containing metadata associated to the mass spectra in x. Typically a number of columns including spectrum ID, biotype, replicate number, etc. The length of the vector or the number of rows of the data matrix must match the number of elements in \code{x}.
 }
   \item{threshold}{
-Multiplicative factor used in computing the upper and lower fences to determine passes and failures. It is related to the actual method used to compute the fences (see \code{method}). Tipically, \code{threshold = 1.5} (default value) for the boxplot rules, and \code{threshold = 3} for the others.
+Multiplicative factor used in computing the upper and lower fences to determine passes and failures. It is related to the actual method used to compute the fences (see \code{method}). Typically, \code{threshold = 1.5} (default value) for the boxplot rules, and \code{threshold = 3} for the others.
 }
   \item{estimator}{Robust scale estimator used:
   
@@ -31,7 +31,7 @@ Multiplicative factor used in computing the upper and lower fences to determine 
   
 }
 \item{method}{
-Method used to compute upper and lower fences for the identication of anomalous mass spectra.
+Method used to compute upper and lower fences for the identification of anomalous mass spectra.
 
 \code{boxplot}: standard boxplot rule based on the first and third quartiles and the interquartile range. 
 

@@ -1,16 +1,7 @@
 importSpectra <-
 function(where=getwd()){
-  
-  # Import spectra and convert to MassSpectrum (MALDIquant) format
-  
-  # Requires dat, csv, txt file type formats containing a column with the m/z values and
-  # and a column with the intensities (single-space separator)
-  
-  # where: path to the folder where spectra are stored (default: current working directory)
-  
+
   MSlist <- function(mz,I){
-    # mz: common m/z vector
-    # I: matrix with spectra intensities by columns (sample IDs included as column names)
     
     d <- list()
     for (i in 1:ncol(I)){

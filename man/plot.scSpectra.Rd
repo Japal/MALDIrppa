@@ -14,9 +14,9 @@ plot.scSpectra(x, type = c("index", "hist"), breaks = 30, label = NULL,
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-%%     ~~Describe \code{x} here~~
+A \code{scSpectra} object as generated from \code{\link{screenSpectra}}.
 }
-  \item{plot}{
+  \item{type}{
 Type of graphical display.
 }
   \item{breaks}{

@@ -5,7 +5,7 @@
 Count the number of peaks in \code{MassPeaks} objects
 }
 \description{
-This function counts the number of peaks in each element of a list of \code{\link{MassPeaks}} class objects. 
+This function provides the number of peaks for each element of a list of \code{\link{MassPeaks}} class objects. 
 }
 \usage{
 countPeaks(x)
@@ -21,7 +21,7 @@ List of \code{\link{MassPeaks}} class objects containing extracted peaks.
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-A vector formed by the number of peaks of each element of \code{x}.
+A vector consisting of the number of peaks for each element of \code{x}.
 }
 \references{
 %% ~put references to the literature/web site here ~

@@ -1,16 +1,16 @@
-\name{type}
-\alias{type}
+\name{isolate}
+\alias{isolate}
 \docType{data}
 \title{
 Example mass spectra metadata
 }
 \description{
-Vector containing mass spectra IDs.
+Vector containing mass spectra isolate IDs.
 }
-\usage{data(type)}
+\usage{data(isolate)}
 \format{
   The format is:
- Factor w/ 350 levels "230212A0101",..: 1 2 3 4 5 6 7 8 9 10 ...
+ Factor w/ 9 levels "33","43","48",..: 1 1 1 1 1 1 1 1 1 1 ...
 }
 \details{
 %%  ~~ If necessary, more details than the __description__ above ~~
@@ -22,7 +22,7 @@ Vector containing mass spectra IDs.
 %%  ~~ possibly secondary sources and usages ~~
 }
 \examples{
-data(type)
-str(type)
+data(isolate)
+str(isolate)
 }
 \keyword{datasets}

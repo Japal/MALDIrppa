@@ -62,15 +62,15 @@ save(type,file="type.new.Rdata")
 
 #################################################################################
 
-## Post-processing (see also examples in robMALDIppa help system)
+## Post-processing
 
-# Atypical samples detection at isolate level (based on actual intensities) ----
+# Outlier detection at isolate level based on intensities ----
 
 aty <- detectOutliers(peaks,by=type.new$Isolate)
 peaks.clean <- peaks[aty[,2]==FALSE]
 type.clean <- type[aty[,2]==FALSE,]
 
-# Or, atypical samples detection at isolate level (based on peak presence/absence patterns) ----
+# Or, outlier detection at isolate level based on peak presence/absence patterns ----
 
 aty <- detectOutliers(peaks,type$Isolate,binary=TRUE)
 peaks.clean <- peaks[aty[,2]==FALSE]
@@ -78,7 +78,7 @@ type.clean <- type[aty[,2]==FALSE,]
 
 # Filtering and merging ----
 
-# Filter out peaks occurring in less than 25% replicates within isolate (bio rep level)
+# Filtering out peaks occurring in less than 25% replicates within isolate (bio rep level)
 
 peaks.clean.f <- filterPeaks(peaks.clean,minFreq=0.25,labels=type.clean$Isolate) # 344 peaks in intensity matrix
 

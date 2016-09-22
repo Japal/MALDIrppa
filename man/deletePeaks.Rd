@@ -2,32 +2,27 @@
 \alias{deletePeaks}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-TBC
+Delete peaks from a \code{MassPeaks} objects
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+This function deletes peaks of height (intensity) below a given value from a \code{MassPeaks} object.
 }
 \usage{
 deletePeaks(peaks, limit)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{peaks}{
-%%     ~~Describe \code{peaks} here~~
+A list of \code{MassPeaks} objects as generated from \code{\link{detectPeaks}}.
 }
   \item{limit}{
-%%     ~~Describe \code{limit} here~~
+Numerical threshold used to discard a peak.
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+This functions takes a list of \code{MassPeaks} objects and filters out peaks of height (intensity) falling below the given limit.
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+A filtered list of \code{MassPeaks} objects.
 }
 \references{
 %% ~put references to the literature/web site here ~
@@ -45,24 +40,24 @@ deletePeaks(peaks, limit)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+# Load example data
 
-## The function is currently defined as
-function (peaks, limit) 
-{
-    peaks2 <- list()
-    for (i in 1:length(peaks)) {
-        t_int <- intensity(peaks[[i]])
-        t_mas <- mass(peaks[[i]])
-        mini <- which(t_int < limit)
-        t_int <- t_int[-mini]
-        t_mas <- t_mas[-mini]
-        peaks2[[i]] <- createMassPeaks(mass = t_mas, intensity = t_int)
-    }
-    peaks2
-  }
+data(spectra) # list of MassSpectra class objects
+data(type)    # vector with metadata (spectra IDs)
+
+# Some pre-processing
+
+library(MALDIquant)
+
+spectra <- screenSpectra(spectra)$fspectra
+spectra <- transformIntensity(spectra, method = "sqrt")
+spectra <- wavSmoothing(spectra)
+spectra <- removeBaseline(spectra)
+peaks <- detectPeaks(spectra)
+
+# Delete peaks of intensity < 30
+
+peaks <- deletePeaks(peaks,limit = 30)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

@@ -2,10 +2,10 @@
 \alias{spectra}
 \docType{data}
 \title{
-Example spectra profiles
+Example mass spectra profiles
 }
 \description{
-List of spectra (\code{\link{MassSpectrum}} class).  
+List of mass spectra (\code{\link{MassSpectrum}} class).  
 }
 \usage{data(spectra)}
 \format{

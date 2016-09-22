@@ -67,11 +67,30 @@ detectOutliers <- function(x, by = NULL, binary = FALSE, ...){
     return(l)
   }
   
+  TryCatch <- function(expr) {
+    # Customised tryCatch to silent warning when error
+    # Adapted from http://stackoverflow.com/questions/4948361/how-do-i-save-warnings-and-errors-as-output-from-a-function/4952908#4952908
+    warn <- err <- NULL
+    value <- withCallingHandlers(
+      tryCatch(expr, error=function(e) {
+        err <<- e
+        NULL
+      }), warning=function(w) {
+        warn <<- w
+        invokeRestart("muffleWarning")
+      })
+    list(value=value, warning=warn, error=err)
+  }
+  
   out <- function(x,d){
     x.dist <- dist(x,method=d)
-    fit <- cmdscale(x.dist,k=nrow(x)/2)
-    out <- adapt.out(fit)$outliers
-    return(out)
+    for (i in 1:(floor(nrow(x)/2)-1)){
+      fit <- cmdscale(x.dist,k=floor(nrow(x)/2)-(i-1))
+      out <- TryCatch(out <- adapt.out(fit)$outliers)
+      if(!is.null(out[[3]])) {next}
+      else {break}
+    }
+    return(out$value)
   } 
   
   int <- intensityMatrix(x)

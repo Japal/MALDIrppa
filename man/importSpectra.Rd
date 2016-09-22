@@ -1,11 +1,10 @@
 \name{importSpectra}
 \alias{importSpectra}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-TBC
+Convert mass spectra from text files into \code{MassSpectrum} objects
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+This function allows to import collections of mass spectra stored in individual text files into a list of \code{\link{MassSpectrum}} objects.
 }
 \usage{
 importSpectra(where = getwd())
@@ -13,18 +12,14 @@ importSpectra(where = getwd())
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{where}{
-%%     ~~Describe \code{where} here~~
+Path to the folder where the text files are stored (default: current working directory).
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+This functions works with dat, csv or txt file types containing two columns: the first one refering to common m/z values and the second one to intensities (using single-space separator between both and no column names). It reads all the files in the given folder and creates a list of \code{\link{MassSpectrum}} objects.
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+A list of \code{\link{MassSpectrum}} objects.
 }
 \references{
 %% ~put references to the literature/web site here ~
