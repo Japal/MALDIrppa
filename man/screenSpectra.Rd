@@ -2,7 +2,7 @@
 \alias{screenSpectra}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Identification of potentially faulty raw mass spectra
+Identification of potentially low-quality raw mass spectra
 }
 \description{
 This function implements a quality control check to help in the identification of possibly faulty, low-quality raw mass spectra. It labels suspicious profiles for further inspection. It requires a list of \code{\link{MassSpectrum}} objects as input (see \code{\link{MALDIquant}} package).
@@ -57,7 +57,7 @@ The procedure is based on the analysis of the variability (\code{Q} or \code{MAD
 
 An object of class \code{scSpectra} with elements:
 
-\item{fspectra }{List of mass spectra (\code{MassSpectra} class) with potential failures filtered out.}
+\item{fspectra }{List of mass spectra (\code{MassSpectra} class) with potential low-quality cases filtered out.}
 \item{fmeta }{Associated filtered metadata (\code{data.frame} object).}
 \item{est.table }{Results table showing the mass spectra ID, estimated value of the estimator used and allocated class (pass/failure).}
 \item{... }{Other details (see method \code{\link{summary.scSpectra}} for \code{scSpectra} objects).}

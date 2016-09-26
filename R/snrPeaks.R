@@ -1,5 +1,9 @@
 snrPeaks <-
-function(peaks){
-  # Extract peaks's SNR values from a list of MassPeaks objects
-  lapply(peaks,function(x) x@snr)
+function(x){
+
+  if (any(inherits(x,"list") & inherits(x[[1]],"MassPeaks"))==FALSE) {
+    stop("x must be a list of MassPeaks class objects")
+  }
+  
+  lapply(x,function(x) x@snr)
 }

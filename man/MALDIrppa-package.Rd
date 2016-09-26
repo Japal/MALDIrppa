@@ -3,20 +3,20 @@
 \alias{MALDIrppa}
 \docType{package}
 \title{
-MALDI mass spec robust pre-processing and analysis
+MALDI mass spectra robust pre-processing and analysis
 }
 \description{
-Functions for robust MALDI mass spectrometry data pre-processing and analysis based on the MALDIquant R package and other helper functions.
+This package is aimed to provide functions for robust pre-processing and analysis of MALDI mass spectrometry data and other data management tools based on objects and procedures from \code{\link{MALDIquant}}.
 }
 \details{
 \tabular{ll}{
 Package: \tab MALDIrppa\cr
 Type: \tab Package\cr
-Version: \tab 0.4.0\cr
-Date: \tab 2016-02\cr
+Version: \tab 0.5.0\cr
+Date: \tab 2016-10\cr
 License: \tab GPL (>= 2)\cr
 }
-This package provides functions for MALDI mass spectrometry data robust pre-processing and analysis based on the MALDIquant R package and other helper functions.
+
 }
 \author{
 Javier Palarea-Albaladejo
@@ -26,7 +26,7 @@ Maintainer: Javier Palarea-Albaladejo <javier.palarea@bioss.ac.uk>
 \references{
 
 }
-\keyword{mass spectrometry, pre-processing, robust}
+\keyword{mass spectrometry, pre-processing, robust statistics}
 \seealso{
 
 }

@@ -5,7 +5,7 @@
 Count the number of peaks in \code{MassPeaks} objects
 }
 \description{
-This function provides the number of peaks for each element of a list of \code{\link{MassPeaks}} class objects. 
+This function provides the number of peaks of each element of a list of \code{\link{MassPeaks}} objects. 
 }
 \usage{
 countPeaks(x)
@@ -13,7 +13,7 @@ countPeaks(x)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-List of \code{\link{MassPeaks}} class objects containing extracted peaks.
+List of \code{\link{MassPeaks}} objects.
 }
 }
 
@@ -21,7 +21,7 @@ List of \code{\link{MassPeaks}} class objects containing extracted peaks.
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-A vector consisting of the number of peaks for each element of \code{x}.
+A vector consisting of the number of peaks for each peak profile in \code{x}.
 }
 \references{
 %% ~put references to the literature/web site here ~
@@ -46,9 +46,7 @@ data(type)    # vector with metadata (spectra IDs)
 
 # Some pre-processing
 
-library(MALDIquant)
-
-spectra <- screenSpectra(spectra)
+spectra <- screenSpectra(spectra)$fspectra
 spectra <- transformIntensity(spectra, method = "sqrt")
 spectra <- wavSmoothing(spectra)
 spectra <- removeBaseline(spectra)

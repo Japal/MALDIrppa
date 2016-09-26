@@ -2,29 +2,25 @@
 \alias{snrPeaks}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-TBC
+Extract signal-to-noise ratio thresholds from \code{MassPeaks} objects
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+This function extracts the thresholds used to determine peaks from mass spectra based on signal-to-noise ratio (SNR) (threshold equal to \code{SNR*noise}).
 }
 \usage{
-snrPeaks(peaks)
+snrPeaks(x)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{peaks}{
-%%     ~~Describe \code{peaks} here~~
+  \item{x}{
+A list of \code{\link{MassPeaks}} objects.
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+Given a collection of \code{\link{MassPeaks}} objects as obtained from \code{\link{detectPeaks}}, this function provides the thresholds used in each case to determine peaks from the original mass spectra. The thresholds are calculated as the product of a SNR value set by the user and the estimated noise of the signal (see \code{\link{detectPeaks}}).
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+A list of vectors of SNR-based thresholds, one for each sample.
 }
 \references{
 %% ~put references to the literature/web site here ~
@@ -42,15 +38,22 @@ snrPeaks(peaks)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+# Load example data
 
-## The function is currently defined as
-function (peaks) 
-{
-    lapply(peaks, function(x) x@snr)
-  }
+data(spectra) # list of MassSpectra class objects
+data(type)    # vector with metadata (spectra IDs)
+
+# Some pre-processing
+
+spectra <- screenSpectra(spectra)$fspectra
+spectra <- transformIntensity(spectra, method = "sqrt")
+spectra <- wavSmoothing(spectra)
+spectra <- removeBaseline(spectra)
+peaks <- detectPeaks(spectra)
+
+# Extract thresholds for each mass peak profile
+
+SNRs <- snrPeaks(peaks)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

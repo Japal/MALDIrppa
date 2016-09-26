@@ -5,21 +5,21 @@
 Delete peaks from a \code{MassPeaks} objects
 }
 \description{
-This function deletes peaks of height (intensity) below a given value from a \code{MassPeaks} object.
+This function deletes peaks of height (intensity) below a given value in a \code{MassPeaks} object.
 }
 \usage{
-deletePeaks(peaks, limit)
+deletePeaks(peaks, min = NULL)
 }
 \arguments{
   \item{peaks}{
-A list of \code{MassPeaks} objects as generated from \code{\link{detectPeaks}}.
+A list of \code{MassPeaks} objects.
 }
-  \item{limit}{
-Numerical threshold used to discard a peak.
+  \item{min}{
+Lower threshold used to discard a peak.
 }
 }
 \details{
-This functions takes a list of \code{MassPeaks} objects and filters out peaks of height (intensity) falling below the given limit.
+This functions takes a list of \code{MassPeaks} objects and filters out peaks of height (intensity) falling below the given minimum value.
 }
 \value{
 A filtered list of \code{MassPeaks} objects.
@@ -57,7 +57,7 @@ peaks <- detectPeaks(spectra)
 
 # Delete peaks of intensity < 30
 
-peaks <- deletePeaks(peaks,limit = 30)
+peaks <- deletePeaks(peaks, min = 30)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
