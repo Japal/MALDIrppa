@@ -1,19 +1,17 @@
 ## Example robust MALDI-TOF mass spectra pre-processing using MALDIquant + MALDIrppa
 
 # Load example raw data (in R format)
-# Note: this collection of mass spectra is a small random sample from a real database, it has only been
-# included for illustrative purposes.
+# Note: this collection of mass spectra is a small random sample from a real database. It has only been
+# included for illustrative purposes and results cannot be interpreted in any sensible way.
 
 data(spectra) # list of MassSpectra class objects (see MALDIquant package)
 data(type)    # vector with metadata (spectra IDs)
 
-# Required libraries ------------------------------------------------------
+# Load package and set pre-processing parameters ----
 
-library(wmtsa)
-library(MALDIquant)
 library(MALDIrppa)
-library(signal)
-library(robustbase)
+
+#SI ESTE NO PROBLEMAS CON ALIGN POR EL TRIM THEN REPLACE EN EXAMPLES
 
 # Parameter settings
 
@@ -34,7 +32,7 @@ type <- sc.results$fmeta
 
 # Denoising, baseline correction, normalisation ----
 
-spectra <- transformIntensity(spectra, method="sqrt")
+spectra <- transformIntensity(spectra, method="sqrt") # see also ?transfIntensity
 spectra <- wavSmoothing(spectra,thresh.scale=thScale)
 spectra <- removeBaseline(spectra,method="SNIP",iterations=ite)
 spectra <- calibrateIntensity(spectra,method="PQN")

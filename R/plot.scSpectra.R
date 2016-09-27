@@ -1,5 +1,4 @@
-plot.scSpectra <-
-function(x,type=c("index","hist"),breaks=30,label=NULL,col="green3",...){
+plot.scSpectra <- function(x,type=c("index","hist"),breaks=30,label=NULL,col="green3", ...){
   
   type <- match.arg(type)
   

@@ -1,11 +1,11 @@
-writeMetadata <-
-function(x,file="type",format=c("R","csv"),...){
+writeMetadata <- function(x,filename="Metadata",format=c("R","csv"),...){
   
-  # x: metadata matrix
-  # file: output file name
-  # format: output file format
+  nam <- deparse(substitute(x))
+  format <- match.arg(format)
+  
+  assign(nam,x)
   
   switch(format,
-         R=save(x,file=paste(file,".Rdata",sep="")),
-         csv=write.table(x,file=paste(file,".csv",sep=""),sep=",",row.names = FALSE))
+         R=save(list=eval(nam),file=paste(filename,".Rdata",sep="")),
+         csv=write.table(x,file=paste(filename,".csv",sep=""),sep=",",row.names = FALSE))
 }

@@ -1,12 +1,12 @@
 Package: MALDIrppa
 Type: Package
 Title: MALDI mass spec data robust pre-processing and analysis
-Version: 0.4.0
-Date: 2016-02
+Version: 0.5.0
+Date: 2016-10
 Author: Javier Palarea-Albaladejo
 Maintainer: Javier Palarea-Albaladejo <javier.palarea@bioss.ac.uk>
-Depends: R (>= 2.14.0), MALDIquant, signal, robustbase, lattice
+Depends: R (>= 3.2.5), MALDIquant, signal, robustbase, wmtsa, lattice
 ByteCompile: yes
-Description: Functions for robust MALDI mass spectrometry data pre-processing and analysis based on the MALDIquant R package and other helper functions.
+Description: Provides procedures for robust pre-processing and analysis of MALDI mass spectrometry data based on objects and methods from the MALDIquant package. Moreover, it includes some additional functionalities and data summary and management tools.
 License: GPL (>= 2)
-Repository: GitHub
+Repository: CRAN, GitHub

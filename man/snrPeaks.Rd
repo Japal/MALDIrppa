@@ -22,21 +22,6 @@ Given a collection of \code{\link{MassPeaks}} objects as obtained from \code{\li
 \value{
 A list of vectors of SNR-based thresholds, one for each sample.
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 # Load example data
 

@@ -26,26 +26,12 @@ Maximal deviation in peak masses to be considered as identical (see \code{\link{
 }
 }
 \details{
-See \code{\link{warpMassPeaks}} and \code{\link{binPeaks}} in the \code{\link{MALDIquant}} package for details about the alignment and binning algorithms. Note that \code{alignPeaks} applies an additional binning round which correct for misalignment issues found after using the default \code{strict} or \code{relaxed} bin creation rules in high-resolution mass spectrometry data.
+See \code{\link{warpMassPeaks}} and \code{\link{binPeaks}} in the \code{\link{MALDIquant}} package for details about the alignment and binning algorithms. Note that \code{alignPeaks} applies an additional binning round which helps to correct for misalignment issues found after using the default \code{strict} or \code{relaxed} bin creation rules in high-resolution mass spectrometry data.
 }
 \value{
-A list of \code{\link{MassPeaks}} class objects with aligned masses. 
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+A list of \code{\link{MassPeaks}} class objects with aligned peaks along a common m/z range. 
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 # Load example data
 
@@ -54,9 +40,7 @@ data(type)    # vector with metadata (spectra IDs)
 
 # Some pre-processing
 
-library(MALDIquant)
-
-spectra <- screenSpectra(spectra)
+spectra <- screenSpectra(spectra)$fspectra
 spectra <- transformIntensity(spectra, method = "sqrt")
 spectra <- wavSmoothing(spectra)
 spectra <- removeBaseline(spectra)
@@ -64,7 +48,7 @@ peaks <- detectPeaks(spectra)
 
 # Peak alignment
 
-peaks <- alignPeaks(peaks)
+peaks <- alignPeaks(peaks, minFreq = 0.5)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

@@ -8,21 +8,12 @@ Example mass spectra profiles
 List of mass spectra (\code{\link{MassSpectrum}} class).  
 }
 \usage{data(spectra)}
-\format{
- 
-}
-\details{
-%%  ~~ If necessary, more details than the __description__ above ~~
-}
-\source{
-%%  ~~ reference to a publication or URL from which the data were obtained ~~
-}
-\references{
-%%  ~~ possibly secondary sources and usages ~~
-}
-\examples{
-library(MALDIquant)
 
+\details{
+Note that these data are simply a random subset of a larger real data set. They are only provided for illustration purposes and results from using them cannot be interpreted in any sensible way.
+}
+
+\examples{
 data(spectra)
 
 str(spectra[[1]])

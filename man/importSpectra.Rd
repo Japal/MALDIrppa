@@ -16,26 +16,12 @@ Path to the folder where the text files are stored (default: current working dir
 }
 }
 \details{
-This functions works with dat, csv or txt file types containing two columns: the first one refering to common m/z values and the second one to intensities (using single-space separator between both and no column names). It reads all the files in the given folder and creates a list of \code{\link{MassSpectrum}} objects.
+This functions works with dat, csv or txt file types containing two columns: the first one referring to common m/z values and the second one to intensities (using single-space separator between both and no column names). It reads all the files in the given folder and creates a list of \code{\link{MassSpectrum}} objects.
 }
 \value{
 A list of \code{\link{MassSpectrum}} objects.
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 # Create fake mass spectrometry data
 

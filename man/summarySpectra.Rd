@@ -2,62 +2,59 @@
 \alias{summarySpectra}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-TBC
+Summary of mass spectra
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+This function generates a numerical summary of a collection of \code{\link{MassSpectrum}} objects.
 }
 \usage{
-summarySpectra(spec)
+summarySpectra(x, ncases = NULL, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{spec}{
-%%     ~~Describe \code{spec} here~~
+  \item{x}{
+A list of \code{\link{MassSpectrum}} objects.
+}
+  \item{ncases}{
+Number of cases shown in the results table (default is \code{NULL}, all cases).
+}
+  \item{...}{
+Other arguments.
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+For each sample this function provides summary statistics of m/z points and signal intensities (number, minimum, mean, standard deviation, median, mean absolute deviation, maximum).
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+A \code{\link{data.frame}} containing summary information of a collection of \code{\link{MassSpectrum}} objects.
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+# Load example data
 
-## The function is currently defined as
-function (spec) 
-{
-    class <- sapply(spec, function(x) class(x))
-    NmzVal <- sapply(spec, function(x) length(x@mass))
-    RmzVal <- sapply(spec, function(x) paste(min(x@mass), "-", 
-        max(x@mass), sep = ""))
-    RintVal <- sapply(spec, function(x) paste(round(min(x@intensity), 
-        2), "-", round(max(x@intensity), 2), sep = ""))
-    return(data.frame(Class = class, Number_mz_values = NmzVal, 
-        Range_mz_values = RmzVal, Range_intensity_values = RintVal))
-  }
+data(spectra) # list of MassSpectra class objects
+data(type)    # vector with metadata (spectra IDs)
+
+# Summary of spectra features (show first 20 samples)
+
+summarySpectra(spectra, 20)
+
+# Some pre-processing
+
+sc.results <- screenSpectra(spectra, meta = type)
+
+spectra <- sc.results$fspectra
+type <- sc.results$fmeta
+
+spectra <- transformIntensity(spectra, method = "sqrt")
+spectra <- wavSmoothing(spectra)
+spectra <- removeBaseline(spectra)
+
+names(spectra) <- type # Sample IDs are lost with removeBaseline()
+
+# Summary of spectra features (show first 20 samples)
+
+summarySpectra(spectra, 20)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

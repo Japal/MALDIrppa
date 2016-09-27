@@ -6,7 +6,7 @@
 MALDI mass spectra robust pre-processing and analysis
 }
 \description{
-This package is aimed to provide functions for robust pre-processing and analysis of MALDI mass spectrometry data and other data management tools based on objects and procedures from \code{\link{MALDIquant}}.
+This package provides procedures for robust pre-processing and analysis of MALDI mass spectrometry data based on objects and methods from the \code{\link{MALDIquant}} package. Moreover, it includes some additional functionalities and data summary and management tools.
 }
 \details{
 \tabular{ll}{
@@ -23,12 +23,5 @@ Javier Palarea-Albaladejo
 
 Maintainer: Javier Palarea-Albaladejo <javier.palarea@bioss.ac.uk>
 }
-\references{
 
-}
 \keyword{mass spectrometry, pre-processing, robust statistics}
-\seealso{
-
-}
-\examples{
-}

@@ -17,27 +17,10 @@ List of \code{\link{MassPeaks}} objects.
 }
 }
 
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
 \value{
 A vector consisting of the number of peaks for each peak profile in \code{x}.
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 # Load example data
 

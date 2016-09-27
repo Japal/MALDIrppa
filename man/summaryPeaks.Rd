@@ -2,64 +2,57 @@
 \alias{summaryPeaks}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-TBC
+Summary of mass peak profiles
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+This function generates a numerical summary of a collection of \code{\link{MassPeaks}} objects.
 }
 \usage{
-summaryPeaks(peak)
+summaryPeaks(x, ncases = NULL, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{peak}{
-%%     ~~Describe \code{peak} here~~
+  \item{x}{
+A list of \code{\link{MassPeaks}} objects.
+}
+  \item{ncases}{
+Number of cases shown in the results table (default is \code{NULL}, all cases).
+}
+  \item{...}{
+Other arguments.
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+For each sample this function provides summary statistics of m/z points, peak intensities and SNR thresholds (number, minimum, mean, standard deviation, median, mean absolute deviation, maximum).
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+A \code{\link{data.frame}} containing summary information of a collection of \code{\link{MassPeaks}} objects.
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+# Load example data
 
-## The function is currently defined as
-function (peak) 
-{
-    class <- sapply(peak, function(x) class(x))
-    NmzVal <- sapply(peak, function(x) length(x@mass))
-    RmzVal <- sapply(peak, function(x) paste(round(min(x@mass), 
-        2), "-", round(max(x@mass), 2), sep = ""))
-    RintVal <- sapply(peak, function(x) paste(round(min(x@intensity), 
-        2), "-", round(max(x@intensity), 2), sep = ""))
-    RsnrVal <- sapply(peak, function(x) paste(round(min(x@snr), 
-        2), "-", round(max(x@snr), 2), sep = ""))
-    return(data.frame(Class = class, Number_peaks = NmzVal, Range_mz_values = RmzVal, 
-        Range_intensity_values = RintVal, Range_snr_values = RsnrVal))
-  }
+data(spectra) # list of MassSpectra class objects
+data(type)    # vector with metadata (spectra IDs)
+
+# Some pre-processing
+
+sc.results <- screenSpectra(spectra, meta = type)
+
+spectra <- sc.results$fspectra
+type <- sc.results$fmeta
+
+spectra <- transformIntensity(spectra, method = "sqrt")
+spectra <- wavSmoothing(spectra)
+spectra <- removeBaseline(spectra)
+peaks <- detectPeaks(spectra)
+
+names(peaks) <- type # Sample IDs are lost with removeBaseline()
+
+# Summary of peak profile features (show first 20 samples)
+
+summaryPeaks(peaks, 20)
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

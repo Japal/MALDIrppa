@@ -1,5 +1,4 @@
-deletePeaks <-
-function(peaks,min=NULL){
+deletePeaks <- function(x,min=NULL){
   
   if (any(inherits(x,"list") & inherits(x[[1]],"MassPeaks"))==FALSE) {
     stop("x must be a list of MassPeaks class objects")
@@ -10,9 +9,9 @@ function(peaks,min=NULL){
   
   peaks2 <- list()
   
-  for (i in 1:length(peaks)){
-    t_int <- intensity(peaks[[i]])
-    t_mas <- mass(peaks[[i]])
+  for (i in 1:length(x)){
+    t_int <- intensity(x[[i]])
+    t_mas <- mass(x[[i]])
     mini <- which(t_int < min)
     t_int <- t_int[-mini]
     t_mas <- t_mas[-mini]

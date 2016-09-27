@@ -1,5 +1,4 @@
-screenSpectra <-
-function(x,meta=NULL,threshold=1.5,estimator=c("Q","MAD"),
+screenSpectra <- function(x,meta=NULL,threshold=1.5,estimator=c("Q","MAD"),
                           method=c("adj.boxplot","boxplot","ESD","Hampel","RC"),
                           nd=1,...){
 
@@ -56,7 +55,7 @@ function(x,meta=NULL,threshold=1.5,estimator=c("Q","MAD"),
     }
     else {
       if (!is.null(meta)){
-        out <- list(fSpectra=spectra,fType=type)
+        out <- list(fSpectra=spectra,fType=meta)
       }
       else {out <- fSpectra}
     }

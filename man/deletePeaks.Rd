@@ -5,13 +5,13 @@
 Delete peaks from a \code{MassPeaks} objects
 }
 \description{
-This function deletes peaks of height (intensity) below a given value in a \code{MassPeaks} object.
+This function deletes peaks of height (intensity) below a given value in \code{MassPeaks} objects.
 }
 \usage{
-deletePeaks(peaks, min = NULL)
+deletePeaks(x, min = NULL)
 }
 \arguments{
-  \item{peaks}{
+  \item{x}{
 A list of \code{MassPeaks} objects.
 }
   \item{min}{
@@ -24,21 +24,6 @@ This functions takes a list of \code{MassPeaks} objects and filters out peaks of
 \value{
 A filtered list of \code{MassPeaks} objects.
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 # Load example data
 
@@ -46,8 +31,6 @@ data(spectra) # list of MassSpectra class objects
 data(type)    # vector with metadata (spectra IDs)
 
 # Some pre-processing
-
-library(MALDIquant)
 
 spectra <- screenSpectra(spectra)$fspectra
 spectra <- transformIntensity(spectra, method = "sqrt")

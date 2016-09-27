@@ -2,52 +2,49 @@
 \alias{transfIntensity}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-TBC
+Transform intensity of \code{MassSpectrum} objects
 }
 \description{
-This function performs a given transformation on the intensities of a \code{\linkS4class{MassSpectrum}} object or a list of them.
+This function applies user-defined transformations on the intensities of \code{\linkS4class{MassSpectrum}} objects.
 }
 \usage{
 transfIntensity(x, fun = NULL, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{A \code{\linkS4class{MassSpectrum}} object or list of \code{\linkS4class{MassSpectrum}} objects.
+  \item{x}{A list of \code{\linkS4class{MassSpectrum}} objects.
 %%     ~~Describe \code{peaks} here~~
 }
-  \item{fun}{A user-defined function.
+  \item{fun}{A user-defined transformation function.
 %%     ~~Describe \code{peaks} here~~
 }
-  \item{...}{Other parameters.
+  \item{...}{Other arguments.
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+Unlike \code{\link{transformIntensity}} in \code{\link{MALDIquant}} which provides a few common transformations, this function allows the user to define any sensible function to be applied on signal intensities. It is used as auxiliary function to other procedures in the package.
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+A list of \code{\linkS4class{MassSpectrum}} objects with signal intensities transformed according to \code{fun}.
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{transformIntensity}}.
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+# Load example data
+
+data(spectra) # list of MassSpectra class objects
+
+# Scale intensities into [0, 1] by dividing by their maximum value
+
+scale.max <- function(x){x/max(x)} # Define scaling function
+
+scaled.spectra <- transfIntensity(spectra, fun = scale.max)
+    
+# Obtain the 1-st derivative function of the mass spectra using a Savitzky-Golay smoothing filter
+
+deriv.spectra <- transfIntensity(spectra, fun = function(x) sgolayfilt(x, m = 1))
+
+
 }

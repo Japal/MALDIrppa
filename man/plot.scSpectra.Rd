@@ -2,14 +2,14 @@
 \alias{plot.scSpectra}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Graphical summary of results from \code{screenSpectra} function
+Graphical summary of \code{screenSpectra} objects
 }
 \description{
-This function shows graphically the results from applying \code{screenSpectra} to identify potential faulty, low-quality raw mass spectra.
+This is a \code{plot} method for \code{scSpectra} objects that displays the results from applying \code{screenSpectra} to identify potential faulty, low-quality raw mass spectra.
 }
 \usage{
-plot.scSpectra(x, type = c("index", "hist"), breaks = 30, label = NULL,
-                  col = "green3", ...)
+\method{plot}{scSpectra}(x, type = c("index", "hist"), breaks = 30,
+             label = NULL, col = "green3", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -35,37 +35,15 @@ Other arguments.
 \details{
 When \code{type = "index"} (default) the upper and lower fences to declare a mass spectra as potentially low-quality and the result for each one of them as provided by \code{\link{screenSpectra}} are shown. The points are displayed using the position index or a given vector of labels for the mass spectra. When (\code{type = "hist"}) a histogram of the distribution of the robust scale estimator is produced along with the tolerance fences.
 }
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 # Load example data
 
 data(spectra) # list of MassSpectra objects
 
-scr.spectra <- screenSpectra(spectra)
-plot(scr.spectra)
-plot(scr.spectra,label=scr.spectra$est.table$ID)
-plot(scr.spectra,type="hist")
+sc.results <- screenSpectra(spectra)
+plot(sc.results)
+plot(sc.results, label = sc.results$est.table$ID)
+plot(sc.results, type = "hist")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

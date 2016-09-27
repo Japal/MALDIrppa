@@ -2,45 +2,29 @@
 \alias{summary.scSpectra}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Numerical summary of results from \code{screenSpectra} function
+Numerical summary of \code{screenSpectra} objects
 }
 \description{
-This function generates a numerical summary of the settings and results from applying the function \code{screenSpectra} to identify potential faulty, low-quality raw mass spectra.
+This is a \code{summary} method for \code{scSpectra} objects that generates a numerical summary of the settings and results from applying \code{screenSpectra} to identify potential faulty, low-quality raw mass spectra.
 }
 \usage{
-summary.scSpectra(x, ncases = 10)
+\method{summary}{scSpectra}(object, ncases = 10, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
+  \item{object}{
 A \code{scSpectra} object as generated from \code{\link{screenSpectra}}.
 }
   \item{ncases}{
 Number of cases shown in the results table.
 }
+  \item{...}{
+Other arguments.
+}
 }
 \details{
 A table is generated that includes details of the numerical estimations along with mass spectra ID, value of the estimated robust scale estimator and the class allocation for each mass spectra, either potentially low-quality (\code{failure}) or good-quality (\code{success}).
 }
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
 See \code{\link{screenSpectra}} and \code{\link{plot.scSpectra}}.
 }
@@ -49,8 +33,8 @@ See \code{\link{screenSpectra}} and \code{\link{plot.scSpectra}}.
 
 data(spectra) # list of MassSpectra objects
 
-scr.spectra <- screenSpectra(spectra)
-summary(scr.spectra)
+sc.results <- screenSpectra(spectra)
+summary(sc.results)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

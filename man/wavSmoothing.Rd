@@ -2,10 +2,10 @@
 \alias{wavSmoothing}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-TBC
+Discrete wavelet transformation for \code{MassSpectrum} objects
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+This is a wrapper for the \code{\link{wavShrink}} function (\code{wmtsa} package) to be used with \code{\link{MassSpectrum}} objects.
 }
 \usage{
 wavSmoothing(x, thresh.scale = 2.5, ...)
@@ -13,52 +13,30 @@ wavSmoothing(x, thresh.scale = 2.5, ...)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-%%     ~~Describe \code{x} here~~
+A list of \code{\link{MassSpectrum}} objects.
 }
   \item{thresh.scale}{
-%%     ~~Describe \code{thresh.scale} here~~
+Smoothing factor.
 }
-  \item{...}{Other parameters.
+  \item{...}{Other arguments.
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+See \code{wavShrink} in \code{wmtsa} package.
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+A list of \code{\link{MassSpectrum}} objects with denoised signal intensities.
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+# Load example data
 
-## The function is currently defined as
-function (x, thresh.scale = 2.5) 
-{
-    require(MALDIquant)
-    x <- transformIntensity(x, fun = function(x) wavShrink(x, 
-        thresh.scale = thresh.scale))
-    return(x)
-  }
+data(spectra) # list of MassSpectra class objects
+
+# sqrt transformation and smoothing of the signal using UDWT
+
+spectra <- transformIntensity(spectra, method = "sqrt")
+spectra <- wavSmoothing(spectra)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

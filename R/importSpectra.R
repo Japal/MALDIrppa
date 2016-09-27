@@ -1,5 +1,4 @@
-importSpectra <-
-function(where=getwd()){
+importSpectra <- function(where=getwd()){
 
   MSlist <- function(mz,I){
     

@@ -2,66 +2,65 @@
 \alias{writeMetadata}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-TBC
+Write metadata in different formats
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+This function is simply a wrapper to write the metadata associated with a collection of mass spectra into a file in either the R or csv format.
 }
 \usage{
-writeMetadata(x, file = "type", format = c("R", "csv"), ...)
+writeMetadata(x, filename = "Metadata", format = c("R", "csv"), ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-%%     ~~Describe \code{x} here~~
+Metadata in any sensible data format, preferably \code{\link{matrix}} or \code{\link{data.frame}}.
 }
-  \item{file}{
-%%     ~~Describe \code{file} here~~
+  \item{filename}{
+A character string specifying a name for the destination file (filename extension not required).
 }
   \item{format}{
-%%     ~~Describe \code{format} here~~
+One of R (default \code{.Rdata} file) or text (comma-separated \code{.csv} file).
 }
   \item{\dots}{
-%%     ~~Describe \code{\dots} here~~
+Other arguments.
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+It uses either \code{\link{save}} or \code{\link{write.table}} to store the metadata. Check these functions for adequate data formats.
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+# Load example data
 
-## The function is currently defined as
-function (x, file = "type", format = c("R", "csv"), ...) 
-{
-    switch(format, R = save(x, file = paste(file, ".Rdata", sep = "")), 
-        csv = write.table(x, file = paste(file, ".csv", sep = ""), 
-            sep = ",", row.names = FALSE))
-  }
+data(spectra) # list of MassSpectra class objects
+data(type)    # vector with metadata (spectra IDs)
+
+# Some pre-processing
+
+sc.spectra <- screenSpectra(spectra, meta = type)
+
+spectra <- sc.spectra$fspectra # Filtered spectra
+type <- sc.spectra$fmeta # Filtered metadata
+
+spectra <- transformIntensity(spectra, method = "sqrt")
+spectra <- wavSmoothing(spectra)
+spectra <- removeBaseline(spectra)
+peaks <- detectPeaks(spectra)
+peaks <- alignPeaks(peaks, minFreq = 0.5)
+
+# Intensity matrix
+
+int <- intensityMatrix(peaks)
+
+# Save resulting data in R format
+
+writeIntensity(int, filename = "MyintMatrix")
+writeMetadata(type, filename = "MyMetadata")
+
+# Save resulting data in csv format
+
+writeIntensity(int, filename = "MyintMatrix", format = "csv")
+writeMetadata(type, filename = "MyMetadata", format = "csv")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

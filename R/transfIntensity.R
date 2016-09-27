@@ -1,7 +1,4 @@
-transfIntensity <-
-  # Apply transformation on the intensities of a MassSpectrum object or a list of them
-  # Admits list of MassSpectrum objects
-  function(x, fun=NULL, ...){
+transfIntensity <- function(x, fun=NULL, ...){
     
     if ((!inherits(x,"list")) & (!inherits(x,"MassSpectrum"))) stop("x must be a MassSpectrum object")
     if (inherits(x,"list")){
@@ -15,7 +12,7 @@ transfIntensity <-
     if (inherits(x,"list")){
       for (i in 1:length(x)){
         x[[i]]@intensity <- fun(x[[i]]@intensity)
-        if (!all(is.finite(x[[i]]@intensity))) x[[i]]@intensity <- rep(0,length(x[[i]]@intensity)) # Deal with flats
+        if (!all(is.finite(x[[i]]@intensity))) x[[i]]@intensity <- rep(0,length(x[[i]]@intensity)) # Deals with flats
       }
     }
     else {x@intensity <- fun(x@intensity)

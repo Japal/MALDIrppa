@@ -1,7 +1,9 @@
-writeIntensity <-
-function(x,file="intMatrix",format=c("R","csv","NEXUS"),binary=FALSE, labels=NULL, weights=NULL,...){
+writeIntensity <- function(x,filename="intMatrix",format=c("R","csv","NEXUS"),binary=FALSE, labels=NULL, weights=NULL,...){
   
   if (!is.matrix(x) && !is.data.frame(x)) stop("x must be matrix or data.frame.")
+  
+  nam <- deparse(substitute(x))
+  format <- match.arg(format)
   
   exportNexus <-
     function (x, file, format = "standard", datablock = TRUE, interleaved = FALSE, 
@@ -175,13 +177,15 @@ function(x,file="intMatrix",format=c("R","csv","NEXUS"),binary=FALSE, labels=NUL
       close(zz)
     }
   
-  colnames(x) <- as.character(round(as.numeric(colnames(x)),2))
+  colnames(x) <- as.character(round(as.numeric(colnames(x)),4))
   x[is.na(x)] <- 0 # Use 0 to indicate no peak
-  if (binary==TRUE | format=="NEXUS") x <- (x!=0)*1
+  if ((binary==TRUE) | (format=="NEXUS")) {x <- (x!=0)*1}
+  
+  assign(nam,x)   
   
   switch(format,
-         R=save(x,file=paste(file,".Rdata",sep=""), ...),
-         csv=write.table(x,file=paste(file,".csv",sep=""),sep=",",row.names=FALSE, ...),
-         NEXUS=exportNexus(x,file=paste(file,".nex",sep=""), ...)
+         R=save(list=eval(nam),file=paste(filename,".Rdata",sep=""), ...),
+         csv=write.table(x,file=paste(filename,".csv",sep=""),sep=",",row.names=FALSE, ...),
+         NEXUS=exportNexus(x,file=paste(filename,".nex",sep=""), ...)
          )
 }
