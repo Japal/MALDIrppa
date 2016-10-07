@@ -1,5 +1,7 @@
 ## Example robust MALDI-TOF mass spectra pre-processing using MALDIquant + MALDIrppa
 
+# Last revised on 28/09/16
+
 # Load example raw data (in R format)
 # Note: this collection of mass spectra is a small random sample from a real database. It has only been
 # included for illustrative purposes and results cannot be interpreted in any sensible way.
@@ -11,8 +13,6 @@ data(type)    # vector with metadata (spectra IDs)
 
 library(MALDIrppa)
 
-#SI ESTE NO PROBLEMAS CON ALIGN POR EL TRIM THEN REPLACE EN EXAMPLES
-
 # Parameter settings
 
 thScale <- 2.5
@@ -21,7 +21,7 @@ SigNoi <- 3.5
 hws <- 20
 tol <- 0.003
 
-# Initial screening (?screenSpectra for details) ----
+# Initial screening ----
 
 sc.results <- screenSpectra(spectra,type)
 summary(sc.results)
@@ -32,22 +32,18 @@ type <- sc.results$fmeta
 
 # Denoising, baseline correction, normalisation ----
 
-spectra <- transformIntensity(spectra, method="sqrt") # see also ?transfIntensity
+spectra <- transformIntensity(spectra, method="sqrt")
 spectra <- wavSmoothing(spectra,thresh.scale=thScale)
 spectra <- removeBaseline(spectra,method="SNIP",iterations=ite)
 spectra <- calibrateIntensity(spectra,method="PQN")
 
-# Trim
+# Trim range
+
 spectra <- trim(spectra,range=c(2500,13000))
 
 # Peak detection ----
 
 peaks <- detectPeaks(spectra,SNR=SigNoi,halfWindowSize=hws)
-
-c <- countPeaks(peaks)
-lab <- 1:length(c)
-plot(c,col="white")
-text(c,labels=lab)
 
 # Peak alignment and binning ----
 
@@ -62,11 +58,15 @@ save(type,file="type.new.Rdata")
 
 ## Post-processing
 
+rm(list=ls())
+load("peaks.new.Rdata")
+load("type.new.Rdata")
+
 # Outlier detection at isolate level based on intensities ----
 
-aty <- detectOutliers(peaks,by=type.new$Isolate)
-peaks.clean <- peaks[aty[,2]==FALSE]
-type.clean <- type[aty[,2]==FALSE,]
+aty <- detectOutliers(peaks,by=type$Isolate)
+peaks.clean <- peaks[aty[,2]==FALSE] # discard outlying peaks
+type.clean <- type[aty[,2]==FALSE,] # and corresponding metadata
 
 # Or, outlier detection at isolate level based on peak presence/absence patterns ----
 
@@ -74,11 +74,11 @@ aty <- detectOutliers(peaks,type$Isolate,binary=TRUE)
 peaks.clean <- peaks[aty[,2]==FALSE]
 type.clean <- type[aty[,2]==FALSE,]
 
-# Filtering and merging ----
+# Filtering and merging replicates ----
 
-# Filtering out peaks occurring in less than 25% replicates within isolate (bio rep level)
+# Discard peaks occurring in less than 25% replicates within isolate (bio rep level)
 
-peaks.clean.f <- filterPeaks(peaks.clean,minFreq=0.25,labels=type.clean$Isolate) # 344 peaks in intensity matrix
+peaks.clean.f <- filterPeaks(peaks.clean,minFreq=0.25,labels=type.clean$Isolate)
 
 # Merge reps by the median
 
@@ -90,13 +90,13 @@ type.clean.fm <- aggregate(type.clean,list(Serotype=type.clean$Serotype,Biotype=
 
 # Obtain final intensity matrix ----
 
-int.binary <- intensityMatrix(peaks.clean.fm)
+int.clean.fm <- intensityMatrix(peaks.clean.fm)
 
 # Storing resulting intensity matrix ----
 
-write.table(type.clean.fm,file="type.clean.fm.csv",sep=",",row.names=FALSE)
-writeIntensity(int,file="int.binary.clean.fm",format="csv",labels=type.clean.fm$Isolate)
-?writeInt(peaks16.merged,file="intMatrix16.merged",format="nexus",binary=TRUE,labels=type16.merged)
+writeMetadata(type.clean.fm,filename="type.clean.fm",format="csv")
+writeIntensity(int.clean.fm,filename="int.clean.fm",format="csv",labels=type.clean.fm$Isolate)
+writeIntensity(int.clean.fm,filename="int.clean.fm",format="NEXUS",labels=type.clean.fm$Isolate)
 
 
 
