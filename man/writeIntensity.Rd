@@ -51,7 +51,7 @@ spectra <- transformIntensity(spectra, method = "sqrt")
 spectra <- wavSmoothing(spectra)
 spectra <- removeBaseline(spectra)
 peaks <- detectPeaks(spectra)
-peaks <- alignPeaks(peaks, minFreq = 0.5)
+peaks <- alignPeaks(peaks, minFreq = 0.8)
 
 # Intensity matrix
 

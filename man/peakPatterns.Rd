@@ -28,7 +28,7 @@ Logical value indicating whether a barplot of relative peak frequency across sam
   \item{axis.lab}{
 Vector of axis labels in the \code{c("x", "y")} format.
 }
-  \item{bar.colors}{
+  \item{bar.color}{
 Colour of the bars in the barplot.
 }
   \item{cell.colors}{
@@ -63,30 +63,28 @@ See \code{\link{intensityMatrix}}.
 # Load example data
 
 data(spectra) # list of MassSpectra class objects
-data(isolate) # isolate IDs
+data(type) # metadata
 
 # Some pre-processing
 
-sc.results <- screenSpectra(spectra,meta=isolate)
-spectra <- sc.results$fspectra # Filtered mass spectra
-isolate <- sc.results$fmeta    # Filtered metadata  
+sc.results <- screenSpectra(spectra,meta=type)
+spectra <- sc.results$fspectra # filtered mass spectra
+type <- sc.results$fmeta    # filtered metadata  
 spectra <- transformIntensity(spectra, method = "sqrt")
 spectra <- wavSmoothing(spectra)
 spectra <- removeBaseline(spectra)
 peaks <- detectPeaks(spectra)
-peaks <- alignPeaks(peaks, minFreq = 0.5)
+peaks <- alignPeaks(peaks, minFreq = 0.8)
 
 int <- intensityMatrix(peaks)
 
 # Display patterns across all data
 
-peakPatterns(int) # shows possible misaligment of peaks in some batches
+peakPatterns(int)
 
 # Check results within isolate 52
 
-peakPatterns(int[isolate=="52",])
-
-COGER UN SUBCONJUNTO SENSIBLE DE LOS DATOS ORIGINALES 
+peakPatterns(int[type$Isolate=="280",])
 
 }
 

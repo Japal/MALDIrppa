@@ -31,16 +31,17 @@ List of \code{\link{AbstractMassObject-class}} class objects including the new m
 # Load example data
 
 data(spectra) # list of MassSpectra class objects
-data(type)    # vector with metadata (spectra IDs)
+data(type)    # metadata
 
 # Add metadata
 
 info <- paste("Spectrum No.",1:length(spectra)) # Artificial metadata vector
-#spectra2 <- addMetadata(spectra,info,1)
+
+spectra2 <- addMetadata(spectra,info,1)
 
 # Check info in metaData slot
 
-#spectra2[[1]]@metaData
+spectra2[[1]]@metaData
 
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the

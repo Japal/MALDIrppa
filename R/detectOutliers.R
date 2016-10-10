@@ -69,7 +69,6 @@ detectOutliers <- function(x, by = NULL, binary = FALSE, ...){
   
   TryCatch <- function(expr) {
     # Customised tryCatch to silent warning when error
-    # Adapted from http://stackoverflow.com/questions/4948361/how-do-i-save-warnings-and-errors-as-output-from-a-function/4952908#4952908
     warn <- err <- NULL
     value <- withCallingHandlers(
       tryCatch(expr, error=function(e) {
@@ -82,10 +81,17 @@ detectOutliers <- function(x, by = NULL, binary = FALSE, ...){
     list(value=value, warning=warn, error=err)
   }
   
+  h <- function(w){
+    # Handles warning in cmdscale related to non-positive eigenvalues
+    # due to non-Euclidean dissimilarity matrix when binary = TRUE
+    # (Thanks to Romain Francois)
+    if(any(grepl("of the first",w))) invokeRestart("muffleWarning")
+  }
+  
   out <- function(x,d){
     x.dist <- dist(x,method=d)
-    for (i in 1:(floor(nrow(x)/2)-1)){
-      fit <- cmdscale(x.dist,k=floor(nrow(x)/2)-(i-1))
+    for (i in 1:(floor(nrow(x)/2)-1)){ # search for non-singular cov matrix
+      fit <- withCallingHandlers(cmdscale(x.dist,k=floor(nrow(x)/2)-(i-1)),warning=h)
       out <- TryCatch(out <- adapt.out(fit)$outliers)
       if(!is.null(out[[3]])) {next}
       else {break}

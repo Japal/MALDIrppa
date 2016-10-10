@@ -33,9 +33,9 @@ A \code{\link{data.frame}} containing summary information of a collection of \co
 # Load example data
 
 data(spectra) # list of MassSpectra class objects
-data(type)    # vector with metadata (spectra IDs)
+data(type)    # metadata
 
-# Summary of spectra features (show first 20 samples)
+# Summary of spectra features (show results for 20 first samples)
 
 summarySpectra(spectra, 20)
 
@@ -50,9 +50,9 @@ spectra <- transformIntensity(spectra, method = "sqrt")
 spectra <- wavSmoothing(spectra)
 spectra <- removeBaseline(spectra)
 
-names(spectra) <- type # Sample IDs are lost with removeBaseline()
+names(spectra) <- type$SpectID # spectra IDs are lost with removeBaseline()
 
-# Summary of spectra features (show first 20 samples)
+# Summary of spectra features (show results for 20 first samples)
 
 summarySpectra(spectra, 20)
 }

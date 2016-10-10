@@ -25,7 +25,6 @@ A vector consisting of the number of peaks for each peak profile in \code{x}.
 # Load example data
 
 data(spectra) # list of MassSpectra class objects
-data(type)    # vector with metadata (spectra IDs)
 
 # Some pre-processing
 

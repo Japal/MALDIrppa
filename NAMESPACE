@@ -6,6 +6,7 @@ importFrom("lattice","xyplot","histogram","panel.xyplot","panel.abline","ltext",
 importFrom("stats", "IQR", "cmdscale", "mad", "mahalanobis", "median",
              "pchisq", "qchisq", "quantile", "sd")
 importFrom("utils", "head", "read.csv", "write.table")
+importFrom("graphics", "axis", "box", "image", "layout", "mtext","par")
 S3method(summary,scSpectra)
 S3method(plot,scSpectra)
 exportPattern("^[[:alpha:]]+")

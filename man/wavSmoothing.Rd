@@ -22,7 +22,7 @@ Smoothing factor.
 }
 }
 \details{
-See \code{wavShrink} in \code{wmtsa} package.
+This function performs undecimated wavelet transform (UDWT) on mass spectra in \code{\link{MassSpectrum}} format. See \code{wavShrink} in \code{wmtsa} package for more details.
 }
 \value{
 A list of \code{\link{MassSpectrum}} objects with denoised signal intensities.
@@ -33,7 +33,7 @@ A list of \code{\link{MassSpectrum}} objects with denoised signal intensities.
 
 data(spectra) # list of MassSpectra class objects
 
-# sqrt transformation and smoothing of the signal using UDWT
+# sqrt transformation and signal smoothing using UDWT
 
 spectra <- transformIntensity(spectra, method = "sqrt")
 spectra <- wavSmoothing(spectra)

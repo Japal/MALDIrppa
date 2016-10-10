@@ -5,15 +5,19 @@
 Example mass spectra metadata
 }
 \description{
-Vector containing mass spectra IDs.
+Metadata associated to the \code{\link{spectra}} data set containing information about isolate, biological and technical replicate numbers and mass spectra IDs.
 }
 \usage{data(type)}
 \format{
   The format is:
- Factor w/ 350 levels "230212A0101",..: 1 2 3 4 5 6 7 8 9 10 ...
-}
-\details{
-Note that these data are simply a random subset of a larger real data set. They are only provided for illustration purposes and results from using them cannot be interpreted in any sensible way.
+  
+ Isolate: Factor w/ 14 levels "280","43","45",..: 2 2 2 2 2 2 2 2 2 2 ...
+ 
+ BioRep : int  1 1 1 1 2 2 2 2 3 3 ...
+ 
+ TechRep: int  1 2 3 4 1 2 3 4 1 2 ...
+ 
+ SpectID: Factor w/ 315 levels "160408C13","160408C14",..: 1 2 3 4 5 6 7 8 9 10 ...
 }
 
 \examples{

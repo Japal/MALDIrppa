@@ -36,7 +36,6 @@ A list of \code{\link{MassPeaks}} class objects with aligned peaks along a commo
 # Load example data
 
 data(spectra) # list of MassSpectra class objects
-data(type)    # vector with metadata (spectra IDs)
 
 # Some pre-processing
 
@@ -48,7 +47,7 @@ peaks <- detectPeaks(spectra)
 
 # Peak alignment
 
-peaks <- alignPeaks(peaks, minFreq = 0.5)
+peaks <- alignPeaks(peaks, minFreq = 0.8)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

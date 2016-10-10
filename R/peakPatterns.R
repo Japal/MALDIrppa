@@ -6,7 +6,7 @@ peakPatterns <- function(x,abs.lab=NA,barplot=TRUE,
                       cex.axis=0.5,cex.lab=0.5, ...){
   
   
-  plot.patterns <- function(a, x = x, pat = pat.ID, barplot = barplot, ...)
+  plot.patterns <- function(a, x = x, barplot = barplot, ...)
   {
     
     if (barplot==TRUE){

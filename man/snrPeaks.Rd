@@ -26,7 +26,6 @@ A list of vectors of SNR-based thresholds, one for each sample.
 # Load example data
 
 data(spectra) # list of MassSpectra class objects
-data(type)    # vector with metadata (spectra IDs)
 
 # Some pre-processing
 

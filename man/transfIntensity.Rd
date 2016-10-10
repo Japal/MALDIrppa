@@ -38,13 +38,13 @@ data(spectra) # list of MassSpectra class objects
 
 # Scale intensities into [0, 1] by dividing by their maximum value
 
-scale.max <- function(x){x/max(x)} # Define scaling function
+scale.max <- function(x){x/max(x)} # define scaling function
 
 scaled.spectra <- transfIntensity(spectra, fun = scale.max)
     
-# Obtain the 1-st derivative function of the mass spectra using a Savitzky-Golay smoothing filter
+# Compute natural logarithm of intensity values
 
-deriv.spectra <- transfIntensity(spectra, fun = function(x) sgolayfilt(x, m = 1))
+log.spectra <- transfIntensity(spectra, fun = function(x) log(x))
 
 
 }

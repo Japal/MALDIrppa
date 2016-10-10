@@ -33,7 +33,7 @@ A \code{\link{data.frame}} containing summary information of a collection of \co
 # Load example data
 
 data(spectra) # list of MassSpectra class objects
-data(type)    # vector with metadata (spectra IDs)
+data(type)    # metadata
 
 # Some pre-processing
 
@@ -47,9 +47,9 @@ spectra <- wavSmoothing(spectra)
 spectra <- removeBaseline(spectra)
 peaks <- detectPeaks(spectra)
 
-names(peaks) <- type # Sample IDs are lost with removeBaseline()
+names(peaks) <- type$SpectID # spectra IDs are lost with removeBaseline()
 
-# Summary of peak profile features (show first 20 samples)
+# Summary of peak profile features (show results for 20 first samples)
 
 summaryPeaks(peaks, 20)
 

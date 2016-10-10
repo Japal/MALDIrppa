@@ -10,13 +10,13 @@ List of mass spectra (\code{\link{MassSpectrum}} class).
 \usage{data(spectra)}
 
 \details{
-Note that these data are simply a random subset of a larger real data set. They are only provided for illustration purposes and results from using them cannot be interpreted in any sensible way.
+Low-resolution mass spectrometry data set in the range [2500, 13000] m/z provided for illustration purposes only.
 }
 
 \examples{
 data(spectra)
 
 str(spectra[[1]])
-plot(spectra[[1]])
+# plot(spectra[[1]])
 }
 \keyword{datasets}

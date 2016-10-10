@@ -28,7 +28,6 @@ A filtered list of \code{MassPeaks} objects.
 # Load example data
 
 data(spectra) # list of MassSpectra class objects
-data(type)    # vector with metadata (spectra IDs)
 
 # Some pre-processing
 

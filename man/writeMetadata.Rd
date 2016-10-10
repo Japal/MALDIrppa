@@ -33,20 +33,20 @@ It uses either \code{\link{save}} or \code{\link{write.table}} to store the meta
 # Load example data
 
 data(spectra) # list of MassSpectra class objects
-data(type)    # vector with metadata (spectra IDs)
+data(type)    # metadata
 
 # Some pre-processing
 
 sc.spectra <- screenSpectra(spectra, meta = type)
 
-spectra <- sc.spectra$fspectra # Filtered spectra
-type <- sc.spectra$fmeta # Filtered metadata
+spectra <- sc.spectra$fspectra # filtered spectra
+type <- sc.spectra$fmeta # filtered metadata
 
 spectra <- transformIntensity(spectra, method = "sqrt")
 spectra <- wavSmoothing(spectra)
 spectra <- removeBaseline(spectra)
 peaks <- detectPeaks(spectra)
-peaks <- alignPeaks(peaks, minFreq = 0.5)
+peaks <- alignPeaks(peaks, minFreq = 0.8)
 
 # Intensity matrix
 

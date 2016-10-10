@@ -71,7 +71,7 @@ See methods \code{\link{summary.scSpectra}} and \code{\link{plot.scSpectra}} for
 # Load example data
 
 data(spectra) # list of MassSpectra objects
-data(type)    # vector of metadata (mass spectra IDs)
+data(type)    # metadata
 
 # Results using different settings
 
