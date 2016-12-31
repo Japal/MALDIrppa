@@ -8,7 +8,7 @@ summary.scSpectra <- function(object,ncases=10, ...){
     stop("ncases must be a valid number")
   }
   
-  cat(paste(object$estimator," estimator from the scaled ",object$nd,"-derivative:\n (",ncases," first mass spectra) \n",sep=""))
+  cat(paste("(",ncases," first mass spectra) \n",sep=""))
   print(head(object$est.table,ncases))
   cat("\n");cat("----------------------------")
   cat("\n\n")
@@ -17,5 +17,6 @@ summary.scSpectra <- function(object,ncases=10, ...){
   cat(paste("Threshold:",object$threshold,"\n"))
   cat(paste("Limits: [",round(object$lower,4),",",round(object$upper,4),"] \n",sep=""))
   cat(paste("Deriv. order:",object$nd,"\n"))
+  cat(paste("Lambda:",object$lambda,"\n"))
   cat(paste("No. potentially faulty spectra: ",object$cfailure," (",object$prop*100," %)",sep=""))
 }

@@ -10,3 +10,5 @@ ByteCompile: yes
 Description: Provides methods for robust pre-processing and analysis of MALDI mass spectrometry data based on objects and methods from the MALDIquant package along with additional functionality for data summary and management.
 License: GPL (>= 2)
 Repository: CRAN, GitHub
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr

@@ -5,12 +5,12 @@
 Identification of potentially low-quality raw mass spectra
 }
 \description{
-This function implements a quality control check to help in the identification of possibly faulty, low-quality raw mass spectra. It labels suspicious profiles for further inspection and filtering.
+This function implements a quality control check to help in the identification of possibly faulty, low-quality raw mass spectra. It computes an atypically score and labels suspicious profiles for further inspection and filtering.
 }
 \usage{
 screenSpectra(x, meta = NULL, threshold = 1.5, estimator = c("Q", "MAD"),
                  method = c("adj.boxplot", "boxplot", "ESD", "Hampel", "RC"),
-                 nd = 1, ...)
+                 nd = 1, lambda = 0.5, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -25,10 +25,9 @@ Multiplicative factor used in computing the upper and lower fences to determine 
 }
   \item{estimator}{Robust scale estimator used:
   
-  \code{MAD}: median absolute deviance scale estimate. Very robust and preferred for fairly symmetric distributions.
-  
   \code{Q}: robust location-free scale estimate (default, see \code{\link{Qn}} function in \code{robustbase} package). More efficient than MAD and adequate for non-symmetric distributions.
   
+    \code{MAD}: median absolute deviance scale estimate. Very robust and preferred for fairly symmetric distributions.
 }
 \item{method}{
 Method used to compute upper and lower fences for the identification of atypical mass spectra.
@@ -46,12 +45,15 @@ Method used to compute upper and lower fences for the identification of atypical
   \item{nd}{
 Order for the derivative function of the mass spectra (default = 1).
 }
+  \item{lambda}{
+Weight given to each component of the score (default = 0.5, see details below).
+}
   \item{...}{
 Other arguments.
 }
 }
 \details{
-The procedure is based on the analysis of the variability (\code{Q} or \code{MAD} scale estimator) of the n-order derivative (computed using Savitzky-Golay smoothing filter) of scaled mass spectra. According to the chosen \code{method} to determine tolerance fences, atypical values flag the associated mass spec signals up as potentially faulty, low-quality ones. The \code{adj.boxplot} method on \code{Q} scale estimator of the first-order derivative is used by default. The function produces summaries and a list of mass spectra and (if given) associated metadata in which the identified cases were filtered out.
+The procedure computes an atypically score based on a weighted function of two components: (1) a robust estimate of the variability (\code{Q} or \code{MAD} scale estimator) of the n-order derivative (computed using Savitzky-Golay smoothing filter) of scaled mass spectra and (2) the median intensity of the signals. Given a \code{method} to determine tolerance fences, a mass spectrum is labelled as potentially faulty, low-quality according to the magnitude of its atypically score. The \code{adj.boxplot} method based on the \code{Q} scale estimator and equal weights to both components (\code{lambda} = 0.5) are the default options. The function produces summaries and a list of mass spectra and (if given) associated metadata in which the identified cases were filtered out.
 }
 \value{
 
@@ -59,7 +61,7 @@ An object of class \code{scSpectra} with elements:
 
 \item{fspectra }{List of mass spectra (\code{MassSpectrum} class) with potential low-quality cases filtered out.}
 \item{fmeta }{Associated filtered metadata (\code{data.frame} object).}
-\item{est.table }{Results table showing the mass spectra ID, estimated value of the estimator used and allocated class (pass/failure).}
+\item{est.table }{Results table showing the mass spectra ID, atypically score and label (pass/failure).}
 \item{... }{Other details (see method \code{\link{summary.scSpectra}} for \code{scSpectra} objects).}
 }
 

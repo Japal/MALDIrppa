@@ -1,4 +1,4 @@
-plot.scSpectra <- function(x,type=c("index","hist"),breaks=30,label=NULL,col="green3", ...){
+plot.scSpectra <- function(x,type=c("index","hist"),breaks=30,labels=FALSE,col="green3", ...){
   
   type <- match.arg(type)
   
@@ -11,23 +11,28 @@ plot.scSpectra <- function(x,type=c("index","hist"),breaks=30,label=NULL,col="gr
   
   u <- as.numeric(x$upper)
   l <- as.numeric(x$lower)
-  if (is.null(label)) {labels <- rownames(x$est.table)}
-  else {labels <- label}
-  cols <- ifelse(x$est.table[,"Value"]<=l | x$est.table[,"Value"] >= u,"red3","blue3")
+  if (labels[1]==TRUE) {labels <- rownames(x$est.table)}
+  else {labels <- labels}
+  cols <- ifelse(x$est.table[,"Score"]<=l | x$est.table[,"Score"] >= u,"red3","blue3")
   
   if (type=="index"){
-    xyplot(est.table[,"Value"] ~ 1:nrow(est.table),data=x,cex=0.75,col="white",
+    xyplot(est.table[,"Score"] ~ 1:nrow(est.table),data=x,cex=0.75,col="white",
            ylab=paste(x$nd,"-DSS ",x$estimator," estimator",sep=""),xlab="Index",
            panel = function(x,y,...){
              panel.xyplot(x,y,...)
              panel.abline(h=u,lty=3)
              panel.abline(h=l,lty=3)
-             ltext(x,y,labels=labels,cex=0.8,col=cols)
+             if (length(labels) > 1){
+              ltext(x,y,labels=labels,cex=0.8,col=cols)
+             }
+             else{
+              panel.xyplot(x,y,pch=1,col=cols)
+             }
            }
            ,...)
   }
   else {
-    histogram(x$est.table[,"Value"],breaks=breaks,col=col,
+    histogram(x$est.table[,"Score"],breaks=breaks,col=col,
               xlab=paste(x$nd,"-DSS ",x$estimator," estimator",sep=""),
               ylab=list("Percent of total"),
               panel = function(x,...){

@@ -1,14 +1,10 @@
-summarySpectra <- function(x, ncases = NULL, ...){
+summarySpectra <- function(x){
   
   if (any(inherits(x,"list") & inherits(x[[1]],"MassSpectrum"))==FALSE) {
     stop("x must be a list of MassSpectrum class objects")
   }
   
-  if (inherits(ncases,"numeric")==FALSE) {
-    stop("ncases must be a valid number")
-  }
-  
-  if (is.null(names(x))) {ID <- 1:length(x)} else {ID <-  names(x)}
+  ID <-  names(x)
   NmzVal <- sapply(x,function(x) length(x@mass))
   RmzValmin <- sapply(x,function(x) round(min(x@mass),2))
   RmzValmax <- sapply(x,function(x) round(max(x@mass),2))
@@ -21,6 +17,5 @@ summarySpectra <- function(x, ncases = NULL, ...){
   out <- data.frame(ID=ID,No.MZ=NmzVal,Min.MZ=RmzValmin,Max.MZ=RmzValmax,Min.Int=RintValmin,Mean.Int=RintValmean,
                     Std.Int=RintValsd,Med.Int=RintValmed,MAD.Int=RintValmad,Max.Int=RintValmax,row.names=NULL)
   
-  if (is.null(ncases)) {return(out)} else {return(head(out,ncases))} 
-  
+  return(out)
 }

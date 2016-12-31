@@ -8,22 +8,16 @@ Summary of mass peak profiles
 This function generates a numerical summary of a collection of \code{\link{MassPeaks}} objects.
 }
 \usage{
-summaryPeaks(x, ncases = NULL, ...)
+summaryPeaks(x)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 A list of \code{\link{MassPeaks}} objects.
 }
-  \item{ncases}{
-Number of cases shown in the results table (default is \code{NULL}, all cases).
-}
-  \item{...}{
-Other arguments.
-}
 }
 \details{
-For each sample this function provides summary statistics of m/z points, peak intensities and SNR thresholds (number, minimum, mean, standard deviation, median, mean absolute deviation, maximum).
+For each \code{\link{MassPeaks}} on the list this function provides summary statistics of m/z points, peak intensities and SNR thresholds (number, minimum, mean, standard deviation, median, mean absolute deviation, maximum).
 }
 \value{
 A \code{\link{data.frame}} containing summary information of a collection of \code{\link{MassPeaks}} objects.
@@ -49,9 +43,9 @@ peaks <- detectPeaks(spectra)
 
 names(peaks) <- type$SpectID # spectra IDs are lost with removeBaseline()
 
-# Summary of peak profile features (show results for 20 first samples)
+# Summary of peak profile features (results for positions 10 to 20)
 
-summaryPeaks(peaks, 20)
+summaryPeaks(peaks[10:20])
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

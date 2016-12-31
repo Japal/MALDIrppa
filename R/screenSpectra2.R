@@ -1,6 +1,6 @@
-screenSpectra <- function(x,meta=NULL,threshold=1.5,estimator=c("Q","MAD"),
+screenSpectra2 <- function(x,meta=NULL,threshold=1.5,estimator=c("Q","MAD"),
                           method=c("adj.boxplot","boxplot","ESD","Hampel","RC"),
-                          nd=1,lambda=0.5,...){
+                          nd=1,...){
 
   estimator <- match.arg(estimator)
   method <- match.arg(method)
@@ -65,14 +65,10 @@ screenSpectra <- function(x,meta=NULL,threshold=1.5,estimator=c("Q","MAD"),
   if (estimator == "Q"){
     estim <- "Q"
     est  <- unlist(lapply(x,function(y) Qn(intensity(d.spectra(scale.max(y,smax),nd)))))
-    med.int <- summarySpectra(x)[,"Med.Int"]
-    est <- (est^lambda)*(1/sqrt((med.int+1)))^(1-lambda)
   }
   else{
     estim <- "MAD"
     est <- unlist(lapply(x,function(y) mad(intensity(d.spectra(scale.max(y,smax),nd)))))
-    med.int <- summarySpectra(x)[,"Med.Int"]
-    est <- (est^lambda)*(1/sqrt((med.int+1)))^(1-lambda)
   }
 
   if (method == "boxplot"){
@@ -116,7 +112,7 @@ screenSpectra <- function(x,meta=NULL,threshold=1.5,estimator=c("Q","MAD"),
     
   out <- list(fspectra=x,fmeta=meta,est.table=est.table,upper=t,lower=l,prop=prop,
               cfailure=cfailure,threshold=threshold,
-              nd=nd,lambda=lambda,smax=smax,method=met,estimator=estim)
+              nd=nd,smax=smax,method=met,estimator=estim)
   
   class(out) <- "scSpectra"
   return(out)

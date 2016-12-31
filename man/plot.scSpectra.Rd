@@ -8,8 +8,7 @@ Graphical summary of \code{screenSpectra} objects
 This is a \code{plot} method for \code{scSpectra} objects that displays the results from applying \code{screenSpectra} to identify potential faulty, low-quality raw mass spectra.
 }
 \usage{
-\method{plot}{scSpectra}(x, type = c("index", "hist"), breaks = 30,
-             label = NULL, col = "green3", ...)
+\method{plot}{scSpectra}(x, type = c("index", "hist"), breaks = 30, labels = FALSE, col = "green3", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,8 +21,8 @@ Type of graphical display.
   \item{breaks}{
 Number of break points for plotting a histogram when \code{type = "hist"} (default = 30).
 }
-  \item{label}{
-Vector of labels for the samples (default = \code{NULL}, position index is used).
+  \item{labels}{
+Vector of labels for the mass spectra (default = \code{FALSE}, no labels).
 }
   \item{col}{
 Colour for the histogram bars when \code{type = "hist"}.
@@ -33,16 +32,23 @@ Other arguments.
 }
 }
 \details{
-When \code{type = "index"} (default) the upper and lower fences to declare a mass spectra as potentially low-quality and the result for each one of them as provided by \code{\link{screenSpectra}} are shown. The points are displayed using the position index or a given vector of labels for the mass spectra. When (\code{type = "hist"}) a histogram of the distribution of the robust scale estimator is produced along with the tolerance fences.
+For \code{type = "index"} (default) the upper and lower fences used to declare a mass spectrum as potentially low-quality are shown along with the atypically scores (see \code{\link{screenSpectra}} for details). Point labels can be added using the \code{labels} argument (either a position index when \code{labels = TRUE} or a given vector of labels; see examples below). For \code{type = "hist"} a histogram of the distribution of the atypically scores is produced along with the tolerance fences.
 }
+
+\seealso{
+See \code{\link{screenSpectra}} and \code{\link{summary.scSpectra}}.
+}
+
 \examples{
 # Load example data
 
 data(spectra) # list of MassSpectra objects
+data(type)    # metadata
 
 sc.results <- screenSpectra(spectra)
 plot(sc.results)
-plot(sc.results, label = sc.results$est.table$ID)
+plot(sc.results, labels = TRUE)
+plot(sc.results, labels = type$SpectID)
 plot(sc.results, type = "hist")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
