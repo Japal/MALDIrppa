@@ -32,7 +32,7 @@ Other arguments.
 }
 }
 \details{
-For \code{type = "index"} (default) the upper and lower fences used to declare a mass spectrum as potentially low-quality are shown along with the atypically scores (see \code{\link{screenSpectra}} for details). Point labels can be added using the \code{labels} argument (either a position index when \code{labels = TRUE} or a given vector of labels; see examples below). For \code{type = "hist"} a histogram of the distribution of the atypically scores is produced along with the tolerance fences.
+For \code{type = "index"} (default) the upper and lower fences used to declare a mass spectrum as potentially low-quality are shown along with their A scores (see \code{\link{screenSpectra}} for details). Point labels can be added using the \code{labels} argument (either a position index when \code{labels = TRUE} or a given vector of labels; see examples below). For \code{type = "hist"} a histogram of the distribution of the A scores is produced along with the tolerance fences.
 }
 
 \seealso{

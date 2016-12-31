@@ -99,7 +99,7 @@ screenSpectra <- function(x,meta=NULL,threshold=1.5,estimator=c("Q","MAD"),
   names(t) <- NULL; names(l) <- NULL
   
   est.table <- data.frame(ID=names(est))
-  est.table$Score <- est
+  est.table["A score"] <- est
   est.table["Class"] <- "success"
   est.table$Class[which(est > t | est < l | is.na(est))] <- "failure"
   
