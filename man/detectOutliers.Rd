@@ -12,7 +12,7 @@ detectOutliers(x, by = NULL, binary = FALSE, ...)
 }
 \arguments{
   \item{x}{A list of \code{\link{MassSpectrum}} objects containing processed peaks.}
-    \item{by}{If given, a variable (\code{\link{factor}} or \code{\link{numeric}}) defining the grouping elements.}
+    \item{by}{If given, a grouping variable (\code{\link{factor}} or \code{\link{numeric}}) subsetting the data.}
   \item{binary}{Logical value. It indicates whether the procedure must be applied on either peak intensities (\code{FALSE}, default) or on binary peak presence/absence patterns (\code{TRUE}).}
   \item{...}{Optional arguments for the robust outlier detection method.} 
 }
