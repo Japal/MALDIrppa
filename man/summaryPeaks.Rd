@@ -8,14 +8,16 @@ Summary of mass peak profiles
 This function generates a numerical summary of a collection of \code{\link{MassPeaks}} objects.
 }
 \usage{
-summaryPeaks(x)
+summaryPeaks(x, digits = 4)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 A list of \code{\link{MassPeaks}} objects.
 }
-}
+  \item{digits}{
+Integer indicating the number of decimal places to be used.
+}}
 \details{
 For each \code{\link{MassPeaks}} on the list this function provides summary statistics of m/z points, peak intensities and SNR thresholds (number, minimum, mean, standard deviation, median, mean absolute deviation, maximum).
 }

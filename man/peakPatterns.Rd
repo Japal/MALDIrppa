@@ -17,7 +17,7 @@ peakPatterns(x, abs.lab = NA, barplot = TRUE,
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-A \code{\link{matrix}} or \code{\link{data.frame}} object.
+A \code{\link{matrix}}, \code{\link{data.frame}} or a list of \code{\link{MassPeaks}} objects.
 }
   \item{abs.lab}{
 Unique label used to denote peak absence in \code{x} (\code{NA}, default).
@@ -76,15 +76,13 @@ spectra <- removeBaseline(spectra)
 peaks <- detectPeaks(spectra)
 peaks <- alignPeaks(peaks, minFreq = 0.8)
 
-int <- intensityMatrix(peaks)
-
 # Display patterns across all data
 
-peakPatterns(int)
+peakPatterns(peaks)
 
-# Check results within isolate 52
+# Check results within isolate 280
 
-peakPatterns(int[type$Isolate=="280",])
+peakPatterns(peaks[type$Isolate=="280"])
 
 }
 

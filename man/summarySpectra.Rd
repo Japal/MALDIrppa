@@ -8,14 +8,16 @@ Summary of mass spectra
 This function generates a numerical summary of a collection of \code{\link{MassSpectrum}} objects.
 }
 \usage{
-summarySpectra(x)
+summarySpectra(x, digits = 4)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 A list of \code{\link{MassSpectrum}} objects.
 }
-}
+  \item{digits}{
+Integer indicating the number of decimal places to be used.
+}}
 \details{
 For each \code{\link{MassSpectrum}} on the list this function provides summary statistics of m/z points and signal intensities (number, minimum, mean, standard deviation, median, mean absolute deviation, maximum).
 }

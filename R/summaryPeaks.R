@@ -1,29 +1,29 @@
-summaryPeaks <- function(x){
+summaryPeaks <- function(x, digits = 4){
   
   if (any(inherits(x,"list") & inherits(x[[1]],"MassPeaks"))==FALSE) {
     stop("x must be a list of MassPeaks class objects")
   }
   
-  ID <-  names(x)
+  if (!is.null(names(x))) ID <-  names(x) else ID <- 1:length(x)
   NmzVal <- sapply(x,function(x) length(x@mass))
-  RmzValmin <- sapply(x,function(x) round(min(x@mass),2))
-  RmzValmax <- sapply(x,function(x) round(max(x@mass),2))
-  RintValmin <- sapply(x,function(x) round(min(x@intensity),2))
-  RintValmean <- sapply(x,function(x) round(mean(x@intensity),2))
-  RintValsd <- sapply(x,function(x) round(sd(x@intensity),2))
-  RintValmed <- sapply(x,function(x) round(median(x@intensity),2))
-  RintValmad <- sapply(x,function(x) round(mad(x@intensity),2))
-  RintValmax <- sapply(x,function(x) round(max(x@intensity),2))
-  RsnrValmin <- sapply(x,function(x) round(min(x@snr),2))
-  RsnrValmean <- sapply(x,function(x) round(mean(x@snr),2))
-  RsnrValsd <- sapply(x,function(x) round(sd(x@snr),2))
-  RsnrValmed <- sapply(x,function(x) round(median(x@snr),2))
-  RsnrValmad <- sapply(x,function(x) round(mad(x@snr),2))
-  RsnrValmax <- sapply(x,function(x) round(max(x@snr),2))
+  RmzValmin <- sapply(x,function(x) round(min(x@mass),digits))
+  RmzValmax <- sapply(x,function(x) round(max(x@mass),digits))
+  RintValmin <- sapply(x,function(x) round(min(x@intensity),digits))
+  RintValmean <- sapply(x,function(x) round(mean(x@intensity),digits))
+  RintValsd <- sapply(x,function(x) round(sd(x@intensity),digits))
+  RintValmed <- sapply(x,function(x) round(median(x@intensity),digits))
+  RintValmad <- sapply(x,function(x) round(mad(x@intensity),digits))
+  RintValmax <- sapply(x,function(x) round(max(x@intensity),digits))
+  RsnrValmin <- sapply(x,function(x) round(min(x@snr),digits))
+  RsnrValmean <- sapply(x,function(x) round(mean(x@snr),digits))
+  RsnrValsd <- sapply(x,function(x) round(sd(x@snr),digits))
+  RsnrValmed <- sapply(x,function(x) round(median(x@snr),digits))
+  RsnrValmad <- sapply(x,function(x) round(mad(x@snr),digits))
+  RsnrValmax <- sapply(x,function(x) round(max(x@snr),digits))
 
   out <- data.frame(ID=ID,No.Peaks=NmzVal,Min.MZ=RmzValmin,Max.MZ=RmzValmax,Min.Int=RintValmin,Mean.Int=RintValmean,
                     Std.Int=RintValsd,Med.Int=RintValmed,MAD.Int=RintValmad,Max.Int=RintValmax,
-                    Min.SNR=RsnrValmin,Mean.SNR=RsnrValmean,Std.SNR=RsnrValsd,Med.SNR=RsnrValmed,MAD.snr=RsnrValmad,
+                    Min.SNR=RsnrValmin,Mean.SNR=RsnrValmean,Std.SNR=RsnrValsd,Med.SNR=RsnrValmed,MAD.SNR=RsnrValmad,
                     Max.SNR=RsnrValmax,row.names=NULL)
   
   return(out)

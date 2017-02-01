@@ -38,10 +38,14 @@ peakPatterns <- function(x,abs.lab=NA,barplot=TRUE,
     }
   } 
     
-  if (is.vector(x)) stop("x must be a matrix or data.frame class object")
+  if ((!is.matrix(x)) & (!is.data.frame(x)) & (!is.list(x))) stop("x is not a valid object")
   if (is.null(abs.lab)) stop("A value for abs.lab must be given")
   if (!is.na(abs.lab)){
     if (!any(x==abs.lab,na.rm=TRUE)) stop(paste("Label",abs.lab,"was not found in the data set"))
+  }
+  
+  if ((class(x)=="list") & (class(x[[1]])=="MassPeaks")) {
+    x <- intensityMatrix(x)
   }
   
   x <- as.data.frame(x)
