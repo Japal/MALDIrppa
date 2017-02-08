@@ -5,7 +5,7 @@ author: '[Javier Palarea-Albaladejo](http://www.bioss.ac.uk/people/javier.html),
 date: '`r Sys.Date()`'
 output:
   rmarkdown::html_vignette: default
-bibliography: FaultyMSbiblio.bib
+bibliography: MALDIrppaVignette.bib
 vignette: |
   %\VignetteIndexEntry{Put the title of your vignette here} %\VignetteEngine{knitr::rmarkdown} \usepackage[utf8]{inputenc}
 ---

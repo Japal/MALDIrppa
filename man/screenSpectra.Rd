@@ -46,14 +46,14 @@ Method used to compute upper and lower fences for the identification of atypical
 Order for the derivative function of the mass spectra (default = 1).
 }
   \item{lambda}{
-Weight given to each component of the atypicality score (default = 0.5, see details below).
+Weight given to each component of the atypicality score (values in [0, 1], default = 0.5, see details below).
 }
   \item{...}{
 Other arguments.
 }
 }
 \details{
-The procedure computes an atypicality score (A score) based on a weighted function of two components: (1) a robust estimate of the variability (\code{Q} or \code{MAD} scale estimator) of the n-order derivative (computed using Savitzky-Golay smoothing filter) of scaled mass spectra and (2) the median intensity of the signals. Given a \code{method} to determine tolerance fences, a mass spectrum is labelled as potentially faulty, low-quality according to the magnitude of its A score. The \code{adj.boxplot} method based on the \code{Q} scale estimator and equal weights to both components (\code{lambda} = 0.5) are the default options. The function produces summaries and a list of mass spectra and (if given) associated metadata in which the identified cases were filtered out.
+The procedure computes an atypicality score (A score) based on a weighted function of two components: (1) a robust scale estimator (\code{Q} or \code{MAD}) of the n-order derivative (computed using Savitzky-Golay smoothing filter) of scaled mass spectra and (2) the median intensity of the signals. Given a \code{method} to determine tolerance fences, a mass spectrum is labelled as potentially faulty, low-quality according to the magnitude of its A score. The \code{adj.boxplot} method based on the \code{Q} scale estimator and equal weights to both components (\code{lambda} = 0.5) are the default options. The greater \code{lambda} the higher the weight given to the scale estimator in the A score. The function produces summaries and a list of mass spectra and (if given) associated metadata in which the identified cases were filtered out.
 }
 \value{
 

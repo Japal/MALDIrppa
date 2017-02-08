@@ -43,12 +43,13 @@ peaks <- alignPeaks(peaks, minFreq = 0.8)
 
 # Find outlying samples at isolate level
 
+\dontrun{
 out <- detectOutliers(peaks, by = type$isolate)
 
 # From peak presence/absence patterns
 
 out.binary <- detectOutliers(peaks, by = type$isolate, binary = TRUE)
-
+}
   }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

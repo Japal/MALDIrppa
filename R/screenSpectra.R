@@ -2,6 +2,7 @@ screenSpectra <- function(x,meta=NULL,threshold=1.5,estimator=c("Q","MAD"),
                           method=c("adj.boxplot","boxplot","ESD","Hampel","RC"),
                           nd=1,lambda=0.5,...){
 
+  spobjname <-deparse(substitute(x))
   estimator <- match.arg(estimator)
   method <- match.arg(method)
   smax <- 100 # re-scaling constant
@@ -116,7 +117,7 @@ screenSpectra <- function(x,meta=NULL,threshold=1.5,estimator=c("Q","MAD"),
     
   out <- list(fspectra=x,fmeta=meta,est.table=est.table,upper=t,lower=l,prop=prop,
               cfailure=cfailure,threshold=threshold,
-              nd=nd,lambda=lambda,smax=smax,method=met,estimator=estim)
+              nd=nd,lambda=lambda,smax=smax,method=met,estimator=estim,spobjname=spobjname)
   
   class(out) <- "scSpectra"
   return(out)
