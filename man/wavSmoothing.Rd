@@ -5,7 +5,7 @@
 Discrete wavelet transformation for \code{MassSpectrum} objects
 }
 \description{
-This is a wrapper for the \code{\link{wavShrink}} function (\code{wmtsa} package) to be used with \code{\link{MassSpectrum}} objects.
+This function performs undecimated wavelet transform (UDWT) on mass spectra in \code{\link{MassSpectrum}} format.
 }
 \usage{
 wavSmoothing(x, thresh.scale = 2.5, ...)
@@ -22,7 +22,7 @@ Smoothing factor.
 }
 }
 \details{
-This function performs undecimated wavelet transform (UDWT) on mass spectra in \code{\link{MassSpectrum}} format. See \code{wavShrink} in \code{wmtsa} package for more details.
+This is an adaptation of the \code{\link{wavShrink}} function (\code{wmtsa} package) to be used with \code{\link{MassSpectrum}} objects. See \code{wavShrink} in \code{wmtsa} package for options.
 }
 \value{
 A list of \code{\link{MassSpectrum}} objects with denoised signal intensities.
