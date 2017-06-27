@@ -43,7 +43,7 @@ library(MALDIrppa)
 
 ```{r loading2, echo=TRUE, eval=TRUE, results='hide'}
 data(spectra) # list of MassSpectra class objects
-data(type)    # metadata
+data(type)    # metadata matrix
 ```
 
 Alternatively, raw data stored in text files can be easily imported into R and given the convenient `MassSpectrum` class format using the `importSpectra` function. The function `summarySpectra` computes a table including some basic summary statistics. A look at these along with some graphical representations are useful to get a first insight into the data set and identify possible issues. The next code shows numerical results for the first 10 signals.
@@ -127,7 +127,7 @@ It is important to keep exploring the data throughout the pre-processing workflo
 summaryPeaks(peaks[1:10])
 ```
 
-The function `countPeaks` directly counts the number of peaks in each profile. Either an obvious excess or scarcity of peaks in a profile may deserve a closer look. The following code produces the list of counts and plot them for overall comparison.
+The function `countPeaks` directly counts the number of peaks in each profile. Either an obvious excess or scarcity of peaks in a profile may deserve a closer look. The following code produces the list of counts and plots them for overall comparison using the profile number as label.
 
 ```{r npeaks, echo=TRUE, eval=TRUE, fig.align='center'}
 cP <- countPeaks(peaks)
@@ -151,8 +151,6 @@ peakPatterns(peaks)
 ## Outliers, filtering and merging replicates
 
 Note that due to process disturbances, chemical contamination or human errors for example, some peak profiles may exhibit patterns beyond anticipated biological variability at a level at which certain homogeneity is expected, say at biological and technical replication level. This is not related to low-quality, data acquisition problems as before, the signals are correct, it is instead a case of outlying peak profiles characterised for its large distance from the main mass of data points. They usually include relevant information about certain artifacts or substructures in the data, although in practice it is not always straightforward to find the underlying reasons for their deviating behaviour. As it is well-known in general data modelling, outliers can heavily influence e.g. correlations, fitting in regression models or similarity measures used by classification algorithms. Outliers in our context are often sought after on a peptide-wise basis [@Erhard2012], but we adhere to the idea that peaks of outlying profiles do not necessarily stand out individually. They can simply show an atypical relative pattern with combinations of peaks that occur very rarely. Working within a robust statistics framework we consider the multidimensional and inter-dependent structure of the data for outlier detection [@Rocke1996; @Maronna2006]. In particular, we adapt an outlier detection method proposed by @Filzmoser2005 (adaptive outlier detection, AOD) which allows the boundaries for a peak profile to be considered as potential outlier to be adjusted to the number of replicates involved. By using a multidimensional scaling (MDS) coordinate projections of the data, the approach can be applied at different levels of replication and on varied data formats, e.g. either peak intensities or peak presence/absence binary data. This customised procedure is implemented in the `detectOutliers` function. It generates a logical vector flagging out potential outlying replicates at a given level of aggregation, e.g. at isolate level as set using the argument `by` in the following line of code. This can be used to filter outliers out if that is judged adequate. The argument `binary` facilitates the use of the method on either peak presence/absence profiles (`binary = TRUE`) or raw peak intensity profiles (`binary = FALSE`).
-
-HACER COUNT PEAKS AFTER FILTERING TO SHOW THE DIFF
 
 ```{r outliers, echo=TRUE, eval=TRUE}
 out <- detectOutliers(peaks, type$Isolate, binary = TRUE)
@@ -182,7 +180,7 @@ We can compare these filtered peak profiles with the more noisy raw peaks profil
 peakPatterns(peaks.clean.f)
 ```
 
-Finally replicates are typically merged to obtain a single composite representative peak profile by isolate. In accordance with our robust approach we propose to do this by computing the median peak profile across replicates within isolate. This contributes to downgrade the influence of extreme peak intensities on the pooled estimates. The associated metadata should be also aggregated in the same way. Here we use the `aggregate` function available in R base, but other alternatives are available through several R packages. Note that we specify `FUN = length` simply as a _trick_, as we are not really interested in any summary of the metadata. Moreover, we only keep the information about the isolate, which is in the first column of the resulting table.
+Finally replicates are typically merged to obtain a single composite representative peak profile by isolate. In accordance with our robust approach we propose to do this by computing the median peak profile across replicates within isolate. This contributes to downgrade the influence of extreme peak intensities on the pooled estimates. The associated metadata should be also aggregated in the same way. Here we use the `aggregate` function available in R base, but other alternatives are available through several R packages. Note that we specify `FUN = length` simply as a _trick_, as we are not really interested in any summary of the metadata. Moreover, we only keep the information about the isolate, which is in the first column of the resulting table (note that `type.clean.fm` becomes a vector after this).
 
 ```{r merge, echo=TRUE, eval=TRUE}
 peaks.clean.fm <- mergeMassPeaks(peaks.clean.f, labels = type.clean$Isolate, method = "median")
@@ -195,14 +193,17 @@ Statistical and machine learning methods typically work on data matrices. The `i
 int.clean.fm <- intensityMatrix(peaks.clean.fm)
 ```
 
-The intensity matrix and associated metadata can be stored in different formats to facilitate its use as input in, for example, specialised bioinformatics software packages. The following code uses simple functions to save them as CSV text files and also in the popular NEXUS format, which includes options to save either peak intensities or binary patterns and to add peak weights among others (see `?writeIntensity` help files for more details).
+The intensity matrix and associated metadata can be stored in different formats to facilitate its use as input in, for example, specialised bioinformatics software packages. The following code uses simple functions to save them as CSV text files and also in the popular NEXUS format, which includes options to save either peak intensities or binary patterns and to add peak weights among others (see `?writeIntensity` help files for more details). The argument `labels` can be used to add labels to the pre-processed samples. For this example data set, we use the spectra IDs stored in `type.clean.fm`, which became a vector containing only the IDs in a previous stage. Thus, using the `$` operator for matrices is not required to select the corresponding ID column here.
 
 ```{r savefinal, echo=TRUE, eval=FALSE}
 writeMetadata(type.clean.fm, filename = "type.clean.fm", format = "csv") # save metadata
-writeIntensity(int.clean.fm, filename = "int.clean.fm", format = "csv", labels = type.clean.fm$Isolate)
-writeIntensity(int.clean.fm, filename = "int.clean.fm", format = "NEXUS", labels = type.clean.fm$Isolate)
+writeIntensity(int.clean.fm, filename = "int.clean.fm", format = "csv", labels = type.clean.fm)
+writeIntensity(int.clean.fm, filename = "int.clean.fm", format = "NEXUS", labels = type.clean.fm)
 ```
 
-AÑADIR PHYLO TREE IN SPLITS TREE AS EXAMPLE
+The argument `binary` can be used to export data in binary (peak presence/absence) format. Note that this is internally turned `TRUE` whenever the NEXUS or FASTA format is chosen. As an example, the next figure shows a phylogenetic network contructed using the NeighborNet algorithm implemented in the SplitsTree software package directly from the NEXUS file generated above by `MALDIquant`.
+
+<center><img src="/Users/Japal/MALDIrppa/vignettes/phylo_net.png" alt="Drawing" style="width: 600px;"/>
+</center>
 
 # References
