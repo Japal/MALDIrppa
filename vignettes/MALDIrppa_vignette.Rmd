@@ -90,7 +90,7 @@ plot(spectra[[87]])
 
 As an example of the problems caused by faulty, low-quality spectra, the next figure shows the case of two peak profiles originated from the same biological material. It is evident that they are carrying very different information.
 
-<center><img src="/Users/Japal/MALDIrppa/vignettes/lqgq_plot.png" alt="Drawing" style="width: 500px;"/>
+<center><img src="lqgq_plot.png" alt="Drawing" style="width: 500px;"/>
 </center>
 
 For the purpose of this tutorial we move on by updating the original `spectra` and `type` objects with the filtered collection of mass spectra and associated metadata provided by `screenSpectra` through the `fspectra` and `fmeta` elements of the output.
@@ -159,7 +159,7 @@ out <- detectOutliers(peaks, type$Isolate, binary = TRUE)
 
 The following figure illustrates the result from a collection of 20 replicates from the same bacterial isolate. Note that the method was applied on peak presence/absence profiles. Quantile ellipsoids based on the robust Mahalanobis distance determine outlierness thresholds. The graph displays ellipsoids at increasing quantiles, including the adjusted quantile ellipsoid produced by the AOD method. The profiles, projected onto a 2-dimensional space by MDS, falling beyond the adjusted quantile boundaries were marked as potential outliers. In this case there is evidence of a set of 4 technical replicates within a biological replicate that were probably contaminated samples (distant points located on the right-hand side of the graph).
 
-<center><img src="/Users/Japal/MALDIrppa/vignettes/od_plot.png" alt="Drawing" style="width: 500px;"/>
+<center><img src="od_plot.png" alt="Drawing" style="width: 500px;"/>
 </center>
 
 The identification of outliers can be sometimes a primary purpose of data analysis, as they might reveal hidden structures in the data of biological interest. Other times outliers are a nuisance resulting from errors or contamination, and it might be then convenient to discard or downweight them prior to the actual data modelling. `MALDIrppa` provides a exploratory tool to inform of samples that are considerably different from the majority. The final decision about their biological meaning and how to deal with them will depend on the assessment of the researcher. To simplify the exposition we here proceed by discarding outlying peak profiles.
@@ -204,7 +204,7 @@ writeIntensity(int.clean.fm, filename = "int.clean.fm", format = "NEXUS", labels
 
 The argument `binary` can be used to export data in binary (peak presence/absence) format. Note that this is internally turned `TRUE` whenever the NEXUS or FASTA format is chosen. As an example, the next figure shows a phylogenetic network contructed using the NeighborNet algorithm implemented in the SplitsTree software package (http://www.splitstree.org) directly from the NEXUS file generated above by `MALDIrppa`.
 
-<center><img src="/Users/Japal/MALDIrppa/vignettes/phylo_net.png" alt="Drawing" style="width: 600px;"/>
+<center><img src="phylo_net.png" alt="Drawing" style="width: 600px;"/>
 </center>
 
 # References
