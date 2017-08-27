@@ -1,6 +1,6 @@
 summarySpectra <- function(x, digits = 4){
   
-  if (any(inherits(x,"list") & inherits(x[[1]],"MassSpectrum"))==FALSE) {
+  if (!isMassSpectrumList(x)) {
     stop("x must be a list of MassSpectrum class objects")
   }
   

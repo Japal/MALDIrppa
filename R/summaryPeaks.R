@@ -1,6 +1,6 @@
 summaryPeaks <- function(x, digits = 4){
   
-  if (any(inherits(x,"list") & inherits(x[[1]],"MassPeaks"))==FALSE) {
+  if (!isMassPeaksList(x)) {
     stop("x must be a list of MassPeaks class objects")
   }
   
