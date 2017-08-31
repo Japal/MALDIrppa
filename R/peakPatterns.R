@@ -43,8 +43,8 @@ peakPatterns <- function(x,abs.lab=NA,barplot=TRUE,
   if (!is.na(abs.lab)){
     if (!any(x==abs.lab,na.rm=TRUE)) stop(paste("Label",abs.lab,"was not found in the data set"))
   }
-  
-  if ((class(x)=="list") & (class(x[[1]])=="MassPeaks")) {
+
+  if (isMassPeaksList(x)) {
     x <- intensityMatrix(x)
   }
   

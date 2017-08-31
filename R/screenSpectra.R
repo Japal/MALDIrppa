@@ -7,7 +7,7 @@ screenSpectra <- function(x,meta=NULL,threshold=1.5,estimator=c("Q","MAD"),
   method <- match.arg(method)
   smax <- 100 # re-scaling constant
   
-  if (any(inherits(x,"list") & inherits(x[[1]],"MassSpectrum"))==FALSE) {
+  if (!isMassSpectrumList(x)) {
     stop("x must be a list of MassSpectra class objects")
   }
   if ((!is.null(meta)) & (is.vector(meta))){
