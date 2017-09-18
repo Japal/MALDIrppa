@@ -47,7 +47,7 @@ data(spectra) # list of MassSpectra class objects
 data(type)    # metadata matrix
 ```
 
-Alternatively, raw data stored in text files can be easily imported into R and given the convenient `MassSpectrum` class format using the `importSpectra` function. The function `summarySpectra` computes a table including some basic summary statistics. A look at these along with some graphical representations are useful to get a first insight into the data set and identify possible issues. The next code shows numerical results for the first 10 signals.
+Alternatively, raw data stored in text files can be easily imported into R and given the convenient `MassSpectrum` class format using the `importSpectra` function included in `MALDIrppa`. For importing data from more specialised file formats we suggest the reader to check out the package `MALDIquantForeign`. The function `summarySpectra` computes a table including some basic summary statistics. A look at these along with some graphical representations are useful to get a first insight into the data set and identify possible issues. The next code shows numerical results for the first 10 signals.
 
 ```{r summary, echo=TRUE, eval=TRUE}
 summarySpectra(spectra[1:10])
@@ -102,10 +102,10 @@ type <- sc.results$fmeta # Filtered metadata
 
 ## Denoising, baseline correction and normalisation
 
-Signal denoising or smoothing is conducted in `MALDIrppa` by undecimated discrete wavelet transform (UDWT) [@Coombes2005] using the `wavSmooting` function. Wavelets adapt well to changes in peak shape and the UDWT produces the same results if the start of the signal is shifted by a few time points (shift-invariance). This prevents from undesirable artifacts into the signal near either end of the spectrum due to large changes in wavelet coefficients as a consequence of small shifts in location. In this case, smoothing is applied on square root-transformed (`sqrt` function in R) signals using `transfIntensity` for variance stabilisation. This function allows to apply any sensible user-defined transformation on the signal intensities. For baseline correction, the statistics-sensitive non-linear iterative peak-clipping (SNIP) algorithm as implemented in `MALDIquant` generates positive intensities and provides better results with high matrix effects (pronounced mode). Regarding signal normalisation, `MALDIquant` offers a number of sensible methods through the `calibrateIntensity` function. In particular, probabilistic quotient normalisation (PQN) provides a robust method for scaling spectra, commonly originated from different dilutions, into a common overall concentration [@Diet2006].
+Signal denoising or smoothing is conducted in `MALDIrppa` by undecimated discrete wavelet transform (UDWT) [@Coombes2005] using the `wavSmooting` function. Wavelets adapt well to changes in peak shape and the UDWT produces the same results if the start of the signal is shifted by a few time points (shift-invariance). This prevents from undesirable artifacts into the signal near either end of the spectrum due to large changes in wavelet coefficients as a consequence of small shifts in location. In this case, smoothing is applied on square root-transformed (`sqrt` function in R) signals using `transfIntensity` for variance stabilisation. Note that in fact this function allows to apply any sensible user-defined transformation on the signal intensities (see `MALDIrppa` documentation for an example). For baseline correction, the statistics-sensitive non-linear iterative peak-clipping (SNIP) algorithm as implemented in `MALDIquant` generates positive intensities and provides better results with high matrix effects (pronounced mode). Regarding signal normalisation, `MALDIquant` offers a number of sensible methods through the `calibrateIntensity` function. In particular, probabilistic quotient normalisation (PQN) provides a robust method for scaling spectra, commonly originated from different dilutions, into a common overall concentration [@Diet2006].
 
 ```{r deno, echo=TRUE, eval=TRUE}
-spectra <- transfIntensity(spectra, fun = function(x) sqrt(x))
+spectra <- transfIntensity(spectra, fun = sqrt)
 spectra <- wavSmoothing(spectra, thresh.scale = thScale)
 spectra <- removeBaseline(spectra, method = "SNIP", iterations = ite)
 spectra <- calibrateIntensity(spectra, method = "PQN")

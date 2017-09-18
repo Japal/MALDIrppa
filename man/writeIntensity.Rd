@@ -29,7 +29,7 @@ Logical value. If \code{TRUE}, a binary version (1: peak presence, 0: peak absen
 Optional vector of ID labels for the samples.
 }
   \item{weights}{
-Optional numeric vector of peak weights.
+Optional numeric vector of peak weights (NEXUS format).
 }
   \item{\dots}{
 Additional arguments.

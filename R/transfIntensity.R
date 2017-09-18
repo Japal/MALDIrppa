@@ -1,23 +1,29 @@
-transfIntensity <- function(x, fun=NULL, ...){
+transfIntensity <- function(x, fun = NULL, ...){
     
-    if ((!inherits(x,"list")) & (!inherits(x,"MassSpectrum"))) stop("x must be a MassSpectrum object")
-    if (inherits(x,"list")){
-        if (!all(unlist(lapply(x,function(x) inherits(x,"MassSpectrum")))==TRUE)){
-          stop("x must be a list of MassSpectrum objects")}
+    if (!is.list(x)){
+      if (!isMassSpectrum(x)){
+        stop("x must be a MassSpectrum object")}
     }
+    
+    if (is.list(x)){
+      if (!isMassSpectrumList(x)){
+        stop("x must be a list of MassSpectrum objects")}
+    }
+    
     if (is.null(fun)) stop("A function argument fun must be given")
     
     fun <- match.fun(fun)
    
-    if (inherits(x,"list")){
+    if (is.list(x)){
       for (i in 1:length(x)){
-        x[[i]]@intensity <- fun(x[[i]]@intensity)
-        if (!all(is.finite(x[[i]]@intensity))) x[[i]]@intensity <- rep(0,length(x[[i]]@intensity)) # Deals with flats
+        intensity(x[[i]]) <- fun(intensity(x[[i]]))
+        if (!all(is.finite(intensity(x[[i]])))) intensity(x[[i]]) <- rep(0, length(intensity(x[[i]]))) # Deals with flats
       }
     }
-    else {x@intensity <- fun(x@intensity)
-          if (!all(is.finite(x@intensity))) x@intensity <- rep(0,length(x@intensity))
+    else {intensity(x) <- fun(intensity(x))
+          if (!all(is.finite(intensity(x)))) intensity(x) <- rep(0, length(intensity(x)))
          }
     
     return(x)
+
 }

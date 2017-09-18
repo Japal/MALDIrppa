@@ -4,18 +4,10 @@ summarySpectra <- function(x, digits = 4){
     stop("x must be a list of MassSpectrum class objects")
   }
   
-  ID <-  names(x)
-  NmzVal <- sapply(x,function(x) length(x@mass))
-  RmzValmin <- sapply(x,function(x) round(min(x@mass),digits))
-  RmzValmax <- sapply(x,function(x) round(max(x@mass),digits))
-  RintValmin <- sapply(x,function(x) round(min(x@intensity),digits))
-  RintValmean <- sapply(x,function(x) round(mean(x@intensity),digits))
-  RintValsd <- sapply(x,function(x) round(sd(x@intensity),digits))
-  RintValmed <- sapply(x,function(x) round(median(x@intensity),digits))
-  RintValmad <- sapply(x,function(x) round(mad(x@intensity),digits))
-  RintValmax <- sapply(x,function(x) round(max(x@intensity),digits))
-  out <- data.frame(ID=ID,No.MZ=NmzVal,Min.MZ=RmzValmin,Max.MZ=RmzValmax,Min.Int=RintValmin,Mean.Int=RintValmean,
-                    Std.Int=RintValsd,Med.Int=RintValmed,MAD.Int=RintValmad,Max.Int=RintValmax,row.names=NULL)
+  if (!is.null(names(x))) ID <-  names(x) else ID <- 1:length(x)
   
-  return(out)
+  stats <- .summaryStats(x, digits = digits)
+  
+  return(data.frame(ID = ID, stats, row.names = NULL))
+  
 }

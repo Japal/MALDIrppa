@@ -15,22 +15,19 @@ transfIntensity(x, fun = NULL, ...)
   \item{x}{A list of \code{\linkS4class{MassSpectrum}} objects.
 %%     ~~Describe \code{peaks} here~~
 }
-  \item{fun}{A user-defined transformation function.
+  \item{fun}{Name of an user-defined transformation function or any other pre-defined one in R.
 %%     ~~Describe \code{peaks} here~~
 }
   \item{...}{Other arguments.
 }
 }
 \details{
-Unlike \code{\link{transformIntensity}} in \code{\link{MALDIquant}} which provides a few common transformations, this function allows the user to define any sensible function to be applied on signal intensities. It is used as auxiliary function to other procedures in the package.
+This function allows the user to define any sensible function to be applied on signal intensities. For logarithm and square root transformations it is equivalent to \code{\link{transformIntensity}} in the MALDIquant package. 
 }
 \value{
 A list of \code{\linkS4class{MassSpectrum}} objects with signal intensities transformed according to \code{fun}.
 }
 
-\seealso{
-\code{\link{transformIntensity}}.
-}
 \examples{
 # Load example data
 
@@ -42,9 +39,9 @@ scale.max <- function(x){x/max(x)} # define scaling function
 
 scaled.spectra <- transfIntensity(spectra, fun = scale.max)
     
-# Compute natural logarithm of intensity values
+# Compute natural logarithm of intensity values (using the pre-defined sqrt R function)
 
-log.spectra <- transfIntensity(spectra, fun = function(x) log(x))
+log.spectra <- transfIntensity(spectra, sqrt)
 
 
 }

@@ -1,0 +1,12 @@
+RELEASE HISTORY OF THE "MALDIrppa" PACKAGE
+==============================================
+
+CHANGES IN MALDIrppa VERSION 1.0.1 [2017-09]:
+----------------------------------------------------
+
+MODIFICATIONS
+
+* General revision of code and documentation.
+* Minor function structure changes and performance improvements.
+* MSlist and MSlist2 renamed: rawToSpectra and rawToPeaks.
+* Unit tests included.

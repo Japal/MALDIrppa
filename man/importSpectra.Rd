@@ -16,7 +16,7 @@ Path to the folder where the text files are stored (default: current working dir
 }
 }
 \details{
-This functions works with dat, csv or txt file types containing two columns: the first one referring to common m/z values and the second one to intensities (using single-space separator between both and no column names). It reads all the files in the given folder and creates a list of \code{\link{MassSpectrum}} objects.
+This functions works with dat, csv or txt file types containing two columns: the first one referring to common m/z values and the second one to intensities (using single-space separator between both and no column names). It reads all the files in the given folder and creates a list of \code{\link{MassSpectrum}} objects. For importing data from more specialised file formats we refer the reader to the package \code{MALDIquantForeign}.
 }
 \value{
 A list of \code{\link{MassSpectrum}} objects.

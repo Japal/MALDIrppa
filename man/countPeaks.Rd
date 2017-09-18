@@ -13,7 +13,7 @@ countPeaks(x)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-List of \code{\link{MassPeaks}} objects.
+A list of \code{\link{MassPeaks}} objects.
 }
 }
 

@@ -1,19 +1,21 @@
-plot.scSpectra <- function(x,type=c("index","hist","casewise"),breaks=30,labels=FALSE,col="green3", ...){
+plot.scSpectra <- function(x, type = c("index", "hist", "casewise"),
+                           breaks = 30, labels = FALSE, col = "green3", ...){
   
   type <- match.arg(type)
   
-  if (inherits(x,"scSpectra")==FALSE) {
+  if (!inherits(x,"scSpectra")) {
     stop("x must be a scSpectra class object")
   }
-  if (type%in%c("index","hist","casewise")==FALSE){
-    stop(paste(type,"is not a valid plot type"))
+  
+  if (!type%in%c("index", "hist", "casewise")){
+    stop(paste(type, "is not a valid plot type"))
   }
   
   u <- as.numeric(x$upper)
   l <- as.numeric(x$lower)
-  if (labels[1]==TRUE) {labels <- rownames(x$est.table)}
+  if (labels[1]) {labels <- rownames(x$est.table)}
   else {labels <- labels}
-  cols <- ifelse(x$est.table[,"A score"]<=l | x$est.table[,"A score"] >= u,"red3","blue3")
+  cols <- ifelse((x$est.table[,"A score"] <= l) | (x$est.table[, "A score"] >= u), "red3", "blue3")
   
   switch(type,
          index = {

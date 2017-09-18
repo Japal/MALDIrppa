@@ -13,7 +13,7 @@ alignPeaks(x, minFreq = 0.9, tolerance = 0.003, ...)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-List of \code{\link{MassPeaks}} class objects containing extracted peaks.
+A list of \code{\link{MassPeaks}} class objects.
 }
   \item{minFreq}{
 Minimum relative frequency of a peak over \code{x} to be considered as anchor peak for alignment (see \code{\link{referencePeaks}}).

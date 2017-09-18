@@ -1,14 +1,14 @@
-\name{MSlist}
-\alias{MSlist}
+\name{rawToSpectra}
+\alias{rawToSpectra}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Create list of \code{\link{MassSpectrum}} objects
 }
 \description{
-This is an auxiliary function to create a list of \code{\link{MassSpectrum}} objects.
+This is an auxiliary function to create a list of \code{\link{MassSpectrum}} objects from raw data.
 }
 \usage{
-MSlist(mz, I)
+rawToSpectra(mz, I)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

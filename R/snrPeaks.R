@@ -4,5 +4,6 @@ snrPeaks <- function(x){
     stop("x must be a list of MassPeaks class objects")
   }
   
-  lapply(x,function(x) x@snr)
+  lapply(x,function(x) snr(x))
+
 }

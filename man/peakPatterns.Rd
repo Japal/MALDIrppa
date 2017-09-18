@@ -9,9 +9,9 @@ This function displays the patterns of peak presence and absence in an intensity
 }
 \usage{
 peakPatterns(x, abs.lab = NA, barplot = TRUE,
-             axis.lab = c("m/z", "Index"), bar.color = "red3",
-             cell.colors = c("white", "dodgerblue"), grid = FALSE,
-             grid.color = "black", grid.lty = "dotted", cex.axis = 0.5,
+             axis.lab = c("m/z", "Index"), bar.col = "red3",
+             cell.col = c("white", "dodgerblue"), grid = FALSE,
+             grid.col = "black", grid.lty = "dotted", cex.axis = 0.5,
              cex.lab = 0.5, ...)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -28,16 +28,16 @@ Logical value indicating whether a barplot of relative peak frequency across sam
   \item{axis.lab}{
 Vector of axis labels in the \code{c("x", "y")} format.
 }
-  \item{bar.color}{
+  \item{bar.col}{
 Colour of the bars in the barplot.
 }
-  \item{cell.colors}{
+  \item{cell.col}{
 Vector of colours for the table cells (format \code{c("col.absence","col.presence")}).
 }
   \item{grid}{
 Logical value indicating whether gridlines are added (\code{FALSE}, default).
 }
-  \item{grid.color}{
+  \item{grid.col}{
 Colour of the gridlines (\code{"black"}, default).
 }
   \item{grid.lty}{

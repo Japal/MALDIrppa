@@ -1,4 +1,4 @@
-writeMetadata <- function(x,filename="Metadata",format=c("R","csv"),...){
+writeMetadata <- function(x, filename = "Metadata", format = c("R", "csv"), ...){
   
   nam <- deparse(substitute(x))
   format <- match.arg(format)
@@ -6,6 +6,7 @@ writeMetadata <- function(x,filename="Metadata",format=c("R","csv"),...){
   assign(nam,x)
   
   switch(format,
-         R=save(list=eval(nam),file=paste(filename,".Rdata",sep="")),
-         csv=write.table(x,file=paste(filename,".csv",sep=""),sep=",",row.names = FALSE))
+         R = save(list = eval(nam), file = paste(filename, ".Rdata", sep = ""), ...),
+         csv = write.table(x, file = paste(filename, ".csv", sep = ""), sep = ",",
+                           row.names = FALSE, ...))
 }

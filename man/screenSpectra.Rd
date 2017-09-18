@@ -17,8 +17,7 @@ screenSpectra(x, meta = NULL, threshold = 1.5, estimator = c("Q", "MAD"),
   \item{x}{
 A list of \code{\link{MassSpectrum}} objects.
 }
-  \item{meta}{(optional) Vector or
-matrix containing metadata associated to \code{x}. Typically a data matrix including spectrum ID, biotype, replicate number, etc. for each element of \code{x}.
+  \item{meta}{(optional) Matrix or vector containing metadata associated to \code{x}. Typically a data matrix including spectrum ID, biotype, replicate number, etc. for each element of \code{x}.
 }
   \item{threshold}{
 Multiplicative factor used in computing the upper and lower fences to determine passes and failures. It is related to the actual method used to compute the fences (see \code{method}). Typically, \code{threshold = 1.5} (default value) for the boxplot rules, and \code{threshold = 3} for the others.

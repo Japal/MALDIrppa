@@ -1,14 +1,14 @@
-\name{MSlist2}
-\alias{MSlist2}
+\name{rawToPeaks}
+\alias{rawToPeaks}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Create list of \code{\link{MassPeaks}} objects
 }
 \description{
-This is an auxiliary function to create a list of \code{\link{MassPeaks}} objects.
+This is an auxiliary function to create a list of \code{\link{MassPeaks}} objects from raw data.
 }
 \usage{
-MSlist2(mz, I)
+rawToPeaks(mz, I)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

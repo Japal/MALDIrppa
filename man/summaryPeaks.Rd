@@ -43,7 +43,7 @@ spectra <- wavSmoothing(spectra)
 spectra <- removeBaseline(spectra)
 peaks <- detectPeaks(spectra)
 
-names(peaks) <- type$SpectID # spectra IDs are lost with removeBaseline()
+names(peaks) <- type$SpectID # spectra IDs are lost after removeBaseline()
 
 # Summary of peak profile features (results for positions 10 to 20)
 
