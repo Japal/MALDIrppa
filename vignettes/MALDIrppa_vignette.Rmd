@@ -26,6 +26,10 @@ options(width = 999)
 knitr::opts_chunk$set(fig.align='center', fig.width=5.5, fig.height=4.5, message=FALSE)
 ```
 
+To cite MALDIrppa in publications, please use:
+
+Palarea-Albaladejo J., McLean K., Wright F. and Smith (2018). MALDIrppa: quality control and robust analysis for mass spectrometry data. Bioinformatics 34(3):522--523. (http://dx.doi.org/10.1093/bioinformatics/btx628).
+
 ## Introduction
 
 Mass spectrometry is actively being used to discover proteomic patterns in complex mixtures of peptides derived from biological samples. Reproducibility is however a significant challenge in MALDI protein profiling. Approaches to improve the analytical performance of MALDI protein profiling include extensive pre-fractionation strategies, immunocapture, pre-structured target surfaces, standardized matrix (co)crystallization, improved instrument components, internal standard peptides, quality-control samples, among others [@Albrethsen2007]. Mass spectrometry (MS) data pre-processing algorithms play a crucial role in rendering the subsequent data analysis more robust and accurate. The package `MALDIrppa` contributes a number of procedures for robust pre-processing and analysis, along with a number of functions to facilitate common data management operations. It is thought to work in conjunction with the `MALDIquant` package [@Gibb2012], using object classes and methods from this latter. These notes provide basic guidelines for users to run a complete robust MALDI mass spectra pre-processing pipeline using their own data with small adaptations. Further specific details and examples on the full functionality of the `MALDIrppa` package can be found in the associated help pages.
