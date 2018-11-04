@@ -20,9 +20,8 @@ context("detectOutliers")
 
 set.seed(123)
 test_that("detectOutliers returns expected results",{
-  skip_on_cran()
-  expect_equal(sum(detectOutliers(peaks)), 63, tolerance = 1)
-  expect_equal(sum(detectOutliers(peaks, by = type)$Atypical), 37)
+  expect_equal(sum(detectOutliers(peaks)), 63, tolerance = 2)
+  expect_equal(sum(detectOutliers(peaks, by = type)$Atypical), 37, tolerance = 2)
 })
 
 context("summaryStats")
