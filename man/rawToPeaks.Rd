@@ -25,7 +25,3 @@ This functions creates a list of \code{\link{MassPeaks}} objects from a vector o
 \value{
 A list of \code{\link{MassPeaks}} objects.
 }
-
-
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

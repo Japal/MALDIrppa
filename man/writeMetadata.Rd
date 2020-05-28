@@ -62,7 +62,3 @@ writeMetadata(type, filename = "MyMetadata")
 writeIntensity(int, filename = "MyintMatrix", format = "csv")
 writeMetadata(type, filename = "MyMetadata", format = "csv")
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

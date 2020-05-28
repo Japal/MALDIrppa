@@ -110,7 +110,7 @@ Signal denoising or smoothing is conducted in `MALDIrppa` by undecimated discret
 
 ```{r deno, echo=TRUE, eval=TRUE}
 spectra <- transfIntensity(spectra, fun = sqrt)
-spectra <- wavSmoothing(spectra, thresh.scale = thScale)
+spectra <- wavSmoothing(spectra, method = "Wavelet", thresh.scale = thScale)
 spectra <- removeBaseline(spectra, method = "SNIP", iterations = ite)
 spectra <- calibrateIntensity(spectra, method = "PQN")
 ```

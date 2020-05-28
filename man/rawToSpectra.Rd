@@ -29,7 +29,3 @@ A list of \code{\link{MassSpectrum}} objects.
 See \code{\link{importSpectra}}.
 
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

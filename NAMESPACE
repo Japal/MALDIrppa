@@ -1,5 +1,4 @@
 import("MALDIquant")
-importFrom("wmtsa","wavShrink")
 importFrom("robustbase","Qn","covMcd","adjboxStats")
 importFrom("signal","sgolayfilt")
 importFrom("lattice","xyplot","histogram","panel.xyplot","panel.abline","ltext","panel.histogram")

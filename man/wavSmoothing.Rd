@@ -5,24 +5,28 @@
 Discrete wavelet transformation for \code{MassSpectrum} objects
 }
 \description{
-This function performs undecimated wavelet transform (UDWT) on mass spectra in \code{\link{MassSpectrum}} format.
+This function performs undecimated wavelet transform (UDWT) on mass spectra in \code{\link{MassSpectrum}} format. Alternatively, smoothing methods included in the \code{MALDIquant} package can be called.
 }
 \usage{
-wavSmoothing(x, thresh.scale = 2.5, ...)
+wavSmoothing(x, method = c("Wavelet", "SavitzkyGolay", "MovingAverage"),
+             thresh.scale = 2.5, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 A list of \code{\link{MassSpectrum}} objects.
 }
+  \item{method}{
+Smoothing method used.
+}
   \item{thresh.scale}{
-Smoothing factor.
+Smoothing factor for wavelet-based smoothing.
 }
   \item{...}{Other arguments.
 }
 }
 \details{
-This is an adaptation of the \code{\link{wavShrink}} function (\code{wmtsa} package) to be used with \code{\link{MassSpectrum}} objects. See \code{wavShrink} in \code{wmtsa} package for options.
+This provides an adaptation of the \code{wavShrink} function (\code{wmtsa} package) to be used with \code{\link{MassSpectrum}} objects. Alternatively, the function can be used to call the smoothing methods included with the \code{smoothIntensity} function in the \code{MALDIquant} package. Check the documentation of \code{wavShrink} or \code{smoothIntensity} for addtional options.
 }
 \value{
 A list of \code{\link{MassSpectrum}} objects with denoised signal intensities.
@@ -36,9 +40,5 @@ data(spectra) # list of MassSpectra class objects
 # sqrt transformation and signal smoothing using UDWT
 
 spectra <- transformIntensity(spectra, method = "sqrt")
-spectra <- wavSmoothing(spectra)
+spectra <- wavSmoothing(spectra, method = "SavitzkyGolay")
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
