@@ -1,12 +1,12 @@
 RELEASE HISTORY OF THE "MALDIrppa" PACKAGE
 ==============================================
 
-CHANGES IN MALDIrppa VERSION 1.0.2 [2020-05]:
+CHANGES IN MALDIrppa VERSION 1.0.3 [2020-07]:
 ----------------------------------------------------
 
 MODIFICATIONS
 
-* wavSmoothing now includes other smoothing procedures. Wavelet smoothing is now optional to avoid dependence on wmtsa (used in Suggests).
+* wavSmoothing made self-contained and including alternative procedures from MALDIquant.
 
 CHANGES IN MALDIrppa VERSION 1.0.1-2 [2018-11]:
 ----------------------------------------------------

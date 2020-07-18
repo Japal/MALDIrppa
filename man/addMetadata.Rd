@@ -43,7 +43,4 @@ spectra2 <- addMetadata(spectra,info,1)
 
 spectra2[[1]]@metaData
 
-
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 }

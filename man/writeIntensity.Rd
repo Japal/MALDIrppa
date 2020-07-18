@@ -59,9 +59,13 @@ int <- intensityMatrix(peaks)
 
 # default R format
 
+\dontrun{
 writeIntensity(int,file="int")
+}
 
 # binary NEXUS file
 
+\dontrun{
 writeIntensity(int,file="int.binary",format="NEXUS",interleaved=FALSE)
+}
 }

@@ -54,11 +54,15 @@ int <- intensityMatrix(peaks)
 
 # Save resulting data in R format
 
+\dontrun{
 writeIntensity(int, filename = "MyintMatrix")
 writeMetadata(type, filename = "MyMetadata")
+}
 
 # Save resulting data in csv format
 
+\dontrun{
 writeIntensity(int, filename = "MyintMatrix", format = "csv")
 writeMetadata(type, filename = "MyMetadata", format = "csv")
+}
 }

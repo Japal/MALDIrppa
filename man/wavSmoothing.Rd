@@ -26,7 +26,7 @@ Smoothing factor for wavelet-based smoothing.
 }
 }
 \details{
-This provides an adaptation of the \code{wavShrink} function (\code{wmtsa} package) to be used with \code{\link{MassSpectrum}} objects. Alternatively, the function can be used to call the smoothing methods included with the \code{smoothIntensity} function in the \code{MALDIquant} package. Check the documentation of \code{wavShrink} or \code{smoothIntensity} for addtional options.
+This function adapts the \code{wavShrink} function originally found in the \code{wmtsa} package (now archived by CRAN) to work with \code{\link{MassSpectrum}} objects. Alternatively, smoothing methods from the \code{MALDIquant} package can be called. Check the documentation of \code{wavShrink} or \code{smoothIntensity} for addtional options.
 }
 \value{
 A list of \code{\link{MassSpectrum}} objects with denoised signal intensities.
@@ -40,5 +40,5 @@ data(spectra) # list of MassSpectra class objects
 # sqrt transformation and signal smoothing using UDWT
 
 spectra <- transformIntensity(spectra, method = "sqrt")
-spectra <- wavSmoothing(spectra, method = "SavitzkyGolay")
+spectra <- wavSmoothing(spectra)
 }
