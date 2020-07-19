@@ -1,13 +1,18 @@
 Package: MALDIrppa
 Type: Package
 Title: MALDI Mass Spectrometry Data Robust Pre-Processing and Analysis
-Version: 1.0.3
+Version: 1.0.4
+Authors@R: 
+    c(person(given = "Javier",
+             family = "Palarea-Albaladejo",
+             role = c("cre","aut"),
+             email = "javier.palarea@bioss.ac.uk",
+             comment = c(ORCID = "0000-0003-0162-669X")))
 Date: 2020-07-17
-Author: Javier Palarea-Albaladejo
 Maintainer: Javier Palarea-Albaladejo <javier.palarea@bioss.ac.uk>
 Depends: R (>= 3.2.5), MALDIquant, signal, robustbase, lattice
 ByteCompile: yes
-Description: Provides methods for quality control and robust pre-processing and analysis of MALDI mass spectrometry data.
+Description: Provides methods for quality control and robust pre-processing and analysis of MALDI mass spectrometry data (Palarea-Albaladejo et al. (2018) <doi:10.1093/bioinformatics/btx628>).
 License: GPL (>= 2)
 Repository: CRAN, GitHub
 Suggests: knitr, rmarkdown, testthat
