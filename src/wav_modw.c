@@ -963,7 +963,7 @@ mutil_errcode wavuniv_transform_packet_detail(
 
           /*          is_child = (boolean) ( ( level - j ) == 0 ); */
 
-          if ( ( !is_child & is_multiply_inheritable ) | is_child ){
+          if ( ( ( is_child == FALSE ) & is_multiply_inheritable ) | is_child ){
 
           /* the current level is separated from the original
             by at least two and we are multiply inheritable */
