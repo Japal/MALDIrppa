@@ -180,12 +180,12 @@ mutil_errcode matuniv_cumulative_sum( const univ_mat *umat_in,
     MUTIL_ERROR( "NULL universal matrix pointer" );
     return MUTIL_ERR_NULL_POINTER;
   }
-
+  /*
   if ( !MATUNIV_CHECK_TYPE( umat_in, umat_out ) ) {
     MUTIL_ERROR( "Data types of operand and result are inconsistent" );
     return MUTIL_ERR_ILLEGAL_TYPE;
   }
-
+  */
   switch( umat_in->type ) {
 
     case MUTIL_DOUBLE:

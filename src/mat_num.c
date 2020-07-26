@@ -46,12 +46,12 @@ mutil_errcode matuniv_lu_decomposition( const univ_mat *in_mat,
         MUTIL_ERROR( "NULL pointer for output matrix" );
         return MUTIL_ERR_NULL_POINTER;
     }
-
+    /*
     if( !MATUNIV_CHECK_TYPE( in_mat, out_mat ) ) {
         MUTIL_ERROR( "Data types of input and output matrices are different" );
         return MUTIL_ERR_ILLEGAL_TYPE;
     }
-
+    */
     if( indx->type != MUTIL_SINT32) {
         MUTIL_ERROR( "Data type of index vector must be sint32" );
         return MUTIL_ERR_ILLEGAL_TYPE;
@@ -259,22 +259,23 @@ mutil_errcode matuniv_lu_solve( const univ_mat *lu_mat,
         MUTIL_ERROR( "NULL pointer for output parameter vector" );
         return MUTIL_ERR_NULL_POINTER;
     }
-
+    /*
     if( !MATUNIV_CHECK_TYPE( lu_mat, in_vec ) ) {
         MUTIL_ERROR( "Data types of input matrix and vector are different" );
         return MUTIL_ERR_ILLEGAL_TYPE;
     }
-
+    */
     if( indx->type != MUTIL_SINT32) {
         MUTIL_ERROR( "Data type of index vector must be sint32" );
         return MUTIL_ERR_ILLEGAL_TYPE;
     }
+    /*
     if( !MATUNIV_CHECK_TYPE( lu_mat, out_vec ) ) {
         MUTIL_ERROR( "Data types of input matrix and output parameter vector " );
         MUTIL_ERROR( "are different" );
         return MUTIL_ERR_ILLEGAL_TYPE;
     }
-
+    */
     switch( lu_mat->type ) {
         case MUTIL_DOUBLE:
             err = matdbl_lu_solve( &(lu_mat->mat.dblmat),
@@ -442,12 +443,12 @@ mutil_errcode matuniv_inverse( const univ_mat *in_mat, void *intrp_ptr,
       MUTIL_ERROR( "NULL pointer for output matrix" );
       return MUTIL_ERR_NULL_POINTER;
     }
-
+    /*
     if( !MATUNIV_CHECK_TYPE( in_mat, out_mat ) ) {
       MUTIL_ERROR( "Data types of input and output matrices are different" );
       return MUTIL_ERR_ILLEGAL_TYPE;
     }
-
+    */
     switch( in_mat->type ) {
       case MUTIL_DOUBLE:
         err = matdbl_inverse( &(in_mat->mat.dblmat), intrp_ptr,

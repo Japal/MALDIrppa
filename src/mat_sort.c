@@ -190,12 +190,12 @@ mutil_errcode matuniv_permute( const univ_mat *mat,
     MUTIL_ERROR( "Data type of index must be sint32" );
     return MUTIL_ERR_ILLEGAL_TYPE;
   }
-
+  /*
   if( !MATUNIV_CHECK_TYPE( mat, out )) {
     MUTIL_ERROR( "Data type of input and output must be same" );
     return MUTIL_ERR_ILLEGAL_TYPE;
   }
-
+  */
   switch( mat->type ) {
     case MUTIL_DOUBLE:
       errcode = matdbl_permute( &(mat->mat.dblmat),
@@ -304,12 +304,12 @@ mutil_errcode matuniv_table_lookup(
     MUTIL_ERROR( "NULL pointer for input or result" );
     return MUTIL_ERR_NULL_POINTER;
   }
-
+  /*
   if ( !MATUNIV_CHECK_TYPE( table, result ) ) {
     MUTIL_ERROR( "Data types of operand and result are inconsistent" );
     return MUTIL_ERR_ILLEGAL_TYPE;
   }
-
+  */
   switch( result->type ) {
 
     case MUTIL_DOUBLE:

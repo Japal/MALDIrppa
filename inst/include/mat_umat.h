@@ -41,7 +41,7 @@ Macros for universal matrices
  * @see MATUNIV_NCOL
  */
 #define MATUNIV_NELEM(matrix)   (\
-        (!matrix) ? ((sint32)MUTIL_INVALID_LENGTH) :\
+        (matrix == 0) ? ((sint32)MUTIL_INVALID_LENGTH) :\
         ((matrix)->type == MUTIL_UINT8)    ?  ((matrix)->mat.u8mat.nelem) :\
         ((matrix)->type == MUTIL_SINT8)    ?  ((matrix)->mat.s8mat.nelem) :\
         ((matrix)->type == MUTIL_UINT16)   ?  ((matrix)->mat.u16mat.nelem) :\
@@ -68,7 +68,7 @@ Macros for universal matrices
  * @see MATUNIV_NELEM
  */
 #define MATUNIV_NROW(matrix)    (\
-        (!matrix) ? ((sint32) MUTIL_INVALID_LENGTH) :\
+        (matrix == 0) ? ((sint32) MUTIL_INVALID_LENGTH) :\
         ((matrix)->type == MUTIL_UINT8)    ?  ((matrix)->mat.u8mat.nrow) :\
         ((matrix)->type == MUTIL_SINT8)    ?  ((matrix)->mat.s8mat.nrow) :\
         ((matrix)->type == MUTIL_UINT16)   ?  ((matrix)->mat.u16mat.nrow) :\
@@ -95,7 +95,7 @@ Macros for universal matrices
  * @see MATUNIV_NELEM
  */
 #define MATUNIV_NCOL(matrix)    (\
-        (!matrix) ? ((sint32)MUTIL_INVALID_LENGTH) :\
+        (matrix == 0) ? ((sint32)MUTIL_INVALID_LENGTH) :\
         ((matrix)->type == MUTIL_UINT8)    ?  ((matrix)->mat.u8mat.ncol) :\
         ((matrix)->type == MUTIL_SINT8)    ?  ((matrix)->mat.s8mat.ncol) :\
         ((matrix)->type == MUTIL_UINT16)   ?  ((matrix)->mat.u16mat.ncol) :\
@@ -120,7 +120,7 @@ Macros for universal matrices
  * @see _univ_mat
  */
 #define MATUNIV_DATA(matrix)    (\
-     (!matrix) ? (void *)(matrix) :\
+     (matrix == 0) ? (void *)(matrix) :\
      ((matrix)->type==MUTIL_UINT8)    ?  (void *)((matrix)->mat.u8mat.data) :\
      ((matrix)->type==MUTIL_SINT8)    ?  (void *)((matrix)->mat.s8mat.data) :\
      ((matrix)->type==MUTIL_UINT16)   ?  (void *)((matrix)->mat.u16mat.data) :\
@@ -256,7 +256,7 @@ Macros for universal matrices
             break;\
         }
 
-
+/*
 /** Check if the data types of two universal matrices are the same.
  *
  * @author Copyright (c), 1988, 2006 Insightful Corp.  All rights reserved.
@@ -269,10 +269,10 @@ Macros for universal matrices
  * @param  mat2  Pointer to the second universal matrix.
  * @see _mutil_data_type
  * @see _univ_mat
- */
+
 #define MATUNIV_CHECK_TYPE( mat1, mat2 )  \
         ( mat1 && mat2 && ( (mat1)->type == (mat2)->type) )
-
+*/
 
 /** Extract an element from a universal matrix given the data index.
  * Casts the value returned to double.

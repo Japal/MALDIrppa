@@ -32,12 +32,12 @@ mutil_errcode matuniv_assign( const univ_mat *mat, void *intrp_ptr,
     MUTIL_ERROR( "NULL pointer for operand or result");
     return MUTIL_ERR_NULL_POINTER;
   }
-
+  /*
   if( !MATUNIV_CHECK_TYPE( mat, result )) {
     MUTIL_ERROR("Data types of operand and result are inconsistent");
     return MUTIL_ERR_ILLEGAL_TYPE;
   }
-
+  */
   switch( mat->type ) {
     case MUTIL_DOUBLE:
       errcode = matdbl_assign( &(mat->mat.dblmat), intrp_ptr,
@@ -175,12 +175,12 @@ mutil_errcode matuniv_assign_scalar( univ_scalar scalar, void *intrp_ptr,
     MUTIL_ERROR( "NULL pointer for result");
     return MUTIL_ERR_NULL_POINTER;
   }
-
+  /*
   if(!MATUNIV_CHECK_TYPE(mat, &scalar)){
     MUTIL_ERROR("Data types of operand and result are inconsistent");
     return MUTIL_ERR_ILLEGAL_TYPE;
   }
-
+  */
   switch(mat->type) {
 
     case MUTIL_DOUBLE:
@@ -327,12 +327,12 @@ mutil_errcode matuniv_assign_zeropad(const univ_mat *smallmat,
     MUTIL_ERROR( "NULL pointer for operand or result");
     return MUTIL_ERR_NULL_POINTER;
   }
-
+  /*
   if(!MATUNIV_CHECK_TYPE(smallmat, result)){
     MUTIL_ERROR("Data types of operand and result are inconsistent");
     return MUTIL_ERR_ILLEGAL_TYPE;
   }
-
+  */
   switch(smallmat->type) {
     case MUTIL_DOUBLE:
       errcode = matdbl_assign_zeropad(&(smallmat->mat.dblmat),
@@ -464,12 +464,12 @@ mutil_errcode matuniv_assign_submat(const univ_mat *smallmat,
     MUTIL_ERROR( "NULL pointer for operand or result");
     return MUTIL_ERR_NULL_POINTER;
   }
-
+  /*
   if(!MATUNIV_CHECK_TYPE(smallmat, result)) {
     MUTIL_ERROR("Data types of operand and result are inconsistent");
     return MUTIL_ERR_ILLEGAL_TYPE;
   }
-
+  */
   switch(smallmat->type) {
     case MUTIL_DOUBLE:
       errcode = matdbl_assign_submat(&(smallmat->mat.dblmat),
@@ -616,12 +616,12 @@ mutil_errcode matuniv_extract( const univ_mat *mat,
     MUTIL_ERROR( "NULL pointer for operand or result");
     return MUTIL_ERR_NULL_POINTER;
   }
-
+  /*
   if(!MATUNIV_CHECK_TYPE(mat, result)){
     MUTIL_ERROR("Data types of operand and result are inconsistent");
     return MUTIL_ERR_ILLEGAL_TYPE;
   }
-
+  */
   switch(mat->type){
     case MUTIL_DOUBLE:
       errcode = matdbl_extract(&(mat->mat.dblmat),
@@ -767,12 +767,12 @@ mutil_errcode matuniv_transpose( const univ_mat *mat,
     MUTIL_ERROR( "NULL pointer for operand or result");
     return MUTIL_ERR_NULL_POINTER;
   }
-
+  /*
   if(!MATUNIV_CHECK_TYPE(mat, result)) {
     MUTIL_ERROR("Data types of operand and result are inconsistent");
     return MUTIL_ERR_ILLEGAL_TYPE;
   }
-
+  */
   switch(mat->type) {
     case MUTIL_DOUBLE:
       errcode = matdbl_transpose(&(mat->mat.dblmat),
@@ -921,7 +921,7 @@ mutil_errcode matuniv_translate( const univ_mat *matrix,
     MUTIL_ERROR( "NULL pointer for operand or result");
     return MUTIL_ERR_NULL_POINTER;
   }
-
+  /*
   if(!MATUNIV_CHECK_TYPE(matrix, result)) {
     MUTIL_ERROR("Data types of matrices  are inconsistent");
     return MUTIL_ERR_ILLEGAL_TYPE;
@@ -931,7 +931,7 @@ mutil_errcode matuniv_translate( const univ_mat *matrix,
     MUTIL_ERROR("Data types of matrix and pad value are inconsistent");
     return MUTIL_ERR_ILLEGAL_TYPE;
   }
-
+  */
   switch(matrix->type) {
     case MUTIL_DOUBLE:
       errcode = matdbl_translate(&(matrix->mat.dblmat),
@@ -1082,12 +1082,12 @@ mutil_errcode matuniv_flip_left_right( const univ_mat *mat,
     MUTIL_ERROR( "NULL pointer for operand or result");
     return MUTIL_ERR_NULL_POINTER;
   }
-
+  /*
   if(!MATUNIV_CHECK_TYPE(mat, result)) {
     MUTIL_ERROR("Data types of operand and result are inconsistent");
     return MUTIL_ERR_ILLEGAL_TYPE;
   }
-
+  */
   switch(mat->type) {
     case MUTIL_DOUBLE:
       errcode = matdbl_flip_left_right(&(mat->mat.dblmat),
@@ -1235,12 +1235,12 @@ mutil_errcode matuniv_flip_up_down( const univ_mat *mat,
     MUTIL_ERROR( "NULL pointer for operand or result");
     return MUTIL_ERR_NULL_POINTER;
   }
-
+  /*
   if(!MATUNIV_CHECK_TYPE(mat, result)) {
     MUTIL_ERROR("Data types of operand and result are inconsistent");
     return MUTIL_ERR_ILLEGAL_TYPE;
   }
-
+  */
   switch(mat->type) {
     case MUTIL_DOUBLE:
       errcode = matdbl_flip_up_down(&(mat->mat.dblmat),

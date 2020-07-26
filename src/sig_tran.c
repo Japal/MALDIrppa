@@ -2125,12 +2125,12 @@ mutil_errcode siguniv_transform_discrete_cosine_II(const univ_mat *sig,
         MUTIL_ERROR( "NULL pointer for input or operand" );
         return MUTIL_ERR_NULL_POINTER;
     }
-
+    /*
     if( !MATUNIV_CHECK_TYPE( sig, result ) ) {
         MUTIL_ERROR( "Type mismatch between input and output matrices" );
         return MUTIL_ERR_ILLEGAL_TYPE;
     }
-
+    */
     switch(sig->type) {
         case MUTIL_DOUBLE:
             errcode = sigdbl_transform_discrete_cosine_II( &(sig->mat.dblmat), intrp_ptr,
@@ -2168,12 +2168,12 @@ mutil_errcode siguniv_transform_discrete_cosine_II_inverse(
         MUTIL_ERROR( "NULL pointer for input or operand" );
         return MUTIL_ERR_NULL_POINTER;
     }
-
+    /*
     if( !MATUNIV_CHECK_TYPE( sig, result ) ) {
         MUTIL_ERROR( "Type mismatch between input and output matrices" );
         return MUTIL_ERR_ILLEGAL_TYPE;
     }
-
+    */
     switch(sig->type) {
         case MUTIL_DOUBLE:
             errcode = sigdbl_transform_discrete_cosine_II_inverse( &(sig->mat.dblmat), intrp_ptr,
@@ -2211,12 +2211,12 @@ mutil_errcode siguniv_transform_discrete_cosine_II_2d( const univ_mat *sig,
         MUTIL_ERROR( "NULL pointer for input or operand" );
         return MUTIL_ERR_NULL_POINTER;
     }
-
+    /*
     if( !MATUNIV_CHECK_TYPE( sig, result ) ) {
         MUTIL_ERROR( "Type mismatch between input and output matrices" );
         return MUTIL_ERR_ILLEGAL_TYPE;
     }
-
+    */
     switch(sig->type) {
         case MUTIL_DOUBLE:
             errcode = sigdbl_transform_discrete_cosine_II_2d(

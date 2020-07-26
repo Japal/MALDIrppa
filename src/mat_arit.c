@@ -1319,11 +1319,16 @@ mutil_errcode matuniv_abs( const univ_mat *mat_in,
     return MUTIL_ERR_NULL_POINTER;
   }
 
-  /* matrices must have same data types */
+  /* matrices must have same data types
   if ( !MATUNIV_CHECK_TYPE( mat_in, mat_out ) ) {
     MUTIL_ERROR( "Data types of operand and result must be the same" );
     return MUTIL_ERR_ILLEGAL_TYPE;
   }
+   JPA: turned to comment. Linked to
+#define MATUNIV_CHECK_TYPE( mat1, mat2 )                       \
+   ( mat1 && mat2 && ( (mat1)->type == (mat2)->type) )         \
+   in mat_umat.h 
+   */
 
   /* call the appropriate logical function by
      switching on the type of the output data */
@@ -1423,13 +1428,18 @@ mutil_errcode matuniv_rescale( const univ_mat *mat_in,
      return MUTIL_ERR_NULL_POINTER;
   }
 
-  /* matrices must have same data types */
+  /* matrices must have same data types
   if ( !MATUNIV_CHECK_TYPE( mat_in, mat_out ) ||
        !MATUNIV_CHECK_TYPE( &max_val, mat_out ) ||
        !MATUNIV_CHECK_TYPE( &min_val, mat_out ) ) {
     MUTIL_ERROR( "Data types of operands and result must be the same" );
     return MUTIL_ERR_ILLEGAL_TYPE;
   }
+  JPA: turned to comment. Linked to
+#define MATUNIV_CHECK_TYPE( mat1, mat2 )  \
+   ( mat1 && mat2 && ( (mat1)->type == (mat2)->type) )         \
+  in mat_umat.h 
+  */
 
   switch ( mat_out->type ) {
 
