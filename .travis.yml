@@ -19,8 +19,12 @@ r_check_args: --no-build-vignettes --no-manual --timings
 services:
   - docker
 
-script:
-  - wget -O- http://build-in-debian.bzed.at/script.sh | sh -
+os:
+  - linux
+  - windows
+  
+dist:
+  - build-in-debian
 
 compiler:
   - gcc
