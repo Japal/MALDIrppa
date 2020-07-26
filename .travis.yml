@@ -3,6 +3,7 @@ r:
   - oldrel
   - release
   - devel
+
 cache: packages
 
 # environment variables set for all builds
@@ -11,18 +12,15 @@ env:
     - R_BUILD_ARGS="--no-build-vignettes --no-manual"
     - R_CHECK_ARGS="--no-build-vignettes --no-manual --timings"  ## do not build vignettes or manual
 
-r:
-  - oldrel
-  - release
-  - devel
-
 # do not build vignettes...takes too long and times out on travis
 r_build_args: --no-build-vignettes --no-manual
 r_check_args: --no-build-vignettes --no-manual --timings
 
-os:
-  - linux
-  - windows
+services:
+  - docker
+
+script:
+  - wget -O- http://build-in-debian.bzed.at/script.sh | sh -
 
 compiler:
   - gcc
