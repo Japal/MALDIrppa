@@ -1,4 +1,8 @@
 language: r
+r:
+  - oldrel
+  - release
+  - devel
 cache: packages
 
 # environment variables set for all builds
@@ -18,7 +22,6 @@ r_check_args: --no-build-vignettes --no-manual --timings
 
 os:
   - linux
-    dist: debian
   - windows
 
 compiler:
