@@ -31,11 +31,11 @@ EXTERN_R SEXP RS_fractal_kernel_density_estimate(SEXP, SEXP);
 
 // RS_fra_lyap.c
 EXTERN_R SEXP RS_fractal_local_lyapunov_spectrum(
- SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
+ SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 
 // RS_fra_modl.c
 EXTERN_R SEXP RS_fractal_determinism_delta_epsilon(
- SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
+ SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 
 // RS_fra.neig.c
 EXTERN_R SEXP RS_fractal_neighbor_find(
@@ -87,7 +87,7 @@ EXTERN_R SEXP RS_wavelets_fdp_bandpass_variance(SEXP, SEXP, SEXP);
 // RS_wav_filt.c
 EXTERN_R SEXP RS_wavelets_filters_daubechies(SEXP, SEXP, SEXP);
 EXTERN_R SEXP RS_wavelets_filters_daubechies_gain(
- SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
+ SEXP, SEXP, SEXP, SEXP, SEXP);
 EXTERN_R SEXP RS_wavelets_filter_zero_phase(SEXP, SEXP, SEXP);
 EXTERN_R SEXP RS_wavelets_filters_continuous(SEXP, SEXP, SEXP);
 EXTERN_R SEXP RS_wavelets_transform_coefficient_boundaries(

@@ -1492,7 +1492,7 @@ mutil_errcode memlist_print( FILE *out_file, memlist *list )
 
     if ( data ){
 
-      (void) fprintf( out_file, "%ld\t0x%x\t%s (data: 0x%x, dim: %ld x %ld",
+      (void) fprintf( out_file, "%ld\t%p\t%s (data: %p, dim: %ld x %ld",
 		      (long) count++, temp->data, memtype[ type ], data, (long) nrow, (long) ncol );
 
       if ( type == 8 ){
@@ -1505,7 +1505,7 @@ mutil_errcode memlist_print( FILE *out_file, memlist *list )
     }
     else{
 
-      (void) fprintf( out_file, "%ld\t0x%x\t%s\n",
+      (void) fprintf( out_file, "%ld\t%p\t%s\n",
 		      (long) count++, temp->data, memtype[ type ] );
     }
 

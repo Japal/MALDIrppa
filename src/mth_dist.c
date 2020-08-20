@@ -84,9 +84,9 @@ static double den[] = {
 #define ROOT_2PI     2.5066282746310005024157652848110452530070 /*2pi^1/2*/
 #define MVAR	     (sizeof(p_1)/sizeof(double))
 #define NVAR	     (sizeof(p_2)/sizeof(double))
-#define DOUBLE_EPS   2.2204460492503131E-16
-#define DOUBLE_XMIN  2.2250738585072014E-308
-#define DOUBLE_XMAX  1.7976931348623157E+308
+#define LOCAL_DOUBLE_EPS   2.2204460492503131E-16
+#define LOCAL_DOUBLE_XMIN  2.2250738585072014E-308
+#define LOCAL_DOUBLE_XMAX  1.7976931348623157E+308
 #define	IGAMMA_LARGE 1.0e30
 
 /* declare static functions */
@@ -202,7 +202,7 @@ static double localfn_invigamma(double p, double df)
     p1 = localfn_igamma(q, df);
     pdif = p - p1;
     pabs = fabs(pdif);
-    if(pabs <= DOUBLE_EPS)
+    if(pabs <= LOCAL_DOUBLE_EPS)
       break;
     if(i && pabs >= pl)
       del *= -0.5;
@@ -217,14 +217,14 @@ static double localfn_invigamma(double p, double df)
     }
     dl = fabs(del);
     pl = pabs;
-    q = localfn_fmax(q+del, DOUBLE_XMIN);
-    if(dl <= q*DOUBLE_EPS)
+    q = localfn_fmax(q+del, LOCAL_DOUBLE_XMIN);
+    if(dl <= q*LOCAL_DOUBLE_EPS)
       break;
   }
-  if (i==50 && pabs > 32 * DOUBLE_EPS) {
-    /* pabs>32*DOUBLE_EPS is to deal with NR iterations that
+  if (i==50 && pabs > 32 * LOCAL_DOUBLE_EPS) {
+    /* pabs>32*LOCAL_DOUBLE_EPS is to deal with NR iterations that
      * bounce around right value but never move to center.
-     * pabs>DOUBLE_EPS about 8/1000 times with random p,df.
+     * pabs>LOCAL_DOUBLE_EPS about 8/1000 times with random p,df.
      */
 
     MUTIL_ERROR( "Nonconvergence in localfn_invigamma " );
@@ -287,7 +287,7 @@ static double localfn_invigauss(double p)
 		pm = localfn_igauss(qm);
 		qdiff = qr - ql;
 		pdiff = pm - p;
-		if(fabs(qdiff) < DOUBLE_EPS*qm || fabs(pdiff) < DOUBLE_EPS)
+		if(fabs(qdiff) < LOCAL_DOUBLE_EPS*qm || fabs(pdiff) < LOCAL_DOUBLE_EPS)
 			return(qm);
 		if(pdiff < 0) {
 			ql = qm;
@@ -304,7 +304,7 @@ static double localfn_invigauss(double p)
 		pm = localfn_igauss(qm);
 		qdiff = qr - ql;
 		pdiff = pm - p;
-		if(fabs(qdiff) < DOUBLE_EPS*qm || fabs(pdiff) < DOUBLE_EPS)
+		if(fabs(qdiff) < LOCAL_DOUBLE_EPS*qm || fabs(pdiff) < LOCAL_DOUBLE_EPS)
 			return(qm);
 		if(pdiff < 0) {
 			ql = qm;
@@ -426,7 +426,7 @@ static double localfn_igamma(double x, double df)
 			if (pn[4] > IGAMMA_LARGE)
 				for (i=0; i<4; i++)
 					pn[i] /= IGAMMA_LARGE;
-		} while (fabs(gintegral-rn) > DOUBLE_EPS*rn);
+		} while (fabs(gintegral-rn) > LOCAL_DOUBLE_EPS*rn);
 		gintegral = 1.0 - factor*rn;
 	} else {
 		gintegral = term = 1.0;
@@ -435,7 +435,7 @@ static double localfn_igamma(double x, double df)
 			rn += 1.0;
 			term *= x/rn;
 			gintegral += term;
-		} while (term > DOUBLE_EPS*gintegral);
+		} while (term > LOCAL_DOUBLE_EPS*gintegral);
 		gintegral *= factor/df1;
 	}
 	return(increment + gintegral);
@@ -482,7 +482,7 @@ static double localfn_gamma_neg(double x)
 	x = -x;
 	temp = sin(MUTIL_PI*x);
 	if(temp == 0)
-		return(DOUBLE_XMAX);
+		return(LOCAL_DOUBLE_XMAX);
 	if(temp < 0)
 		temp = -temp;
 /* 	else */
