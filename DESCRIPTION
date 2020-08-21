@@ -7,8 +7,13 @@ Authors@R:
              family = "Palarea-Albaladejo",
              role = c("cre","aut"),
              email = "javier.palarea@bioss.ac.uk",
-             comment = c(ORCID = "0000-0003-0162-669X")))
-Date: 2020-07-27
+             comment = c(ORCID = "0000-0003-0162-669X")),
+      person(given = "Paolo",
+             family = "Ribeca", 
+             role = c("ctb"),
+             email = "paolo.ribeca@bioss.ac.uk",
+             comment = c(ORCID = "0000-0001-5599-3933")))
+Date: 2020-08-21
 Maintainer: Javier Palarea-Albaladejo <javier.palarea@bioss.ac.uk>
 Depends: R (>= 3.2.5), MALDIquant, signal, robustbase, lattice
 ByteCompile: yes

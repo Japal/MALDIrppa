@@ -13,7 +13,7 @@ This package provides procedures for quality control and robust pre-processing a
 Package: \tab MALDIrppa\cr
 Type: \tab Package\cr
 Version: \tab 1.0.5\cr
-Date: \tab 2020-07\cr
+Date: \tab 2020-08\cr
 License: \tab GPL (>= 2)\cr
 }
 
