@@ -9,7 +9,6 @@ cache: packages
 
 os:
   - linux
-  - windows
 
 compiler:
   - gcc
