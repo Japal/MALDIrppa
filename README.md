@@ -7,7 +7,7 @@ MALDI mass spectrometry data robust pre-processing and other helper functions
 [![R build status](https://github.com/Japal/MALDIrppa/workflows/R-CMD-check/badge.svg)](https://github.com/Japal/MALDIrppa/actions)
 <!-- badges: end -->
 
-This package helps to implement a robust approach to deal with mass spectrometry (MS) data. It is aimed at alleviating reproducibility issues and pernicious effects of deviating signals on both data pre-processing and downstream data analysis. Based on robust statistical methods, it facilitates the identification and filtering of low-quality mass spectra and atypical peak profiles as well as monitoring and data handling through pre-processing, which extends existing computational tools for MS data. `MALDIrppa` integrates with and extends existing R packages for MS proteomics data. Helper functions are included that allow to export data into formats widely used in bioinformatics for downstream analyses.
+This package helps to implement a robust approach to deal with mass spectrometry (MS) data. It is aimed at alleviating reproducibility issues and pernicious effects of deviating signals on both data pre-processing and downstream data analysis. Based on robust statistical methods, it facilitates the identification and filtering of low-quality mass spectra and atypical peak profiles as well as monitoring and data handling through pre-processing, which extends existing computational tools for MS data. `MALDIrppa` integrates with and extends existing R packages for MS proteomics data. Helper functions are included that allow to export data into formats used for downstream analyses.
 
 ### Installation
 
@@ -36,6 +36,10 @@ library("MALDIrppa")
 The package's vignette provides a walk through the main features and functions (https://cran.r-project.org/web/packages/MALDIrppa/vignettes/MALDIrppa_vignette.html).
 
 Addition documentation is available through the help pages (`?MALDIrppa`).
+
+### Example
+
+See illustrative vignette in the Articles section of the website (https://japal.github.io/MALDIrppa/).
 
 ### Citation
 
