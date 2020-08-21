@@ -33,13 +33,14 @@ devtools::install_url(url="https://github.com/Japal/MALDIrppa/archive/master.zip
 library("MALDIrppa")
 ```
 
-The package's vignette provides a walk through the main features and functions (https://cran.r-project.org/web/packages/MALDIrppa/vignettes/MALDIrppa_vignette.html).
+Documentation and examples are available through the help pages (`?MALDIrppa`).
 
-Addition documentation is available through the help pages (`?MALDIrppa`).
+### Illustrative pipeline
 
-### Example
+The package's vignette provides a walk through the main features and functions:
 
-See illustrative vignette in the Articles section of the website (https://japal.github.io/MALDIrppa/).
+* Article on website: https://japal.github.io/MALDIrppa/
+* CRAN: https://cran.r-project.org/web/packages/MALDIrppa/vignettes/MALDIrppa_vignette.html
 
 ### Citation
 
