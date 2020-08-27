@@ -12,7 +12,19 @@ Authors@R:
              family = "Ribeca", 
              role = c("ctb"),
              email = "paolo.ribeca@bioss.ac.uk",
-             comment = c(ORCID = "0000-0001-5599-3933")))
+             comment = c(ORCID = "0000-0001-5599-3933")),
+      person(given = "William",
+             family = "Constantine", 
+             role = c("ctb"),
+             comment = "Author of original C code used in archived wtmsa and ifultools R packages."),
+      person(given = "Keith L.",
+             family = "Davidson", 
+             role = c("ctb"),
+             comment = "Author of original C code used in archived wtmsa and ifultools R packages."),
+      person(given = "Insightful Corp.",
+             role = c("cph"),
+             comment = "Copyright holder named in some original C code used in archived wtmsa and ifultools R packages.")             
+             )
 Date: 2020-08-21
 Maintainer: Javier Palarea-Albaladejo <javier.palarea@bioss.ac.uk>
 Depends: R (>= 3.2.5), MALDIquant, signal, robustbase, lattice

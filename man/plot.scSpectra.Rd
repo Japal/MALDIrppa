@@ -33,7 +33,7 @@ Other arguments.
 }
 }
 \details{
-For \code{type = "index"} (default) the upper and lower fences used to declare a mass spectrum as potentially low-quality are shown along with their A scores (see \code{\link{screenSpectra}} for details). Point labels can be added using the \code{labels} argument (either a position index when \code{labels = TRUE} or a given vector of labels; see examples below). For \code{type = "hist"} a histogram of the distribution of the A scores is produced along with the tolerance fences. Finally, \code{type = "casewise"} displays interactively the marked spectra for visual inspection.
+For \code{type = "index"} (default) the upper and lower fences used to declare a mass spectrum as potentially low-quality are shown along with their A scores (see \code{\link{screenSpectra}} for details). Point labels can be added using the \code{labels} argument (either a position index when \code{labels = TRUE} or a given vector of labels; see examples below). For \code{type = "hist"} a histogram of the distribution of the A scores is produced along with the tolerance fences. Finally, \code{type = "casewise"} displays interactively the flagged spectra for visual inspection.
 }
 
 \seealso{
@@ -51,7 +51,4 @@ plot(sc.results)
 plot(sc.results, labels = TRUE)
 plot(sc.results, labels = type$SpectID)
 plot(sc.results, type = "hist")
-\dontrun{
-plot(sc.results, type = "casewise", labels = type$SpectID)
-}
 }

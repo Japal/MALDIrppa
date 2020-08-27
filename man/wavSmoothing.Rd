@@ -26,7 +26,7 @@ Smoothing factor for wavelet-based smoothing.
 }
 }
 \details{
-This function adapts the \code{wavShrink} function originally found in the \code{wmtsa} package (now archived by CRAN) to work with \code{\link{MassSpectrum}} objects. Alternatively, smoothing methods from the \code{MALDIquant} package can be called. Check the documentation of \code{wavShrink} or \code{smoothIntensity} for addtional options.
+The \code{Wavelet} method relies on the \code{wavShrink} function of the \code{wmtsa} package and its dependencies (now archived by CRAN). The original C code by William Constantine and Keith L. Davidson, in turn including copyrighted routines by Insightful Corp., has been revised and included into \code{MALDIrppa} for the method to work. Alternatively, smoothing methods \code{SavitzkyGolay} and \code{MovingAverage} from the \code{MALDIquant} package can be called directly from the function.
 }
 \value{
 A list of \code{\link{MassSpectrum}} objects with denoised signal intensities.

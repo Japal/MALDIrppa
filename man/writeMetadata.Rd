@@ -52,17 +52,16 @@ peaks <- alignPeaks(peaks, minFreq = 0.8)
 
 int <- intensityMatrix(peaks)
 
-# Save resulting data in R format
-
-\dontrun{
-writeIntensity(int, filename = "MyintMatrix")
-writeMetadata(type, filename = "MyMetadata")
+# Save resulting data in R format (to a temporary location as an example)
+\donttest{
+writeIntensity(int, filename = file.path(tempdir(),"MyintMatrix"))
+writeMetadata(type, filename = file.path(tempdir(),"MyMetadata"))
 }
-
-# Save resulting data in csv format
-
-\dontrun{
-writeIntensity(int, filename = "MyintMatrix", format = "csv")
-writeMetadata(type, filename = "MyMetadata", format = "csv")
+# Save resulting data in csv format (to a temporary location as an example)
+\donttest{
+writeIntensity(int, filename = file.path(tempdir(),"MyintMatrix"),
+               format = "csv")
+writeMetadata(type, filename = file.path(tempdir(),"MyMetadata"),
+               format = "csv")
 }
 }

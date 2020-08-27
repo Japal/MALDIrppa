@@ -1,21 +1,18 @@
 importSpectra <- function(where = getwd()){
   
-  current <- getwd()
+  files <- list.files(path = where, pattern = "\\.csv$|\\.txt$|\\.dat$",ignore.case=TRUE)
   
   # Read spectra
-  setwd(where)
-  mz <- read.csv(dir()[1], sep = " ", header = FALSE)[,1]
-  intensity <- matrix(0, nrow = length(mz), ncol = length(dir()))
-  colnames(intensity) <- sub("^([^.]*).*", "\\1", dir()[1:length(dir())])
+  mz <- read.csv(file.path(where,files[1]), sep = " ", header = FALSE)[,1]
+  intensity <- matrix(0, nrow = length(mz), ncol = length(files))
+  colnames(intensity) <- sub("^([^.]*).*", "\\1", files[1:length(files)])
   
-  for (i in 1:(length(dir()))){
-    intensity[,i] <- read.csv(dir()[i], sep = " ", header = FALSE)[,2]
+  for (i in 1:(length(files))){
+    intensity[,i] <- read.csv(file.path(where,files[i]), sep = " ", header = FALSE)[,2]
   }
   
   # Convert to MassSpectrum object
   spectra <- rawToSpectra(mz, intensity)
-  # Set folder back to current
-  setwd(current)
   
   return(spectra) 
 

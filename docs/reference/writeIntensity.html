@@ -182,17 +182,15 @@
 
 <span class='no'>int</span> <span class='kw'>&lt;-</span> <span class='fu'>intensityMatrix</span>(<span class='no'>peaks</span>)
 
-<span class='co'># default R format</span>
-
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>writeIntensity</span>(<span class='no'>int</span>,<span class='kw'>file</span><span class='kw'>=</span><span class='st'>"int"</span>)
-}
-
-<span class='co'># binary NEXUS file</span>
-
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>writeIntensity</span>(<span class='no'>int</span>,<span class='kw'>file</span><span class='kw'>=</span><span class='st'>"int.binary"</span>,<span class='kw'>format</span><span class='kw'>=</span><span class='st'>"NEXUS"</span>,<span class='kw'>interleaved</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
-}</div></pre>
+<span class='co'># Save as R file (saved to a temporary location as an example)</span>
+<span class='co'># \donttest{</span>
+<span class='fu'>writeIntensity</span>(<span class='no'>int</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"int"</span>))
+<span class='co'># }</span>
+<span class='co'># Save as binary NEXUS file (saved to a temporary location as an example)</span>
+<span class='co'># \donttest{</span>
+<span class='fu'>writeIntensity</span>(<span class='no'>int</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),<span class='st'>"int.binary"</span>),
+               <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"NEXUS"</span>, <span class='kw'>interleaved</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

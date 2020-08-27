@@ -173,14 +173,13 @@
 <span class='no'>peaks</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='alignPeaks.html'>alignPeaks</a></span>(<span class='no'>peaks</span>, <span class='kw'>minFreq</span> <span class='kw'>=</span> <span class='fl'>0.8</span>)
 
 <span class='co'># Find outlying samples at isolate level</span>
-
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='co'># \donttest{</span>
 <span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='fu'>detectOutliers</span>(<span class='no'>peaks</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>type</span>$<span class='no'>isolate</span>)
 
 <span class='co'># From peak presence/absence patterns</span>
 
 <span class='no'>out.binary</span> <span class='kw'>&lt;-</span> <span class='fu'>detectOutliers</span>(<span class='no'>peaks</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>type</span>$<span class='no'>isolate</span>, <span class='kw'>binary</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-}</div></pre>
+<span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

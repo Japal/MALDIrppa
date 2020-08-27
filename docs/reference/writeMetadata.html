@@ -174,19 +174,18 @@
 
 <span class='no'>int</span> <span class='kw'>&lt;-</span> <span class='fu'>intensityMatrix</span>(<span class='no'>peaks</span>)
 
-<span class='co'># Save resulting data in R format</span>
-
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='writeIntensity.html'>writeIntensity</a></span>(<span class='no'>int</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='st'>"MyintMatrix"</span>)
-<span class='fu'>writeMetadata</span>(<span class='no'>type</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='st'>"MyMetadata"</span>)
-}
-
-<span class='co'># Save resulting data in csv format</span>
-
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='writeIntensity.html'>writeIntensity</a></span>(<span class='no'>int</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='st'>"MyintMatrix"</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"csv"</span>)
-<span class='fu'>writeMetadata</span>(<span class='no'>type</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='st'>"MyMetadata"</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"csv"</span>)
-}</div></pre>
+<span class='co'># Save resulting data in R format (to a temporary location as an example)</span>
+<span class='co'># \donttest{</span>
+<span class='fu'><a href='writeIntensity.html'>writeIntensity</a></span>(<span class='no'>int</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),<span class='st'>"MyintMatrix"</span>))
+<span class='fu'>writeMetadata</span>(<span class='no'>type</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),<span class='st'>"MyMetadata"</span>))
+<span class='co'># }</span>
+<span class='co'># Save resulting data in csv format (to a temporary location as an example)</span>
+<span class='co'># \donttest{</span>
+<span class='fu'><a href='writeIntensity.html'>writeIntensity</a></span>(<span class='no'>int</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),<span class='st'>"MyintMatrix"</span>),
+               <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"csv"</span>)
+<span class='fu'>writeMetadata</span>(<span class='no'>type</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),<span class='st'>"MyMetadata"</span>),
+               <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"csv"</span>)
+<span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

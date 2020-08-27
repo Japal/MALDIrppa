@@ -57,15 +57,13 @@ peaks <- alignPeaks(peaks, minFreq = 0.8)
 
 int <- intensityMatrix(peaks)
 
-# default R format
-
-\dontrun{
-writeIntensity(int,file="int")
+# Save as R file (saved to a temporary location as an example)
+\donttest{
+writeIntensity(int, file = file.path(tempdir(), "int"))
 }
-
-# binary NEXUS file
-
-\dontrun{
-writeIntensity(int,file="int.binary",format="NEXUS",interleaved=FALSE)
+# Save as binary NEXUS file (saved to a temporary location as an example)
+\donttest{
+writeIntensity(int, file = file.path(tempdir(),"int.binary"),
+               format = "NEXUS", interleaved = FALSE)
 }
 }

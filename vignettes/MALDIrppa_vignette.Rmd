@@ -140,11 +140,11 @@ plot(cP, type = "n")
 text(cP, label = 1:length(cP))
 ```
 
-At this point we have essentially concluded data pre-processing and it is then convenient to save a backup of the peak profiles and associate metadata.
+At this point we have essentially concluded data pre-processing and it is then convenient to save a backup of the peak profiles and associate metadata (note that in this example the file is created in a temporary location, the user should choose their preferred location).
 
 ```{r saving, echo=TRUE, eval=FALSE}
-save(peaks, file = "peaks.pp.Rdata")
-save(type, file = "type.pp.Rdata")
+save(peaks, file = file.path(tempdir(), "peaks.pp.Rdata"))
+save(type, file = file.path(tempdir(), "type.pp.Rdata"))
 ```
 
 The `peakPatterns` function is useful to visualise and explore the resulting peak patterns. It displays peak presence (coloured cells) and absence (blank cells). The barplot on the top reflects the frequency of a peak across replicates. The function can be applied either on a list of `MassPeaks` objects, like our `peaks`, or on an intensity matrix. Any remaining data artifacts or hints about peak features differentiating e.g. strains should be evident here. This display can also be useful to check for homogeneity of replicates from an isolate by simply subsetting the replicates within that same isolate (see `?peakPatterns` for more details and examples).
@@ -198,12 +198,15 @@ Statistical and machine learning methods typically work on data matrices. The `i
 int.clean.fm <- intensityMatrix(peaks.clean.fm)
 ```
 
-The intensity matrix and associated metadata can be stored in different formats to facilitate its use as input in, for example, specialised bioinformatics software packages. The following code uses simple functions to save them as CSV text files and also in the popular NEXUS format, which includes options to save either peak intensities or binary patterns and to add peak weights among others (see `?writeIntensity` help files for more details). The argument `labels` can be used to add labels to the pre-processed samples. For this example data set, we use the spectra IDs stored in `type.clean.fm`, which became a vector containing only the IDs in a previous stage. Thus, using the `$` operator for matrices is not required to select the corresponding ID column here.
+The intensity matrix and associated metadata can be stored in different formats to facilitate its use as input in, for example, specialised bioinformatics software packages. The following code uses simple functions to save them as CSV text files and also in the popular NEXUS format, which includes options to save either peak intensities or binary patterns and to add peak weights among others (see `?writeIntensity` help files for more details). Note that in this example the file is saved to a temporary location, the user should choose their preferred destination. The argument `labels` can be used to add labels to the pre-processed samples. For this example data set, we use the spectra IDs stored in `type.clean.fm`, which became a vector containing only the IDs in a previous stage. Thus, using the `$` operator for matrices is not required to select the corresponding ID column here.
 
 ```{r savefinal, echo=TRUE, eval=FALSE}
-writeMetadata(type.clean.fm, filename = "type.clean.fm", format = "csv") # save metadata
-writeIntensity(int.clean.fm, filename = "int.clean.fm", format = "csv", labels = type.clean.fm)
-writeIntensity(int.clean.fm, filename = "int.clean.fm", format = "NEXUS", labels = type.clean.fm)
+writeMetadata(type.clean.fm, file = file.path(tempdir(),"type.clean.fm"),
+              format = "csv") # save metadata
+writeIntensity(int.clean.fm, file = file.path(tempdir(),"int.clean.fm"),
+               format = "csv", labels = type.clean.fm)
+writeIntensity(int.clean.fm, file = file.path(tempdir(),"int.clean.fm"),
+               format = "NEXUS", labels = type.clean.fm)
 ```
 
 The argument `binary` can be used to export data in binary (peak presence/absence) format. Note that this is internally turned `TRUE` whenever the NEXUS or FASTA format is chosen. As an example, the next figure shows a phylogenetic network contructed using the NeighborNet algorithm implemented in the SplitsTree software package (http://www.splitstree.org) directly from the NEXUS file generated above by `MALDIrppa`.

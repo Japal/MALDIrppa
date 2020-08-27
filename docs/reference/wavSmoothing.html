@@ -150,7 +150,7 @@
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function adapts the <code>wavShrink</code> function originally found in the <code>wmtsa</code> package (now archived by CRAN) to work with <code>MassSpectrum</code> objects. Alternatively, smoothing methods from the <code>MALDIquant</code> package can be called. Check the documentation of <code>wavShrink</code> or <code>smoothIntensity</code> for addtional options.</p>
+    <p>The <code>Wavelet</code> method relies on the <code>wavShrink</code> function of the <code>wmtsa</code> package and its dependencies (now archived by CRAN). The original C code by William Constantine and Keith L. Davidson, in turn including copyrighted routines by Insightful Corp., has been revised and included into <code>MALDIrppa</code> for the method to work. Alternatively, smoothing methods <code>SavitzkyGolay</code> and <code>MovingAverage</code> from the <code>MALDIquant</code> package can be called directly from the function.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list of <code>MassSpectrum</code> objects with denoised signal intensities.</p>

@@ -17,6 +17,8 @@ Low-resolution version of a MALDI-TOF mass spectrometry data set in the range [2
 data(spectra)
 
 str(spectra[[1]])
-# plot(spectra[[1]])
+\donttest{
+plot(spectra[[1]])
+}
 }
 \keyword{datasets}

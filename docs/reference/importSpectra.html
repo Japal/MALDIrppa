@@ -137,34 +137,33 @@
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This functions works with dat, csv or txt file types containing two columns: the first one referring to common m/z values and the second one to intensities (using single-space separator between both and no column names). It reads all the files in the given folder and creates a list of <code>MassSpectrum</code> objects. For importing data from more specialised file formats we refer the reader to the package <code>MALDIquantForeign</code>.</p>
+    <p>This functions works with dat, csv or txt file types containing two columns: the first one referring to common m/z values and the second one to intensities (using single-space separator between both and no column names). It reads all the .dat, .csv or .txt files in the given folder (so unrelated files should better not be there) and creates a list of <code>MassSpectrum</code> objects. For importing data from more specialised file formats we refer the reader to the package <code>MALDIquantForeign</code>.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list of <code>MassSpectrum</code> objects.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Create fake mass spectrometry data</span>
-
+<span class='co'># \donttest{</span>
 <span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='fl'>1</span>:<span class='fl'>20</span>, <span class='fu'><a href='https://rdrr.io/r/stats/Lognormal.html'>rlnorm</a></span>(<span class='fl'>20</span>))
 <span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='fl'>1</span>:<span class='fl'>20</span>, <span class='fu'><a href='https://rdrr.io/r/stats/Lognormal.html'>rlnorm</a></span>(<span class='fl'>20</span>))
 <span class='no'>s3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='fl'>1</span>:<span class='fl'>20</span>, <span class='fu'><a href='https://rdrr.io/r/stats/Lognormal.html'>rlnorm</a></span>(<span class='fl'>20</span>))
 
+<span class='co'># Save as csv files in temporary directory</span>
 
-<span class='no'>current</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>()
-<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>(),<span class='st'>"/example"</span>,<span class='kw'>sep</span><span class='kw'>=</span><span class='st'>""</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>(),<span class='st'>"/example"</span>,<span class='kw'>sep</span><span class='kw'>=</span><span class='st'>""</span>))
+<span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>()
 
-<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span>(<span class='no'>s1</span>, <span class='kw'>file</span><span class='kw'>=</span><span class='st'>"s1.csv"</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>col.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sep</span><span class='kw'>=</span><span class='st'>" "</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span>(<span class='no'>s2</span>, <span class='kw'>file</span><span class='kw'>=</span><span class='st'>"s2.csv"</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>col.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sep</span><span class='kw'>=</span><span class='st'>" "</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span>(<span class='no'>s3</span>, <span class='kw'>file</span><span class='kw'>=</span><span class='st'>"s3.csv"</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>col.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sep</span><span class='kw'>=</span><span class='st'>" "</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span>(<span class='no'>s1</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>path</span>, <span class='st'>"s1.csv"</span>),
+            <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>col.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sep</span><span class='kw'>=</span><span class='st'>" "</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span>(<span class='no'>s2</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>path</span>, <span class='st'>"s2.csv"</span>),
+            <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>col.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sep</span><span class='kw'>=</span><span class='st'>" "</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span>(<span class='no'>s3</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>path</span>, <span class='st'>"s3.csv"</span>),
+            <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>col.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sep</span><span class='kw'>=</span><span class='st'>" "</span>)
 
-<span class='co'># Import files in ~/example and arrange into a list of MassSpectrum objects</span>
+<span class='co'># Import files and arrange into a list of MassSpectrum objects</span>
 
-<span class='no'>spectra</span> <span class='kw'>&lt;-</span> <span class='fu'>importSpectra</span>()
-
-<span class='co'># Delete example folder and back to original working directory</span>
-<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>(),<span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>current</span>)</div></pre>
+<span class='no'>spectra</span> <span class='kw'>&lt;-</span> <span class='fu'>importSpectra</span>(<span class='kw'>where</span> <span class='kw'>=</span> <span class='no'>path</span>)
+<span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

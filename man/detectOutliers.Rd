@@ -42,8 +42,7 @@ peaks <- detectPeaks(spectra)
 peaks <- alignPeaks(peaks, minFreq = 0.8)
 
 # Find outlying samples at isolate level
-
-\dontrun{
+\donttest{
 out <- detectOutliers(peaks, by = type$isolate)
 
 # From peak presence/absence patterns
