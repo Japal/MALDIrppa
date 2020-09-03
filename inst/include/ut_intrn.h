@@ -305,8 +305,7 @@ extern mutil_errcode mutil_skip_comments( FILE *in_file, char sep_char,
  * @param  TMP_VAR      double variable used internally.
  * @see MUTIL_DO_STANDARD_CASTING
  */
-#define MUTIL_CHECK_STANDARD_CASTING_SCALAR( USCALAR, DATA_TYPE, ERR_VAR, \
-  TMP_VAR )  \
+#define MUTIL_CHECK_STANDARD_CASTING_SCALAR( USCALAR, DATA_TYPE, ERR_VAR, TMP_VAR )  \
   if( (USCALAR).type == MUTIL_DCOMPLEX || (DATA_TYPE) == MUTIL_DCOMPLEX ) { \
     MUTIL_ERROR( "Complex types not supported" ); \
     ERR_VAR = MUTIL_ERR_ILLEGAL_TYPE; \
@@ -362,6 +361,17 @@ extern mutil_errcode mutil_skip_comments( FILE *in_file, char sep_char,
           MUTIL_ERROR( "Incompatible types for input and output, cannot cast" ); \
           ERR_VAR = MUTIL_ERR_ILLEGAL_TYPE; \
         } \
+        break; \
+      case MUTIL_FLOAT: \
+      case MUTIL_DOUBLE: \
+        /* As per ut_limit.h, FLOAT and DOUBLE are supposed to have the same range */ \
+        /* We explicitly enumerate the cases just to appease the compiler */ \
+        break; \
+      case MUTIL_DCOMPLEX: \
+        /* The execution flow can never reach here. */ \
+        /* We repeat the case just to appease the compiler */ \
+        MUTIL_ERROR( "Internal error" ); \
+        ERR_VAR = MUTIL_ERR_ILLEGAL_TYPE; \
         break; \
     } /* end of switch on output type */ \
   } /* end of if/else to determine compatibility */

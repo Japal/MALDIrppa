@@ -256,7 +256,6 @@ Macros for universal matrices
             break;\
         }
 
-/*
 /** Check if the data types of two universal matrices are the same.
  *
  * @author Copyright (c), 1988, 2006 Insightful Corp.  All rights reserved.
@@ -269,7 +268,8 @@ Macros for universal matrices
  * @param  mat2  Pointer to the second universal matrix.
  * @see _mutil_data_type
  * @see _univ_mat
-
+ */
+/*
 #define MATUNIV_CHECK_TYPE( mat1, mat2 )  \
         ( mat1 && mat2 && ( (mat1)->type == (mat2)->type) )
 */
