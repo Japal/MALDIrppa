@@ -4,6 +4,7 @@
 {
   
   opar <- par(no.readonly =TRUE)
+  on.exit(par(opar)) # Restore user's graphical settings  
   
   if (barplot){
     zones <- matrix(c(2, 4, 1, 3), ncol = 2, byrow = TRUE)
@@ -34,7 +35,5 @@
     a <- barplot(as.vector(prop.col), axes = F, col = bar.col, xaxs = "i",
                  ylim = c(0, max(as.vector(prop.col)+0.2*max(as.vector(prop.col)))))
   }
-
-  par(opar) # Restore user's graphical settings  
   
 } 
