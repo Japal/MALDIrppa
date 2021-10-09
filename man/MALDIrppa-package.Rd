@@ -12,8 +12,8 @@ This package provides procedures for quality control and robust pre-processing a
 \tabular{ll}{
 Package: \tab MALDIrppa\cr
 Type: \tab Package\cr
-Version: \tab 1.0.5\cr
-Date: \tab 2020-08\cr
+Version: \tab 1.0.5-1\cr
+Date: \tab 2021-10\cr
 License: \tab GPL (>= 2)\cr
 }
 
@@ -21,5 +21,5 @@ License: \tab GPL (>= 2)\cr
 \author{
 Javier Palarea-Albaladejo
 
-Maintainer: Javier Palarea-Albaladejo <javier.palarea@bioss.ac.uk>
+Maintainer: Javier Palarea-Albaladejo <javier.palarea@udg.edu>
 }
