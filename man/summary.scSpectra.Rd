@@ -25,6 +25,7 @@ Other arguments.
 \details{
 A table is generated that includes details of the numerical estimations along with mass spectra ID, A score and the label for each mass spectra, either potentially low-quality (\code{failure}) or good-quality (\code{success}).
 }
+\value{No return value, text printed on console.}
 \seealso{
 See \code{\link{screenSpectra}} and \code{\link{plot.scSpectra}}.
 }

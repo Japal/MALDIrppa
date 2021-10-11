@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">MALDIrppa</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.5-1</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -124,7 +124,7 @@
     <p>This function is simply a wrapper to write the metadata associated with a collection of mass spectra into a file in either the R or csv format.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>writeMetadata</span>(<span class='no'>x</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='st'>"Metadata"</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"R"</span>, <span class='st'>"csv"</span>), <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>writeMetadata</span><span class='op'>(</span><span class='va'>x</span>, filename <span class='op'>=</span> <span class='st'>"Metadata"</span>, format <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"R"</span>, <span class='st'>"csv"</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -139,7 +139,7 @@
     </tr>
     <tr>
       <th>format</th>
-      <td><p>One of R (default <code>.Rdata</code> file) or text (comma-separated <code>.csv</code> file).</p></td>
+      <td><p>One of R (default <code>.RData</code> file) or text (comma-separated <code>.csv</code> file).</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -150,42 +150,46 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>It uses either <code><a href='https://rdrr.io/r/base/save.html'>save</a></code> or <code><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></code> to store the metadata. Check these functions for adequate data formats.</p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>No return value, file in selected format created on destination folder.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Load example data</span>
 
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>spectra</span>) <span class='co'># list of MassSpectra class objects</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>type</span>)    <span class='co'># metadata</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>spectra</span><span class='op'>)</span> <span class='co'># list of MassSpectra class objects</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>type</span><span class='op'>)</span>    <span class='co'># metadata</span>
 
 <span class='co'># Some pre-processing</span>
 
-<span class='no'>sc.spectra</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='screenSpectra.html'>screenSpectra</a></span>(<span class='no'>spectra</span>, <span class='kw'>meta</span> <span class='kw'>=</span> <span class='no'>type</span>)
+<span class='va'>sc.spectra</span> <span class='op'>&lt;-</span> <span class='fu'><a href='screenSpectra.html'>screenSpectra</a></span><span class='op'>(</span><span class='va'>spectra</span>, meta <span class='op'>=</span> <span class='va'>type</span><span class='op'>)</span>
 
-<span class='no'>spectra</span> <span class='kw'>&lt;-</span> <span class='no'>sc.spectra</span>$<span class='no'>fspectra</span> <span class='co'># filtered spectra</span>
-<span class='no'>type</span> <span class='kw'>&lt;-</span> <span class='no'>sc.spectra</span>$<span class='no'>fmeta</span> <span class='co'># filtered metadata</span>
+<span class='va'>spectra</span> <span class='op'>&lt;-</span> <span class='va'>sc.spectra</span><span class='op'>$</span><span class='va'>fspectra</span> <span class='co'># filtered spectra</span>
+<span class='va'>type</span> <span class='op'>&lt;-</span> <span class='va'>sc.spectra</span><span class='op'>$</span><span class='va'>fmeta</span> <span class='co'># filtered metadata</span>
 
-<span class='no'>spectra</span> <span class='kw'>&lt;-</span> <span class='fu'>transformIntensity</span>(<span class='no'>spectra</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"sqrt"</span>)
-<span class='no'>spectra</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='wavSmoothing.html'>wavSmoothing</a></span>(<span class='no'>spectra</span>)
-<span class='no'>spectra</span> <span class='kw'>&lt;-</span> <span class='fu'>removeBaseline</span>(<span class='no'>spectra</span>)
-<span class='no'>peaks</span> <span class='kw'>&lt;-</span> <span class='fu'>detectPeaks</span>(<span class='no'>spectra</span>)
-<span class='no'>peaks</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='alignPeaks.html'>alignPeaks</a></span>(<span class='no'>peaks</span>, <span class='kw'>minFreq</span> <span class='kw'>=</span> <span class='fl'>0.8</span>)
+<span class='va'>spectra</span> <span class='op'>&lt;-</span> <span class='fu'>transformIntensity</span><span class='op'>(</span><span class='va'>spectra</span>, method <span class='op'>=</span> <span class='st'>"sqrt"</span><span class='op'>)</span>
+<span class='va'>spectra</span> <span class='op'>&lt;-</span> <span class='fu'><a href='wavSmoothing.html'>wavSmoothing</a></span><span class='op'>(</span><span class='va'>spectra</span><span class='op'>)</span>
+<span class='va'>spectra</span> <span class='op'>&lt;-</span> <span class='fu'>removeBaseline</span><span class='op'>(</span><span class='va'>spectra</span><span class='op'>)</span>
+<span class='va'>peaks</span> <span class='op'>&lt;-</span> <span class='fu'>detectPeaks</span><span class='op'>(</span><span class='va'>spectra</span><span class='op'>)</span>
+<span class='va'>peaks</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alignPeaks.html'>alignPeaks</a></span><span class='op'>(</span><span class='va'>peaks</span>, minFreq <span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span>
 
 <span class='co'># Intensity matrix</span>
 
-<span class='no'>int</span> <span class='kw'>&lt;-</span> <span class='fu'>intensityMatrix</span>(<span class='no'>peaks</span>)
+<span class='va'>int</span> <span class='op'>&lt;-</span> <span class='fu'>intensityMatrix</span><span class='op'>(</span><span class='va'>peaks</span><span class='op'>)</span>
 
 <span class='co'># Save resulting data in R format (to a temporary location as an example)</span>
 <span class='co'># \donttest{</span>
-<span class='fu'><a href='writeIntensity.html'>writeIntensity</a></span>(<span class='no'>int</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),<span class='st'>"MyintMatrix"</span>))
-<span class='fu'>writeMetadata</span>(<span class='no'>type</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),<span class='st'>"MyMetadata"</span>))
+<span class='fu'><a href='writeIntensity.html'>writeIntensity</a></span><span class='op'>(</span><span class='va'>int</span>, filename <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>,<span class='st'>"MyintMatrix"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>writeMetadata</span><span class='op'>(</span><span class='va'>type</span>, filename <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>,<span class='st'>"MyMetadata"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># }</span>
 <span class='co'># Save resulting data in csv format (to a temporary location as an example)</span>
 <span class='co'># \donttest{</span>
-<span class='fu'><a href='writeIntensity.html'>writeIntensity</a></span>(<span class='no'>int</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),<span class='st'>"MyintMatrix"</span>),
-               <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"csv"</span>)
-<span class='fu'>writeMetadata</span>(<span class='no'>type</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),<span class='st'>"MyMetadata"</span>),
-               <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"csv"</span>)
-<span class='co'># }</span></div></pre>
+<span class='fu'><a href='writeIntensity.html'>writeIntensity</a></span><span class='op'>(</span><span class='va'>int</span>, filename <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>,<span class='st'>"MyintMatrix"</span><span class='op'>)</span>,
+               format <span class='op'>=</span> <span class='st'>"csv"</span><span class='op'>)</span>
+<span class='fu'>writeMetadata</span><span class='op'>(</span><span class='va'>type</span>, filename <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>,<span class='st'>"MyMetadata"</span><span class='op'>)</span>,
+               format <span class='op'>=</span> <span class='st'>"csv"</span><span class='op'>)</span>
+<span class='co'># }</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -201,7 +205,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

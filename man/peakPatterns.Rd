@@ -56,6 +56,7 @@ Other arguments.
 \details{
 The peak presence/absence patterns are displayed by rows from the first (top) to the last (bottom) sample in the data set \code{x} over the range of common m/z points. Positive peaks are by default represented by coloured cells whereas zero or absent peaks are left blank. A barplot on the top margins shows the relative frequency of a peak at each m/z point across samples.
 }
+\value{No return value, graphical output.}
 \seealso{
 See \code{\link{intensityMatrix}}.
 }

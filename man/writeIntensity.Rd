@@ -20,7 +20,7 @@ Intensity matrix as obtained from \code{\link{intensityMatrix}}.
 A character string specifying a name for the destination file (filename extension not required).
 }
   \item{format}{
-One of R (default \code{.Rdata} file), text (comma-separated \code{.csv} file), NEXUS (\code{.nex} file) or FASTA (\code{.fas} file).
+One of R (default \code{.RData} file), text (comma-separated \code{.csv} file), NEXUS (\code{.nex} file) or FASTA (\code{.fas} file).
 }
   \item{binary}{
 Logical value. If \code{TRUE}, a binary version (1: peak presence, 0: peak absence) of \code{x} is saved (default \code{FALSE}).
@@ -38,7 +38,7 @@ Additional arguments.
 \details{
 This is a wrapper function to simplify the writing of an intensity matrix in different formats while adding some extra features. It includes the common NEXUS and FASTA formats as an extension of functions in the \code{ape} package to handle peak intensity data. It also allows for taxa/sample pre-computed peak weights to be included in the NEXUS file. It checks whether the names meet NEXUS name conventions and gives them adequate format if not. A binary intensity matrix is always internally generated (\code{binary = TRUE}) when either the NEXUS or FASTA format is chosen. If any, \code{NA} values in \code{x} are assumed to denote zero intensity/peak absence and are then converted into zeros.
 }
-
+\value{No return value, file in selected format created on destination folder.}
 \examples{
 # Load example data
 

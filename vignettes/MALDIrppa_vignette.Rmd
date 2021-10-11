@@ -22,6 +22,7 @@ pre code {
 </style>
 
 ```{r global_options, include=FALSE}
+old <- options()
 options(width = 999)
 knitr::opts_chunk$set(fig.align='center', fig.width=5.5, fig.height=4.5, message=FALSE)
 ```
@@ -209,9 +210,13 @@ writeIntensity(int.clean.fm, file = file.path(tempdir(),"int.clean.fm"),
                format = "NEXUS", labels = type.clean.fm)
 ```
 
-The argument `binary` can be used to export data in binary (peak presence/absence) format. Note that this is internally turned `TRUE` whenever the NEXUS or FASTA format is chosen. As an example, the next figure shows a phylogenetic network contructed using the NeighborNet algorithm implemented in the SplitsTree software package (http://www.splitstree.org) directly from the NEXUS file generated above by `MALDIrppa`.
+The argument `binary` can be used to export data in binary (peak presence/absence) format. Note that this is internally turned `TRUE` whenever the NEXUS or FASTA format is chosen. As an example, the next figure shows a phylogenetic network contructed using the NeighborNet algorithm implemented in the SplitsTree software package (https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/algorithms-in-bioinformatics/software/splitstree/) directly from the NEXUS file generated above by `MALDIrppa`.
 
 <center><img src="phylo_net.png" alt="Drawing" style="width: 600px;"/>
 </center>
+
+```{r global_options_exit, include=FALSE}
+options(old)
+```
 
 # References

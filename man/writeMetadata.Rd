@@ -19,7 +19,7 @@ Metadata in any sensible data format, preferably \code{\link{matrix}} or \code{\
 A character string specifying a name for the destination file (filename extension not required).
 }
   \item{format}{
-One of R (default \code{.Rdata} file) or text (comma-separated \code{.csv} file).
+One of R (default \code{.RData} file) or text (comma-separated \code{.csv} file).
 }
   \item{\dots}{
 Other arguments.
@@ -28,7 +28,7 @@ Other arguments.
 \details{
 It uses either \code{\link{save}} or \code{\link{write.table}} to store the metadata. Check these functions for adequate data formats.
 }
-
+\value{No return value, file in selected format created on destination folder.}
 \examples{
 # Load example data
 

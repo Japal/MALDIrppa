@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">MALDIrppa</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.5-1</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -124,11 +124,11 @@
     <p>This function displays the patterns of peak presence and absence in an intensity matrix as generated from <code>intensityMatrix</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>peakPatterns</span>(<span class='no'>x</span>, <span class='kw'>abs.lab</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>barplot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-             <span class='kw'>axis.lab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"m/z"</span>, <span class='st'>"Index"</span>), <span class='kw'>bar.col</span> <span class='kw'>=</span> <span class='st'>"red3"</span>,
-             <span class='kw'>cell.col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"white"</span>, <span class='st'>"dodgerblue"</span>), <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-             <span class='kw'>grid.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>grid.lty</span> <span class='kw'>=</span> <span class='st'>"dotted"</span>, <span class='kw'>cex.axis</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-             <span class='kw'>cex.lab</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>peakPatterns</span><span class='op'>(</span><span class='va'>x</span>, abs.lab <span class='op'>=</span> <span class='cn'>NA</span>, barplot <span class='op'>=</span> <span class='cn'>TRUE</span>,
+             axis.lab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"m/z"</span>, <span class='st'>"Index"</span><span class='op'>)</span>, bar.col <span class='op'>=</span> <span class='st'>"red3"</span>,
+             cell.col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"white"</span>, <span class='st'>"dodgerblue"</span><span class='op'>)</span>, grid <span class='op'>=</span> <span class='cn'>FALSE</span>,
+             grid.col <span class='op'>=</span> <span class='st'>"black"</span>, grid.lty <span class='op'>=</span> <span class='st'>"dotted"</span>, cex.axis <span class='op'>=</span> <span class='fl'>0.5</span>,
+             cex.lab <span class='op'>=</span> <span class='fl'>0.5</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -186,6 +186,9 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The peak presence/absence patterns are displayed by rows from the first (top) to the last (bottom) sample in the data set <code>x</code> over the range of common m/z points. Positive peaks are by default represented by coloured cells whereas zero or absent peaks are left blank. A barplot on the top margins shows the relative frequency of a peak at each m/z point across samples.</p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>No return value, graphical output.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>See <code>intensityMatrix</code>.</p></div>
@@ -193,26 +196,28 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Load example data</span>
 
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>spectra</span>) <span class='co'># list of MassSpectra class objects</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>type</span>) <span class='co'># metadata</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>spectra</span><span class='op'>)</span> <span class='co'># list of MassSpectra class objects</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>type</span><span class='op'>)</span> <span class='co'># metadata</span>
 
 <span class='co'># Some pre-processing</span>
 
-<span class='no'>sc.results</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='screenSpectra.html'>screenSpectra</a></span>(<span class='no'>spectra</span>,<span class='kw'>meta</span><span class='kw'>=</span><span class='no'>type</span>)
-<span class='no'>spectra</span> <span class='kw'>&lt;-</span> <span class='no'>sc.results</span>$<span class='no'>fspectra</span> <span class='co'># filtered mass spectra</span>
-<span class='no'>type</span> <span class='kw'>&lt;-</span> <span class='no'>sc.results</span>$<span class='no'>fmeta</span>    <span class='co'># filtered metadata  </span>
-<span class='no'>spectra</span> <span class='kw'>&lt;-</span> <span class='fu'>transformIntensity</span>(<span class='no'>spectra</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"sqrt"</span>)
-<span class='no'>spectra</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='wavSmoothing.html'>wavSmoothing</a></span>(<span class='no'>spectra</span>)
-<span class='no'>spectra</span> <span class='kw'>&lt;-</span> <span class='fu'>removeBaseline</span>(<span class='no'>spectra</span>)
-<span class='no'>peaks</span> <span class='kw'>&lt;-</span> <span class='fu'>detectPeaks</span>(<span class='no'>spectra</span>)
-<span class='no'>peaks</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='alignPeaks.html'>alignPeaks</a></span>(<span class='no'>peaks</span>, <span class='kw'>minFreq</span> <span class='kw'>=</span> <span class='fl'>0.8</span>)
+<span class='va'>sc.results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='screenSpectra.html'>screenSpectra</a></span><span class='op'>(</span><span class='va'>spectra</span>,meta<span class='op'>=</span><span class='va'>type</span><span class='op'>)</span>
+<span class='va'>spectra</span> <span class='op'>&lt;-</span> <span class='va'>sc.results</span><span class='op'>$</span><span class='va'>fspectra</span> <span class='co'># filtered mass spectra</span>
+<span class='va'>type</span> <span class='op'>&lt;-</span> <span class='va'>sc.results</span><span class='op'>$</span><span class='va'>fmeta</span>    <span class='co'># filtered metadata  </span>
+<span class='va'>spectra</span> <span class='op'>&lt;-</span> <span class='fu'>transformIntensity</span><span class='op'>(</span><span class='va'>spectra</span>, method <span class='op'>=</span> <span class='st'>"sqrt"</span><span class='op'>)</span>
+<span class='va'>spectra</span> <span class='op'>&lt;-</span> <span class='fu'><a href='wavSmoothing.html'>wavSmoothing</a></span><span class='op'>(</span><span class='va'>spectra</span><span class='op'>)</span>
+<span class='va'>spectra</span> <span class='op'>&lt;-</span> <span class='fu'>removeBaseline</span><span class='op'>(</span><span class='va'>spectra</span><span class='op'>)</span>
+<span class='va'>peaks</span> <span class='op'>&lt;-</span> <span class='fu'>detectPeaks</span><span class='op'>(</span><span class='va'>spectra</span><span class='op'>)</span>
+<span class='va'>peaks</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alignPeaks.html'>alignPeaks</a></span><span class='op'>(</span><span class='va'>peaks</span>, minFreq <span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span>
 
 <span class='co'># Display patterns across all data</span>
 
-<span class='fu'>peakPatterns</span>(<span class='no'>peaks</span>)</div><div class='img'><img src='peakPatterns-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>peakPatterns</span><span class='op'>(</span><span class='va'>peaks</span><span class='op'>)</span>
+</div><div class='img'><img src='peakPatterns-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Check results within isolate 280</span>
 
-<span class='fu'>peakPatterns</span>(<span class='no'>peaks</span>[<span class='no'>type</span>$<span class='no'>Isolate</span><span class='kw'>==</span><span class='st'>"280"</span>])</div><div class='img'><img src='peakPatterns-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>peakPatterns</span><span class='op'>(</span><span class='va'>peaks</span><span class='op'>[</span><span class='va'>type</span><span class='op'>$</span><span class='va'>Isolate</span><span class='op'>==</span><span class='st'>"280"</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='img'><img src='peakPatterns-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -229,7 +234,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

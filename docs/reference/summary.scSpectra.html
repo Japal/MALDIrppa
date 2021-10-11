@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Numerical summary of <code>screenSpectra</code> objects — summary.scSpectra • MALDIrppa</title>
+<title>Numerical summary of screenSpectra objects — summary.scSpectra • MALDIrppa</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Numerical summary of <code>screenSpectra</code> objects — summary.scSpectra" />
+<meta property="og:title" content="Numerical summary of screenSpectra objects — summary.scSpectra" />
 <meta property="og:description" content="This is a summary method for scSpectra objects that generates a numerical summary of the settings and results from applying screenSpectra to identify potential faulty, low-quality raw mass spectra." />
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">MALDIrppa</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.5-1</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -125,7 +125,7 @@
     </div>
 
     <pre class="usage"><span class='co'># S3 method for scSpectra</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='kw'>ncases</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>object</span>, ncases <span class='op'>=</span> <span class='fl'>10</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -147,6 +147,9 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>A table is generated that includes details of the numerical estimations along with mass spectra ID, A score and the label for each mass spectra, either potentially low-quality (<code>failure</code>) or good-quality (<code>success</code>).</p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>No return value, text printed on console.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>See <code><a href='screenSpectra.html'>screenSpectra</a></code> and <code><a href='plot.scSpectra.html'>plot.scSpectra</a></code>.</p></div>
@@ -154,10 +157,11 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Load example data</span>
 
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>spectra</span>) <span class='co'># list of MassSpectra objects</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>spectra</span><span class='op'>)</span> <span class='co'># list of MassSpectra objects</span>
 
-<span class='no'>sc.results</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='screenSpectra.html'>screenSpectra</a></span>(<span class='no'>spectra</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>sc.results</span>)</div><div class='output co'>#&gt; (10 first mass spectra) 
+<span class='va'>sc.results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='screenSpectra.html'>screenSpectra</a></span><span class='op'>(</span><span class='va'>spectra</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>sc.results</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; (10 first mass spectra) 
 #&gt;           ID   A score   Class
 #&gt; 1  160408F21 0.1683850 success
 #&gt; 2  160408F22 0.1716699 success
@@ -194,7 +198,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
