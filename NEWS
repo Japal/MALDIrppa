@@ -1,6 +1,14 @@
 RELEASE HISTORY OF THE "MALDIrppa" PACKAGE
 ==============================================
 
+CHANGES IN MALDIrppa VERSION 1.1.0 [2022-02]:
+----------------------------------------------------
+
+MODIFICATIONS
+
+* wavSmoothing now depends on waveslim package
+* Package size reduced
+
 CHANGES IN MALDIrppa VERSION 1.0.5-1 [2021-10]:
 ----------------------------------------------------
 

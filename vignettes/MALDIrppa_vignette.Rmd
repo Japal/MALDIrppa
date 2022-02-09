@@ -1,7 +1,9 @@
 ---
 title: "Robust MALDI mass spectra data pre-processing pipeline with MALDIrppa"
-author: '[Javier Palarea-Albaladejo](http://www.bioss.ac.uk/people/javier.html), Biomathematics
-  & Statistics Scotland, Edinburgh, UK'
+author: |
+  | [Javier Palarea-Albaladejo](https://www.udg.edu/en/directori/pagina-personal?ID=180023&language=en-US)
+  | University of Girona, Spain
+  | Biomathematics & Statistics Scotland, United Kingdom
 date: '`r Sys.Date()`'
 output: rmarkdown::html_vignette
 bibliography: MALDIrppaVignette.bib
@@ -58,17 +60,6 @@ Alternatively, raw data stored in text files can be easily imported into R and g
 summarySpectra(spectra[1:10])
 ```
 
-A number of parameters are required to be set for the different pre-processing stages. The functions include _safe_ default values, but parameter settings throughout pre-processing stages interact in complex ways. Using simulation, we customised some of the key parameter so as to obtain optimal combinations in terms of sensibility and false discovery rate in peak profiles. They have been slightly modified to accommodate the characteristics of the reduced example data set used here. It is convenient to write an initial section in the pre-processing pipeline script to set the values for the parameters which will be used later on. This facilitates testing results from different settings.
-
-```{r parameters, echo=TRUE, eval=TRUE}
-# Pre-processing parameter settings
-thScale <- 2.5 # Smoothing
-ite <- 105 # Baseline correction
-SigNoi <- 2 # Peak extraction
-hws <- 20 # Peak extraction
-tol <- 0.003 # Peak binning
-```
-
 ## Initial screening
 
 Pre-processing methods are not immune to low-quality mass spectra and inadvertently letting them through can severely distort the results. For example, when dealing with a number of data sets we observed both clusters of spurious peaks in some cases and sparse peaks in others which interfere with the determination of common reference peaks for peak alignment and binning. Common low-quality mass spectra are characterised by extremely ripply and indented profiles due to low signal intensities. The low signal intensity causes poor peak formation and poorly resolved peaks. Moreover, ion suppression cases show one or a few abnormally high peaks whereas the other peptide features are pulled down. The package `MALDIrppa` helps to detect exotic signals by a semi-automatic screening process implemented in the `screenSpectra` function. It is based on robust scale estimators [@Rousseeuw1993] of the derivative mass spectra and median intensities. These components are given a weight to build an atypicality score ($A$) for each signal, which is then labelled as a suspicious case (`failure`) if the score falls beyond the estimated tolerance limits (see help for `screenSpectra` for options available). The atypicality score $A$ is calculated as
@@ -107,11 +98,24 @@ type <- sc.results$fmeta # Filtered metadata
 
 ## Denoising, baseline correction and normalisation
 
-Signal denoising or smoothing is conducted in `MALDIrppa` by undecimated discrete wavelet transform (UDWT) [@Coombes2005] using the `wavSmooting` function. Wavelets adapt well to changes in peak shape and the UDWT produces the same results if the start of the signal is shifted by a few time points (shift-invariance). This prevents from undesirable artifacts into the signal near either end of the spectrum due to large changes in wavelet coefficients as a consequence of small shifts in location. In this case, smoothing is applied on square root-transformed (`sqrt` function in R) signals using `transfIntensity` for variance stabilisation. Note that in fact this function allows to apply any sensible user-defined transformation on the signal intensities (see `MALDIrppa` documentation for an example). For baseline correction, the statistics-sensitive non-linear iterative peak-clipping (SNIP) algorithm as implemented in `MALDIquant` generates positive intensities and provides better results with high matrix effects (pronounced mode). Regarding signal normalisation, `MALDIquant` offers a number of sensible methods through the `calibrateIntensity` function. In particular, probabilistic quotient normalisation (PQN) provides a robust method for scaling spectra, commonly originated from different dilutions, into a common overall concentration [@Diet2006].
+A number of parameters are required to be set for the different pre-processing stages. The functions include _safe_ default values, but parameter settings throughout pre-processing stages interact in complex ways. Using simulation, we customised some of the key parameter so as to obtain optimal combinations in terms of sensibility and false discovery rate in peak profiles. They have been slightly modified to accommodate the characteristics of the reduced example data set used here. It is convenient to write an initial section in the pre-processing pipeline script to set the values for the parameters which will be used later on. This facilitates testing results from different settings.
+
+```{r parameters, echo=TRUE, eval=TRUE}
+# Pre-processing parameter settings
+smoothLevel <- 4 # Wavelet smoothing level
+ite <- 105 # Baseline correction
+SigNoi <- 2 # Peak extraction
+hws <- 20 # Peak extraction
+tol <- 0.003 # Peak binning
+```
+
+Signal denoising or smoothing is conducted in `MALDIrppa` by undecimated discrete wavelet transform (UDWT) [@Coombes2005] using the `wavSmooting` function. Wavelets adapt well to changes in peak shape and the UDWT produces the same results if the start of the signal is shifted by a few time points (shift-invariance). This prevents from undesirable artifacts into the signal near either end of the spectrum due to large changes in wavelet coefficients as a consequence of small shifts in location. Alternatively, smoothing methods `SavitzkyGolay` and `MovingAverage` from the `MALDIquant` package can be called directly from this function. Note that from version 1.1.0 of `MALDIrppa` wavelet smoothing is conducted by maximal overlap discrete wavelet transformation and universal thresholding of coefficients based on methods available on the `waveslim` package. If the previous implementation of the wavelet method is required you can download and install manually source files of version 1.0.5-1 from the archive of old sources of the package (https://cran.r-project.org/web/packages/MALDIrppa/index.html)
+
+In this example, smoothing is applied on square root-transformed (`sqrt` function in R) signals using `transfIntensity` for variance stabilisation. Note that in fact this function allows to apply any sensible user-defined transformation on the signal intensities (see `MALDIrppa` documentation for an example). For baseline correction, the statistics-sensitive non-linear iterative peak-clipping (SNIP) algorithm as implemented in `MALDIquant` generates positive intensities and provides better results with high matrix effects (pronounced mode). Regarding signal normalisation, `MALDIquant` offers a number of sensible methods through the `calibrateIntensity` function. In particular, probabilistic quotient normalisation (PQN) provides a robust method for scaling spectra, commonly originated from different dilutions, into a common overall concentration [@Diet2006].
 
 ```{r deno, echo=TRUE, eval=TRUE}
 spectra <- transfIntensity(spectra, fun = sqrt)
-spectra <- wavSmoothing(spectra, method = "Wavelet", thresh.scale = thScale)
+spectra <- wavSmoothing(spectra, method = "Wavelet", n.levels = smoothLevel)
 spectra <- removeBaseline(spectra, method = "SNIP", iterations = ite)
 spectra <- calibrateIntensity(spectra, method = "PQN")
 ```

@@ -1,6 +1,7 @@
 import("MALDIquant")
 importFrom("robustbase","Qn","covMcd","adjboxStats")
 importFrom("signal","sgolayfilt")
+importFrom("waveslim","modwt","universal.thresh.modwt","imodwt")
 importFrom("lattice","xyplot","histogram","panel.xyplot","panel.abline","ltext","panel.histogram")
 importFrom("stats", "IQR", "cmdscale", "mad", "mahalanobis", "median",
              "pchisq", "qchisq", "quantile", "sd")
@@ -9,4 +10,3 @@ importFrom("graphics", "axis", "box", "image", "layout", "mtext","par")
 S3method(summary,scSpectra)
 S3method(plot,scSpectra)
 exportPattern("^[^\\.]")
-useDynLib(MALDIrppa)
