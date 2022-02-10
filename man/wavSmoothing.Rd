@@ -30,7 +30,7 @@ Note that from version 1.1.0 of \code{MALDIrppa} wavelet smoothing is conducted 
 
 Alternatively, smoothing methods \code{SavitzkyGolay} and \code{MovingAverage} from the \code{MALDIquant} package can be called directly from this function.
 
-If the previous implementation of the wavelet method is required please download and install manually source files of version 1.0.5-1 from the archive of old sources of the package (\url{https://cran.r-project.org/web/packages/MALDIrppa/index.html})
+If the previous implementation of the wavelet method is required please download and install manually source files of version 1.0.5-1 from the archive of old sources of the package (\url{https://CRAN.R-project.org/package=MALDIrppa}).
 }
 \value{
 A list of \code{\link{MassSpectrum}} objects with denoised signal intensities.

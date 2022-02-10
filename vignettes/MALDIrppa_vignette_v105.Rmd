@@ -36,7 +36,7 @@ Palarea-Albaladejo J., McLean K., Wright F. and Smith (2018). MALDIrppa: quality
 
 &nbsp;
 
-__Note that the following applies to MALDIrppa version up to 1.0.5. This version is no longer compatible with recent changes in CRAN policies, but if required it can be downloaded and installed manually on your system from the archive of old sources of the package at__ https://cran.r-project.org/web/packages/MALDIrppa/index.html:
+__Note that the following applies to MALDIrppa version up to 1.0.5. This version is no longer compatible with recent changes in CRAN policies, but if required it can be downloaded and installed manually on your system from the archive of old sources of the package at__ https://CRAN.R-project.org/package=MALDIrppa:
 
 
 ```{r install, echo=TRUE, eval=FALSE, results='hide'}
