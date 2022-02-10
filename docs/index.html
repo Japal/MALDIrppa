@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">MALDIrppa</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.5-1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -71,75 +67,85 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="maldirppa" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#maldirppa" class="anchor"></a>MALDIrppa</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="maldirppa">MALDIrppa<a class="anchor" aria-label="anchor" href="#maldirppa"></a>
+</h1></div>
 <p>MALDI mass spectrometry data robust pre-processing and other helper functions</p>
 <!-- badges: start -->
-<p><a href="https://github.com/Japal/MALDIrppa/actions"><img src="https://github.com/Japal/MALDIrppa/workflows/R-CMD-check/badge.svg" alt="R build status"></a> <!-- badges: end --></p>
+
 <p>This package helps to implement a robust approach to deal with mass spectrometry (MS) data. It is aimed at alleviating reproducibility issues and pernicious effects of deviating signals on both data pre-processing and downstream data analysis. Based on robust statistical methods, it facilitates the identification and filtering of low-quality mass spectra and atypical peak profiles as well as monitoring and data handling through pre-processing, which extends existing computational tools for MS data. <code>MALDIrppa</code> integrates with and extends existing R packages for MS proteomics data. Helper functions are included that allow to export data into formats used for downstream analyses.</p>
-<div id="installation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h3>
+<div class="section level3">
+<h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h3>
 <p>The package is available on CRAN and can be installed from R using</p>
-<pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("MALDIrppa")</a></code></pre>
+<pre><code><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"MALDIrppa"</span><span class="op">)</span></code></pre>
 <p>Alternatively, it can be installed from Github through the <code>devtools</code> package:</p>
-<pre><code><a href="https://devtools.r-lib.org//reference/remote-reexports.html"># For non-windows users
-devtools::install_github(repo = "Japal/MALDIrppa")
-# For windows users
-devtools::install_url(url="https://github.com/Japal/MALDIrppa/archive/master.zip", INSTALL_opt= "--no-multiarch")</a></code></pre>
+<pre><code><span class="co"># For non-windows users</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"Japal/MALDIrppa"</span><span class="op">)</span>
+<span class="co"># For windows users</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_url</a></span><span class="op">(</span>url<span class="op">=</span><span class="st">"https://github.com/Japal/MALDIrppa/archive/master.zip"</span>, INSTALL_opt<span class="op">=</span> <span class="st">"--no-multiarch"</span><span class="op">)</span></code></pre>
 </div>
-<div id="getting-started" class="section level3">
-<h3 class="hasAnchor">
-<a href="#getting-started" class="anchor"></a>Getting started</h3>
-<pre><code><a href="https://rdrr.io/r/base/library.html"># Loading the library
-library("MALDIrppa")</a></code></pre>
+<div class="section level3">
+<h3 id="getting-started">Getting started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
+</h3>
+<pre><code><span class="co"># Loading the library</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st">"MALDIrppa"</span><span class="op">)</span></code></pre>
 <p>Documentation and examples are available through the help pages (<code><a href="reference/MALDIrppa-package.html">?MALDIrppa</a></code>).</p>
 </div>
-<div id="illustrative-pipeline" class="section level3">
-<h3 class="hasAnchor">
-<a href="#illustrative-pipeline" class="anchor"></a>Illustrative pipeline</h3>
+<div class="section level3">
+<h3 id="illustrative-pipeline">Illustrative pipeline<a class="anchor" aria-label="anchor" href="#illustrative-pipeline"></a>
+</h3>
 <p>The package’s vignette provides a walk through the main features and functions:</p>
 <ul>
-<li>Article on website: <a href="https://japal.github.io/MALDIrppa/" class="uri">https://japal.github.io/MALDIrppa/</a>
+<li>Article on website: <a href="https://japal.github.io/MALDIrppa/" class="external-link uri">https://japal.github.io/MALDIrppa/</a>
 </li>
-<li>CRAN: <a href="https://cran.r-project.org/web/packages/MALDIrppa/vignettes/MALDIrppa_vignette.html" class="uri">https://cran.r-project.org/web/packages/MALDIrppa/vignettes/MALDIrppa_vignette.html</a>
+<li>CRAN: <a href="https://cran.r-project.org/web/packages/MALDIrppa/vignettes/MALDIrppa_vignette.html" class="external-link uri">https://cran.r-project.org/web/packages/MALDIrppa/vignettes/MALDIrppa_vignette.html</a>
 </li>
 </ul>
 </div>
-<div id="citation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#citation" class="anchor"></a>Citation</h3>
-<p>Palarea-Albaladejo J., McLean K., Wright F. and Smith (2018). MALDIrppa: quality control and robust analysis for mass spectrometry data. Bioinformatics 34(3):522–523. &lt;doi: <a href="http://dx.doi.org/10.1093/bioinformatics/btx628" class="uri">http://dx.doi.org/10.1093/bioinformatics/btx628</a>&gt;</p>
+<div class="section level3">
+<h3 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h3>
+<p>Palarea-Albaladejo J., McLean K., Wright F. and Smith (2018). MALDIrppa: quality control and robust analysis for mass spectrometry data. Bioinformatics 34(3):522–523. &lt;doi: <a href="http://dx.doi.org/10.1093/bioinformatics/btx628" class="external-link uri">http://dx.doi.org/10.1093/bioinformatics/btx628</a>&gt;</p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=MALDIrppa">https://​cloud.r-project.org/​package=MALDIrppa</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=MALDIrppa" class="external-link">View on CRAN</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>GPL (&gt;= 2)</li>
 </ul>
 </div>
+
+
 <div class="citation">
-<h2>Citation</h2>
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html">Citing MALDIrppa</a></li>
+<li><a href="authors.html#citation">Citing MALDIrppa</a></li>
 </ul>
 </div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Javier Palarea-Albaladejo <br><small class="roles"> Maintainer, author </small> <a href="https://orcid.org/0000-0003-0162-669X" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li><a href="authors.html">All authors...</a></li>
+<li>Javier Palarea-Albaladejo <br><small class="roles"> Maintainer, author </small> <a href="https://orcid.org/0000-0003-0162-669X" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html">More about authors...</a></li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/Japal/MALDIrppa/actions" class="external-link"><img src="https://github.com/Japal/MALDIrppa/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 </ul>
 </div>
 
@@ -148,11 +154,13 @@ library("MALDIrppa")</a></code></pre>
 
 
       <footer><div class="copyright">
-  <p>Developed by Javier Palarea-Albaladejo.</p>
+  <p></p>
+<p>Developed by Javier Palarea-Albaladejo.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -160,6 +168,8 @@ library("MALDIrppa")</a></code></pre>
 
   
 
+
+  
 
   </body>
 </html>
