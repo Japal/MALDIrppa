@@ -1,5 +1,5 @@
 ---
-title: "Robust MALDI mass spectra data pre-processing pipeline with MALDIrppa"
+title: "Robust MALDI mass spectra data pre-processing pipeline with MALDIrppa (up to v1.0.5-1)"
 author: |
   | [Javier Palarea-Albaladejo](https://www.udg.edu/en/directori/pagina-personal?ID=180023&language=en-US)
   | University of Girona, Spain
@@ -9,7 +9,7 @@ output: rmarkdown::html_vignette
 bibliography: MALDIrppaVignette.bib
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Robust MALDI mass spectra data pre-processing pipeline with MALDIrppa}
+  %\VignetteIndexEntry{Robust MALDI mass spectra data pre-processing pipeline with MALDIrppa (up to v1.0.5-1)}
   \usepackage[utf8]{inputenc}
 ---
 
@@ -32,6 +32,19 @@ knitr::opts_chunk$set(fig.align='center', fig.width=5.5, fig.height=4.5, message
 To cite MALDIrppa in publications, please use:
 
 Palarea-Albaladejo J., McLean K., Wright F. and Smith (2018). MALDIrppa: quality control and robust analysis for mass spectrometry data. Bioinformatics 34(3):522--523. (http://dx.doi.org/10.1093/bioinformatics/btx628).
+
+
+&nbsp;
+
+__Note that the following applies to MALDIrppa version up to 1.0.5. This version is no longer compatible with recent changes in CRAN policies, but if required it can be downloaded and installed manually on your system from the archive of old sources of the package at__ https://cran.r-project.org/web/packages/MALDIrppa/index.html:
+
+
+```{r install, echo=TRUE, eval=FALSE, results='hide'}
+install.packages("https://cran.r-project.org/src/contrib/Archive/MALDIrppa/MALDIrppa_1.0.5-1.tar.gz",
+                 repo=NULL, type="source")
+```
+
+&nbsp;
 
 ## Introduction
 
@@ -96,26 +109,26 @@ spectra <- sc.results$fspectra # Filtered list of mass spectra
 type <- sc.results$fmeta # Filtered metadata
 ```
 
-## Denoising, baseline correction and normalisation
+## Parameter settings
 
 A number of parameters are required to be set for the different pre-processing stages. The functions include _safe_ default values, but parameter settings throughout pre-processing stages interact in complex ways. Using simulation, we customised some of the key parameter so as to obtain optimal combinations in terms of sensibility and false discovery rate in peak profiles. They have been slightly modified to accommodate the characteristics of the reduced example data set used here. It is convenient to write an initial section in the pre-processing pipeline script to set the values for the parameters which will be used later on. This facilitates testing results from different settings.
 
 ```{r parameters, echo=TRUE, eval=TRUE}
 # Pre-processing parameter settings
-smoothLevel <- 4 # Wavelet smoothing level
+thScale <- 2.5 # Smoothing
 ite <- 105 # Baseline correction
 SigNoi <- 2 # Peak extraction
 hws <- 20 # Peak extraction
 tol <- 0.003 # Peak binning
 ```
 
-Signal denoising or smoothing is conducted in `MALDIrppa` by undecimated discrete wavelet transform (UDWT) [@Coombes2005] using the `wavSmooting` function. Wavelets adapt well to changes in peak shape and the UDWT produces the same results if the start of the signal is shifted by a few time points (shift-invariance). This prevents from undesirable artifacts into the signal near either end of the spectrum due to large changes in wavelet coefficients as a consequence of small shifts in location. Alternatively, smoothing methods `SavitzkyGolay` and `MovingAverage` from the `MALDIquant` package can be called directly from this function. Note that from version 1.1.0 of `MALDIrppa` wavelet smoothing is conducted by maximal overlap discrete wavelet transformation and universal thresholding of coefficients based on methods available on the `waveslim` package. If the previous implementation of the wavelet method is required you can download and install manually source files of version 1.0.5-1 from the archive of old sources of the package (https://cran.r-project.org/web/packages/MALDIrppa/index.html)
+## Denoising, baseline correction and normalisation
 
-In this example, smoothing is applied on square root-transformed (`sqrt` function in R) signals using `transfIntensity` for variance stabilisation. Note that in fact this function allows to apply any sensible user-defined transformation on the signal intensities (see `MALDIrppa` documentation for an example). For baseline correction, the statistics-sensitive non-linear iterative peak-clipping (SNIP) algorithm as implemented in `MALDIquant` generates positive intensities and provides better results with high matrix effects (pronounced mode). Regarding signal normalisation, `MALDIquant` offers a number of sensible methods through the `calibrateIntensity` function. In particular, probabilistic quotient normalisation (PQN) provides a robust method for scaling spectra, commonly originated from different dilutions, into a common overall concentration [@Diet2006].
+Signal denoising or smoothing is conducted in `MALDIrppa` by undecimated discrete wavelet transform (UDWT) [@Coombes2005] using the `wavSmooting` function. Wavelets adapt well to changes in peak shape and the UDWT produces the same results if the start of the signal is shifted by a few time points (shift-invariance). This prevents from undesirable artifacts into the signal near either end of the spectrum due to large changes in wavelet coefficients as a consequence of small shifts in location. In this case, smoothing is applied on square root-transformed (`sqrt` function in R) signals using `transfIntensity` for variance stabilisation. Note that in fact this function allows to apply any sensible user-defined transformation on the signal intensities (see `MALDIrppa` documentation for an example). For baseline correction, the statistics-sensitive non-linear iterative peak-clipping (SNIP) algorithm as implemented in `MALDIquant` generates positive intensities and provides better results with high matrix effects (pronounced mode). Regarding signal normalisation, `MALDIquant` offers a number of sensible methods through the `calibrateIntensity` function. In particular, probabilistic quotient normalisation (PQN) provides a robust method for scaling spectra, commonly originated from different dilutions, into a common overall concentration [@Diet2006].
 
 ```{r deno, echo=TRUE, eval=TRUE}
 spectra <- transfIntensity(spectra, fun = sqrt)
-spectra <- wavSmoothing(spectra, method = "Wavelet", n.levels = smoothLevel)
+spectra <- wavSmoothing(spectra, method = "Wavelet", thresh.scale = thScale)
 spectra <- removeBaseline(spectra, method = "SNIP", iterations = ite)
 spectra <- calibrateIntensity(spectra, method = "PQN")
 ```

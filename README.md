@@ -10,7 +10,7 @@ This package helps to implement a robust approach to deal with mass spectrometry
 
 ### Installation
 
-The package is available on CRAN and can be installed from R using
+The latest version of the package is available on CRAN and can be installed from R using
 
 ```
 install.packages("MALDIrppa")
@@ -24,6 +24,13 @@ devtools::install_github(repo = "Japal/MALDIrppa")
 # For windows users
 devtools::install_url(url="https://github.com/Japal/MALDIrppa/archive/master.zip", INSTALL_opt= "--no-multiarch")
 ```
+
+For compatibility with previous pre-processing pipelines, a previous version of MALDIrppa can be installed from source files. For example, for v1.0.5-1:
+
+```
+install.packages("https://cran.r-project.org/src/contrib/Archive/MALDIrppa/MALDIrppa_1.0.5-1.tar.gz", repo=NULL, type="source")
+```
+
 
 ### Getting started
 
