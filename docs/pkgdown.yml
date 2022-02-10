@@ -2,6 +2,7 @@ pandoc: 2.14.0.3
 pkgdown: 2.0.1
 pkgdown_sha: ~
 articles:
-  MALDIrppa_vignette: MALDIrppa_vignette.html
-last_built: 2022-02-10T07:25Z
+  MALDIrppa_vignette_v105: MALDIrppa_vignette_v105.html
+  MALDIrppa_vignette_v110: MALDIrppa_vignette_v110.html
+last_built: 2022-02-10T10:58Z
 
