@@ -23,3 +23,5 @@ License: GPL (>= 2)
 Repository: CRAN, GitHub
 Suggests: knitr, rmarkdown, testthat
 VignetteBuilder: knitr
+URL: https://github.com/Japal/MALDIrppa
+BugReports: https://github.com/Japal/MALDIrppa/issues
