@@ -21,8 +21,7 @@ Minimum relative frequency of a peak over \code{x} to be considered as anchor pe
   \item{tolerance}{
 Maximal deviation in peak masses to be considered as identical (see \code{\link{referencePeaks}}, \code{\link{binPeaks}}).
 }
-  \item{\dots}{
-%%     ~~Describe \code{\dots} here~~
+  \item{\dots}{Other arguments from the original functions in \code{\link{MALDIquant}}.
 }
 }
 \details{
