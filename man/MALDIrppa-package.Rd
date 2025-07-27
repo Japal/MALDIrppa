@@ -6,14 +6,14 @@
 MALDI mass spectra robust pre-processing and analysis
 }
 \description{
-This package provides procedures for quality control and robust pre-processing and analysis of MALDI mass spectrometry data based on objects and methods from the \code{\link{MALDIquant}} package. Moreover, it includes some additional functionalities and data summary and management tools (see vignette).
+This package provides procedures for quality control and robust pre-processing and analysis of MALDI mass spectrometry data based on objects and methods from the \code{\link[MALDIquant]{MALDIquant}} package. Moreover, it includes some additional functionalities and data summary and management tools (see vignette).
 }
 \details{
 \tabular{ll}{
 Package: \tab MALDIrppa\cr
 Type: \tab Package\cr
-Version: \tab 1.1.0-2\cr
-Date: \tab 2024-01-23\cr
+Version: \tab 1.1.0-3\cr
+Date: \tab 2025-07-27\cr
 License: \tab GPL (>= 2)\cr
 }
 

@@ -5,14 +5,14 @@
 Transform intensity of \code{MassSpectrum} objects
 }
 \description{
-This function applies user-defined transformations on the intensities of \code{\linkS4class{MassSpectrum}} objects.
+This function applies user-defined transformations on the intensities of \code{\link[MALDIquant]{MassSpectrum}} objects.
 }
 \usage{
 transfIntensity(x, fun = NULL, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{A list of \code{\linkS4class{MassSpectrum}} objects.
+  \item{x}{A list of \code{\link[MALDIquant]{MassSpectrum}} objects.
 %%     ~~Describe \code{peaks} here~~
 }
   \item{fun}{Name of an user-defined transformation function or any other pre-defined one in R.
@@ -22,10 +22,10 @@ transfIntensity(x, fun = NULL, ...)
 }
 }
 \details{
-This function allows the user to define any sensible function to be applied on signal intensities. For logarithm and square root transformations it is equivalent to \code{\link{transformIntensity}} in the MALDIquant package. 
+This function allows the user to define any sensible function to be applied on signal intensities. For logarithm and square root transformations it is equivalent to \code{\link[MALDIquant]{transformIntensity}} in the MALDIquant package. 
 }
 \value{
-A list of \code{\linkS4class{MassSpectrum}} objects with signal intensities transformed according to \code{fun}.
+A list of \code{\link[MALDIquant]{MassSpectrum}} objects with signal intensities transformed according to \code{fun}.
 }
 
 \examples{

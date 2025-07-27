@@ -5,7 +5,7 @@
 Compact peak alignment process for \code{MassPeaks} objects
 }
 \description{
-This function provides a single command for selecting anchor peaks, peak alignment and binning of \code{\link{MassPeaks}} class objects (\code{\link{MALDIquant}} package). It also deals with alignment-related issues found in high-resolution mass spectrometry data.
+This function provides a single command for selecting anchor peaks, peak alignment and binning of \code{\link[MALDIquant]{MassPeaks}} class objects (\code{\link[MALDIquant]{MALDIquant}} package). It also deals with alignment-related issues found in high-resolution mass spectrometry data.
 }
 \usage{
 alignPeaks(x, minFreq = 0.9, tolerance = 0.003, ...)
@@ -13,22 +13,22 @@ alignPeaks(x, minFreq = 0.9, tolerance = 0.003, ...)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-A list of \code{\link{MassPeaks}} class objects.
+A list of \code{\link[MALDIquant]{MassPeaks}} class objects.
 }
   \item{minFreq}{
-Minimum relative frequency of a peak over \code{x} to be considered as anchor peak for alignment (see \code{\link{referencePeaks}}).
+Minimum relative frequency of a peak over \code{x} to be considered as anchor peak for alignment (see \code{\link[MALDIquant]{referencePeaks}}).
 }
   \item{tolerance}{
-Maximal deviation in peak masses to be considered as identical (see \code{\link{referencePeaks}}, \code{\link{binPeaks}}).
+Maximal deviation in peak masses to be considered as identical (see \code{\link[MALDIquant]{referencePeaks}}, \code{\link[MALDIquant]{binPeaks}}).
 }
-  \item{\dots}{Other arguments from the original functions in \code{\link{MALDIquant}}.
+  \item{\dots}{Other arguments from the original functions in \code{\link[MALDIquant]{MALDIquant}}.
 }
 }
 \details{
-See \code{\link{warpMassPeaks}} and \code{\link{binPeaks}} in the \code{\link{MALDIquant}} package for details about the alignment and binning algorithms. Note that \code{alignPeaks} applies an additional binning round which helps to correct for misalignment issues found after using the default \code{strict} or \code{relaxed} bin creation rules in high-resolution mass spectrometry data.
+See \code{\link[MALDIquant]{warpMassPeaks}} and \code{\link[MALDIquant]{binPeaks}} in the \code{\link[MALDIquant]{MALDIquant}} package for details about the alignment and binning algorithms. Note that \code{alignPeaks} applies an additional binning round which helps to correct for misalignment issues found after using the default \code{strict} or \code{relaxed} bin creation rules in high-resolution mass spectrometry data.
 }
 \value{
-A list of \code{\link{MassPeaks}} class objects with aligned peaks along a common m/z range. 
+A list of \code{\link[MALDIquant]{MassPeaks}} class objects with aligned peaks along a common m/z range. 
 }
 
 \examples{

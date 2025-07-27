@@ -15,7 +15,7 @@ screenSpectra(x, meta = NULL, threshold = 1.5, estimator = c("Q", "MAD"),
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-A list of \code{\link{MassSpectrum}} objects.
+A list of \code{\link[MALDIquant]{MassSpectrum}} objects.
 }
   \item{meta}{(optional) Matrix or vector containing metadata associated to \code{x}. Typically a data matrix including spectrum ID, biotype, replicate number, etc. for each element of \code{x}.
 }
@@ -24,7 +24,7 @@ Multiplicative factor used in computing the upper and lower fences to determine 
 }
   \item{estimator}{Robust scale estimator used:
   
-  \code{Q}: robust location-free scale estimate (default, see \code{\link{Qn}} function in \code{robustbase} package). More efficient than MAD and adequate for non-symmetric distributions.
+  \code{Q}: robust location-free scale estimate (default, see \code{\link[robustbase]{Qn}} function in \code{robustbase} package). More efficient than MAD and adequate for non-symmetric distributions.
   
     \code{MAD}: median absolute deviance scale estimate. Very robust and preferred for fairly symmetric distributions.
 }
@@ -39,7 +39,7 @@ Method used to compute upper and lower fences for the identification of atypical
 
 \code{Hampel}: robust version of the ESD method based on the median and the median absolute deviance estimate (MAD).
 
-\code{RC}: as Hampel's but replacing MAD by Rousseeuw & Croux (1993)'s \code{\link{Qn}} as scale estimate.
+\code{RC}: as Hampel's but replacing MAD by Rousseeuw & Croux (1993)'s \code{\link[robustbase]{Qn}} as scale estimate.
 }
   \item{nd}{
 Order for the derivative function of the mass spectra (default = 1).

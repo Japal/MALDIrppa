@@ -13,11 +13,11 @@ snrPeaks(x)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-A list of \code{\link{MassPeaks}} objects.
+A list of \code{\link[MALDIquant]{MassPeaks}} objects.
 }
 }
 \details{
-Given a collection of \code{\link{MassPeaks}} objects as obtained from \code{\link{detectPeaks}}, this function provides the thresholds used in each case to determine peaks from the original mass spectra. The thresholds are calculated as the product of a SNR value set by the user and the estimated noise of the signal (see \code{\link{detectPeaks}}).
+Given a collection of \code{\link[MALDIquant]{MassPeaks}} objects as obtained from \code{\link[MALDIquant]{detectPeaks}}, this function provides the thresholds used in each case to determine peaks from the original mass spectra. The thresholds are calculated as the product of a SNR value set by the user and the estimated noise of the signal (see \code{\link[MALDIquant]{detectPeaks}}).
 }
 \value{
 A list of vectors of SNR-based thresholds, one for each sample.

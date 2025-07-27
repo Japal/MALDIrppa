@@ -5,7 +5,7 @@
 Display peak presence/absence patterns
 }
 \description{
-This function displays the patterns of peak presence and absence in an intensity matrix as generated from \code{\link{intensityMatrix}}.
+This function displays the patterns of peak presence and absence in an intensity matrix as generated from \code{\link[MALDIquant]{intensityMatrix}}.
 }
 \usage{
 peakPatterns(x, abs.lab = NA, barplot = TRUE,
@@ -17,7 +17,7 @@ peakPatterns(x, abs.lab = NA, barplot = TRUE,
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-A \code{\link{matrix}}, \code{\link{data.frame}} or a list of \code{\link{MassPeaks}} objects.
+A \code{\link{matrix}}, \code{\link{data.frame}} or a list of \code{\link[MALDIquant]{MassPeaks}} objects.
 }
   \item{abs.lab}{
 Unique label used to denote peak absence in \code{x} (\code{NA}, default).
@@ -58,7 +58,7 @@ The peak presence/absence patterns are displayed by rows from the first (top) to
 }
 \value{No return value, graphical output.}
 \seealso{
-See \code{\link{intensityMatrix}}.
+See \code{\link[MALDIquant]{intensityMatrix}}.
 }
 \examples{
 # Load example data

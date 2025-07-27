@@ -5,7 +5,7 @@
 Summary of mass peak profiles
 }
 \description{
-This function generates a numerical summary of a collection of \code{\link{MassPeaks}} objects.
+This function generates a numerical summary of a collection of \code{\link[MALDIquant]{MassPeaks}} objects.
 }
 \usage{
 summaryPeaks(x, digits = 4)
@@ -13,16 +13,16 @@ summaryPeaks(x, digits = 4)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-A list of \code{\link{MassPeaks}} objects.
+A list of \code{\link[MALDIquant]{MassPeaks}} objects.
 }
   \item{digits}{
 Integer indicating the number of decimal places to be used.
 }}
 \details{
-For each \code{\link{MassPeaks}} on the list this function provides summary statistics of m/z points, peak intensities and SNR thresholds (number, minimum, mean, standard deviation, median, mean absolute deviation, maximum).
+For each \code{\link[MALDIquant]{MassPeaks}} on the list this function provides summary statistics of m/z points, peak intensities and SNR thresholds (number, minimum, mean, standard deviation, median, mean absolute deviation, maximum).
 }
 \value{
-A \code{\link{data.frame}} containing summary information of a collection of \code{\link{MassPeaks}} objects.
+A \code{\link{data.frame}} containing summary information of a collection of \code{\link[MALDIquant]{MassPeaks}} objects.
 }
 
 \examples{

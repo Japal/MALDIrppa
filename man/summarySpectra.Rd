@@ -5,7 +5,7 @@
 Summary of mass spectra
 }
 \description{
-This function generates a numerical summary of a collection of \code{\link{MassSpectrum}} objects.
+This function generates a numerical summary of a collection of \code{\link[MALDIquant]{MassSpectrum}} objects.
 }
 \usage{
 summarySpectra(x, digits = 4)
@@ -13,16 +13,16 @@ summarySpectra(x, digits = 4)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-A list of \code{\link{MassSpectrum}} objects.
+A list of \code{\link[MALDIquant]{MassSpectrum}} objects.
 }
   \item{digits}{
 Integer indicating the number of decimal places to be used.
 }}
 \details{
-For each \code{\link{MassSpectrum}} on the list this function provides summary statistics of m/z points and signal intensities (number, minimum, mean, standard deviation, median, mean absolute deviation, maximum).
+For each \code{\link[MALDIquant]{MassSpectrum}} on the list this function provides summary statistics of m/z points and signal intensities (number, minimum, mean, standard deviation, median, mean absolute deviation, maximum).
 }
 \value{
-A \code{\link{data.frame}} containing summary information of a collection of \code{\link{MassSpectrum}} objects.
+A \code{\link{data.frame}} containing summary information of a collection of \code{\link[MALDIquant]{MassSpectrum}} objects.
 }
 
 \examples{

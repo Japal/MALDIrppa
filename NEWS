@@ -1,6 +1,13 @@
 RELEASE HISTORY OF THE "MALDIrppa" PACKAGE
 ==============================================
 
+CHANGES IN MALDIrppa VERSION 1.1.0-3 [2025-07]:
+----------------------------------------------------
+
+MODIFICATIONS
+
+* Update to add package anchors in links to functions in .Rd files.
+
 CHANGES IN MALDIrppa VERSION 1.1.0-2 [2024-01]:
 ----------------------------------------------------
 

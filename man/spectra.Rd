@@ -5,7 +5,7 @@
 Example mass spectra profiles
 }
 \description{
-List of mass spectra (\code{\link{MassSpectrum}} class).  
+List of mass spectra (\code{\link[MALDIquant]{MassSpectrum}} class).  
 }
 \usage{data(spectra)}
 

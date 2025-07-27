@@ -5,7 +5,7 @@
 Add metadata to \code{AbstractMassObject} class objects
 }
 \description{
-This function adds metadata to the \code{metaData} slot of an \code{\link{AbstractMassObject-class}} class object.
+This function adds metadata to the \code{metaData} slot of an \code{\link[MALDIquant]{AbstractMassObject-class}} class object.
 }
 \usage{
 addMetadata(x, metadata, pos)
@@ -13,7 +13,7 @@ addMetadata(x, metadata, pos)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-List of \code{\link{AbstractMassObject-class}} (\code{MassSpectra} or \code{MassPeaks}) class objects.
+List of \code{\link[MALDIquant]{AbstractMassObject-class}} (\code{MassSpectra} or \code{MassPeaks}) class objects.
 }
   \item{metadata}{
 Vector containing the metadata to be included for each element of \code{x} (same length as \code{x}).
@@ -24,7 +24,7 @@ Position of the new metadata within the \code{metaData} slot list of each elemen
 }
 
 \value{
-List of \code{\link{AbstractMassObject-class}} class objects including the new metadata in their \code{metaData} slot.
+List of \code{\link[MALDIquant]{AbstractMassObject-class}} class objects including the new metadata in their \code{metaData} slot.
 }
 
 \examples{

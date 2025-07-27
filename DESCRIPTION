@@ -1,7 +1,7 @@
 Package: MALDIrppa
 Type: Package
 Title: MALDI Mass Spectrometry Data Robust Pre-Processing and Analysis
-Version: 1.1.0-2
+Version: 1.1.0-3
 Authors@R: 
     c(person(given = "Javier",
              family = "Palarea-Albaladejo",
@@ -14,7 +14,7 @@ Authors@R:
              email = "paolo.ribeca@bioss.ac.uk",
              comment = c(ORCID = "0000-0001-5599-3933"))
              )
-Date: 2024-01-23
+Date: 2025-07-27
 Maintainer: Javier Palarea-Albaladejo <javier.palarea@udg.edu>
 Depends: R (>= 3.2.5), MALDIquant, signal, robustbase, lattice, waveslim
 ByteCompile: yes

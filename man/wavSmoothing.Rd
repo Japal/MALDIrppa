@@ -5,7 +5,7 @@
 Discrete wavelet transformation for \code{MassSpectrum} objects
 }
 \description{
-This function performs undecimated wavelet transform (UDWT) on mass spectra in \code{\link{MassSpectrum}} format. Alternatively, smoothing methods included in the \code{MALDIquant} package can be called.
+This function performs undecimated wavelet transform (UDWT) on mass spectra in \code{\link[MALDIquant]{MassSpectrum}} format. Alternatively, smoothing methods included in the \code{MALDIquant} package can be called.
 }
 \usage{
 wavSmoothing(x, method = c("Wavelet", "SavitzkyGolay", "MovingAverage"),
@@ -14,7 +14,7 @@ wavSmoothing(x, method = c("Wavelet", "SavitzkyGolay", "MovingAverage"),
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-A list of \code{\link{MassSpectrum}} objects.
+A list of \code{\link[MALDIquant]{MassSpectrum}} objects.
 }
   \item{method}{
 Smoothing method used.
@@ -33,7 +33,7 @@ Alternatively, smoothing methods \code{SavitzkyGolay} and \code{MovingAverage} f
 If the previous implementation of the wavelet method is required please download and install manually source files of version 1.0.5-1 from the archive of old sources of the package (\url{https://CRAN.R-project.org/package=MALDIrppa}).
 }
 \value{
-A list of \code{\link{MassSpectrum}} objects with denoised signal intensities.
+A list of \code{\link[MALDIquant]{MassSpectrum}} objects with denoised signal intensities.
 }
 
 \examples{
